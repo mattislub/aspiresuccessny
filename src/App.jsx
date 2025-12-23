@@ -1,5 +1,16 @@
 import { useEffect, useState } from 'react'
-import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa'
+import {
+  FaCheckCircle,
+  FaClipboardList,
+  FaEnvelope,
+  FaFacebookF,
+  FaHandsHelping,
+  FaInstagram,
+  FaLinkedinIn,
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaUserCheck,
+} from 'react-icons/fa'
 import logo from './assets/logo.png'
 
 const values = ['Compassion', 'Integrity', 'Results-Driven', 'Advocacy']
@@ -45,16 +56,19 @@ const services = [
     title: 'Care Management',
     description: 'Personalized coordination that keeps your goals, appointments, and supports aligned.',
     link: '/care-management',
+    icon: FaClipboardList,
   },
   {
     title: 'Resource Access',
     description: 'Guidance through government programs and local resources that fit your needs.',
     link: '/government-programs',
+    icon: FaHandsHelping,
   },
   {
     title: 'Qualified Specialist Placement',
     description: 'Hand-selected providers matched to your emotional, cognitive, or behavioral goals.',
     link: '/specialist-placement',
+    icon: FaUserCheck,
   },
 ]
 
@@ -125,16 +139,31 @@ const ContactPage = ({ onNavigateHome }) => {
                 <h3>Reach us directly</h3>
                 <ul className="contact-info">
                   <li>
-                    <span>Phone</span>
-                    <a href="tel:555-123-4567">(555) 123-4567</a>
+                    <div className="contact-info__icon" aria-hidden="true">
+                      <FaPhoneAlt />
+                    </div>
+                    <div>
+                      <span>Phone</span>
+                      <a href="tel:555-123-4567">(555) 123-4567</a>
+                    </div>
                   </li>
                   <li>
-                    <span>Email</span>
-                    <a href="mailto:hello@aspiresuccessny.com">hello@aspiresuccessny.com</a>
+                    <div className="contact-info__icon" aria-hidden="true">
+                      <FaEnvelope />
+                    </div>
+                    <div>
+                      <span>Email</span>
+                      <a href="mailto:hello@aspiresuccessny.com">hello@aspiresuccessny.com</a>
+                    </div>
                   </li>
                   <li>
-                    <span>Address</span>
-                    <p>123 Fifth Avenue, New York, NY 10010</p>
+                    <div className="contact-info__icon" aria-hidden="true">
+                      <FaMapMarkerAlt />
+                    </div>
+                    <div>
+                      <span>Address</span>
+                      <p>123 Fifth Avenue, New York, NY 10010</p>
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -1036,10 +1065,19 @@ function App() {
           </div>
           <div className="hero__card">
             <h3>Support at every step</h3>
-            <ul>
-              <li>Dedicated care managers who listen and guide.</li>
-              <li>Clear pathways to resources and funding.</li>
-              <li>Trusted specialists tailored to your goals.</li>
+            <ul className="hero-list">
+              <li className="hero-list__item">
+                <FaCheckCircle className="hero-list__icon" aria-hidden="true" />
+                <span>Dedicated care managers who listen and guide.</span>
+              </li>
+              <li className="hero-list__item">
+                <FaCheckCircle className="hero-list__icon" aria-hidden="true" />
+                <span>Clear pathways to resources and funding.</span>
+              </li>
+              <li className="hero-list__item">
+                <FaCheckCircle className="hero-list__icon" aria-hidden="true" />
+                <span>Trusted specialists tailored to your goals.</span>
+              </li>
             </ul>
             <div className="pill">Aligned with your vision of success</div>
           </div>
@@ -1108,9 +1146,14 @@ function App() {
                   navigate(service.link)
                 }}
               >
-                <div>
-                  <h3>{service.title}</h3>
-                  <p>{service.description}</p>
+                <div className="card__title">
+                  <div className="card__icon" aria-hidden="true">
+                    <service.icon />
+                  </div>
+                  <div>
+                    <h3>{service.title}</h3>
+                    <p>{service.description}</p>
+                  </div>
                 </div>
                 <span className="card__link">Learn more →</span>
               </a>
@@ -1167,9 +1210,14 @@ function App() {
                     setIsServicesModalOpen(false)
                   }}
                 >
-                  <div>
-                    <h3>{service.title}</h3>
-                    <p>{service.description}</p>
+                  <div className="card__title">
+                    <div className="card__icon" aria-hidden="true">
+                      <service.icon />
+                    </div>
+                    <div>
+                      <h3>{service.title}</h3>
+                      <p>{service.description}</p>
+                    </div>
                   </div>
                   <span className="card__link">Learn more →</span>
                 </a>
