@@ -252,14 +252,6 @@ const GovernmentProgramsPage = ({ onNavigateHome }) => {
               applications moving.
             </p>
           </div>
-          <div className="section__cta">
-            <a className="cta" href="#contact">
-              Start now
-            </a>
-            <a className="cta cta--ghost" href="#contact">
-              Contact us
-            </a>
-          </div>
         </section>
 
         <section className="section section--muted">
@@ -288,14 +280,6 @@ const GovernmentProgramsPage = ({ onNavigateHome }) => {
               <p>We communicate with agencies, track status updates, and escalate when needed to keep things on track.</p>
             </div>
           </div>
-          <div className="section__cta">
-            <a className="cta" href="#contact">
-              Start now
-            </a>
-            <a className="cta cta--ghost" href="#contact">
-              Contact us
-            </a>
-          </div>
         </section>
 
         <section className="section">
@@ -310,14 +294,6 @@ const GovernmentProgramsPage = ({ onNavigateHome }) => {
             <li>HCBS: Home and Community-Based Services</li>
             <li>Peer Support Services</li>
           </ul>
-          <div className="section__cta">
-            <a className="cta" href="#contact">
-              Start now
-            </a>
-            <a className="cta cta--ghost" href="#contact">
-              Contact us
-            </a>
-          </div>
         </section>
 
         <section className="section">
@@ -435,14 +411,6 @@ const CareManagementPage = ({ onNavigateHome }) => {
               difference for you or your family.
             </p>
           </div>
-          <div className="section__cta">
-            <a className="cta" href="#contact">
-              Start now
-            </a>
-            <a className="cta cta--ghost" href="#contact">
-              Contact us
-            </a>
-          </div>
         </section>
 
         <section className="section section--muted">
@@ -479,14 +447,6 @@ const CareManagementPage = ({ onNavigateHome }) => {
               </p>
             </div>
           </div>
-          <div className="section__cta">
-            <a className="cta" href="#contact">
-              Start now
-            </a>
-            <a className="cta cta--ghost" href="#contact">
-              Contact us
-            </a>
-          </div>
         </section>
 
         <section className="section">
@@ -496,14 +456,6 @@ const CareManagementPage = ({ onNavigateHome }) => {
               We save you time and stress by ensuring the most effective support is in place from day one. With one
               consistent point of contact, you avoid delays and stay focused on progress.
             </p>
-          </div>
-          <div className="section__cta">
-            <a className="cta" href="#contact">
-              Start now
-            </a>
-            <a className="cta cta--ghost" href="#contact">
-              Contact us
-            </a>
           </div>
         </section>
       </main>
@@ -673,14 +625,6 @@ function App() {
             <div className="pill-card">Teens</div>
             <div className="pill-card">Adults</div>
           </div>
-          <div className="section__cta">
-            <a className="cta" href="#contact">
-              Start now
-            </a>
-            <a className="cta cta--ghost" href="#contact">
-              Contact us
-            </a>
-          </div>
         </section>
 
         <section className="section" id="services">
@@ -708,14 +652,6 @@ function App() {
               </a>
             ))}
           </div>
-          <div className="section__cta">
-            <a className="cta" href="#contact">
-              Start now
-            </a>
-            <a className="cta cta--ghost" href="#contact">
-              Contact us
-            </a>
-          </div>
         </section>
 
         <section className="section section--muted" id="testimonials">
@@ -737,14 +673,6 @@ function App() {
                 />
               ))}
             </div>
-          </div>
-          <div className="section__cta">
-            <a className="cta" href="#contact">
-              Start now
-            </a>
-            <a className="cta cta--ghost" href="#contact">
-              Contact us
-            </a>
           </div>
         </section>
       </main>
