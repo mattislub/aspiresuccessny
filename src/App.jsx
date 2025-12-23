@@ -25,6 +25,7 @@ import {
   FaUserCheck,
 } from 'react-icons/fa'
 import logo from './assets/logo.png'
+import sectionDividerImage from './assets/Aspire-2.jpg'
 
 const values = ['Compassion', 'Integrity', 'Results-Driven', 'Advocacy']
 
@@ -85,6 +86,15 @@ const services = [
   },
 ]
 
+const SectionDivider = () => (
+  <div className="section-divider" aria-hidden="true">
+    {[...Array(3)].map((_, index) => (
+      <img key={index} src={sectionDividerImage} alt="" className="section-divider__image" />
+    ))}
+  </div>
+)
+
+const ContactPage = ({ onNavigateHome }) => {
 const footerContact = {
   phone: {
     label: '(555) 123-4567',
@@ -1041,6 +1051,8 @@ function App() {
           </div>
         </section>
 
+        <SectionDivider />
+
         <section className="section section--muted" id="about">
           <div className="section__header">
             <p className="eyebrow eyebrow--with-icon">
@@ -1071,6 +1083,8 @@ function App() {
             </div>
           </div>
         </section>
+
+        <SectionDivider />
 
         <section className="section" id="services">
           <div className="section__header">
@@ -1106,6 +1120,8 @@ function App() {
             ))}
           </div>
         </section>
+
+        <SectionDivider />
 
         <section className="section section--muted" id="testimonials">
           <div className="section__header">
