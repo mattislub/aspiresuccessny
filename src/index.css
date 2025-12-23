@@ -160,15 +160,40 @@ body {
   font-weight: 700;
 }
 
+.eyebrow--with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.eyebrow__icon {
+  color: var(--primary);
+}
+
 .pill {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   padding: 8px 12px;
   border-radius: 999px;
   background: var(--primary-dark);
   color: #f6fbfb;
   font-size: 13px;
   border: none;
+}
+
+.pill__icon {
+  color: var(--accent);
+}
+
+.heading-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.heading-icon {
+  color: var(--primary-dark);
 }
 
 .section {

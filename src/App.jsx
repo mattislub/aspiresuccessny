@@ -1,14 +1,27 @@
 import { useEffect, useState } from 'react'
 import {
+  FaCalendarCheck,
   FaCheckCircle,
+  FaClipboardCheck,
   FaClipboardList,
   FaEnvelope,
+  FaEnvelopeOpenText,
+  FaExclamationCircle,
   FaFacebookF,
+  FaGlobeAmericas,
+  FaHandshake,
+  FaHeart,
   FaHandsHelping,
   FaInstagram,
   FaLinkedinIn,
+  FaLightbulb,
   FaMapMarkerAlt,
+  FaMapSigns,
   FaPhoneAlt,
+  FaCompass,
+  FaSeedling,
+  FaShieldAlt,
+  FaUserCog,
   FaUserCheck,
 } from 'react-icons/fa'
 import logo from './assets/logo.png'
@@ -91,13 +104,19 @@ const ContactPage = ({ onNavigateHome }) => {
 
         <div className="contact-hero__content">
           <div>
-            <p className="eyebrow">Contact</p>
+            <p className="eyebrow eyebrow--with-icon">
+              <FaGlobeAmericas className="eyebrow__icon" aria-hidden="true" />
+              Contact
+            </p>
             <h1>Let us know how we can support you.</h1>
             <p className="subhead">
               Share what you need and our care team will reach out within one business day to guide you toward the right
               services and specialists.
             </p>
-            <div className="pill">We respond within 1 business day</div>
+            <div className="pill">
+              <FaCalendarCheck className="pill__icon" aria-hidden="true" />
+              We respond within 1 business day
+            </div>
           </div>
         </div>
       </header>
@@ -106,7 +125,10 @@ const ContactPage = ({ onNavigateHome }) => {
         <section className="section">
           <div className="contact-grid">
             <div className="contact-card">
-              <h2>Send us a message</h2>
+              <h2 className="heading-with-icon">
+                <FaEnvelopeOpenText className="heading-icon" aria-hidden="true" />
+                Send us a message
+              </h2>
               <form className="contact-form">
                 <div className="form-group">
                   <label htmlFor="name">Name</label>
@@ -265,7 +287,10 @@ const AboutPage = ({ onNavigateHome, onNavigate }) => {
         </nav>
 
         <div className="service-hero__content">
-          <p className="eyebrow">About Aspire Success NY</p>
+          <p className="eyebrow eyebrow--with-icon">
+            <FaSeedling className="eyebrow__icon" aria-hidden="true" />
+            About Aspire Success NY
+          </p>
           <h1>Our Story, Mission, and the People Championing Your Growth</h1>
           <p className="subhead">
             We exist to bridge gaps in care so individuals and families facing emotional, cognitive, and behavioral
@@ -277,7 +302,10 @@ const AboutPage = ({ onNavigateHome, onNavigate }) => {
       <main className="service-content about">
         <section className="section">
           <div className="section__header">
-            <p className="eyebrow">Our Mission</p>
+            <p className="eyebrow eyebrow--with-icon">
+              <FaLightbulb className="eyebrow__icon" aria-hidden="true" />
+              Our Mission
+            </p>
             <h2>Empowering every step forward</h2>
             <p className="section__lead">
               We empower individuals by providing clear direction, expert care coordination, and access to essential
@@ -296,7 +324,10 @@ const AboutPage = ({ onNavigateHome, onNavigate }) => {
 
         <section className="section section--muted">
           <div className="section__header">
-            <p className="eyebrow">Why we were founded</p>
+            <p className="eyebrow eyebrow--with-icon">
+              <FaCompass className="eyebrow__icon" aria-hidden="true" />
+              Why we were founded
+            </p>
             <h2>Closing the gap between needs and resources</h2>
             <p className="section__lead">
               Our team saw families struggling to access the right support despite their determination. Aspire Success NY
@@ -323,7 +354,10 @@ const AboutPage = ({ onNavigateHome, onNavigate }) => {
 
         <section className="section">
           <div className="section__header">
-            <p className="eyebrow">Our values</p>
+            <p className="eyebrow eyebrow--with-icon">
+              <FaShieldAlt className="eyebrow__icon" aria-hidden="true" />
+              Our values
+            </p>
             <h2>The principles guiding every decision</h2>
             <p className="section__lead">These values shape how we show up for you and advocate on your behalf.</p>
           </div>
@@ -464,7 +498,10 @@ const SpecialistPlacementPage = ({ onNavigateHome, onNavigate }) => {
         </nav>
 
         <div className="service-hero__content">
-          <p className="eyebrow">Services specialist-placement</p>
+          <p className="eyebrow eyebrow--with-icon">
+            <FaUserCog className="eyebrow__icon" aria-hidden="true" />
+            Services specialist-placement
+          </p>
           <h1>Building Your Support Team: Connecting You with Qualified Personnel</h1>
           <p className="subhead">
             We source, vet, and match skilled professionals to fit your care needs, goals, and personality so you feel
@@ -475,11 +512,14 @@ const SpecialistPlacementPage = ({ onNavigateHome, onNavigate }) => {
 
       <main className="service-content">
         <section className="section">
-          <div className="section__header">
-            <p className="eyebrow">Our mission</p>
-            <h2>Every great plan needs the right people</h2>
-            <p className="section__lead">
-              A comprehensive care plan requires skilled, dedicated personnel to implement the work. We bring together
+        <div className="section__header">
+          <p className="eyebrow eyebrow--with-icon">
+            <FaHandshake className="eyebrow__icon" aria-hidden="true" />
+            Our mission
+          </p>
+          <h2>Every great plan needs the right people</h2>
+          <p className="section__lead">
+            A comprehensive care plan requires skilled, dedicated personnel to implement the work. We bring together
               the professionals whose expertise and approach align with your needs and personality.
             </p>
           </div>
@@ -500,17 +540,26 @@ const SpecialistPlacementPage = ({ onNavigateHome, onNavigate }) => {
           </div>
           <div className="process-grid">
             <div className="process-card">
-              <div className="pill">DSPs</div>
+              <div className="pill">
+                <FaUserCheck className="pill__icon" aria-hidden="true" />
+                DSPs
+              </div>
               <h3>Direct Support Professionals</h3>
               <p>Providing direct, hands-on support for daily living, personal goals, and independence.</p>
             </div>
             <div className="process-card">
-              <div className="pill">Para-Professionals</div>
+              <div className="pill">
+                <FaClipboardCheck className="pill__icon" aria-hidden="true" />
+                Para-Professionals
+              </div>
               <h3>Para-Professionals</h3>
               <p>Assistance in educational or community settings with patience, consistency, and skill.</p>
             </div>
             <div className="process-card">
-              <div className="pill">Peer Support</div>
+              <div className="pill">
+                <FaHeart className="pill__icon" aria-hidden="true" />
+                Peer Support
+              </div>
               <h3>Peer Support Specialists</h3>
               <p>Non-clinical emotional support from team members with lived experience you can relate to.</p>
             </div>
@@ -518,11 +567,14 @@ const SpecialistPlacementPage = ({ onNavigateHome, onNavigate }) => {
         </section>
 
         <section className="section">
-          <div className="section__header">
-            <p className="eyebrow">Our vetting process</p>
-            <h2>Quality, safety, and fit come first</h2>
-            <p className="section__lead">
-              We are committed to reliable, caring placements. Every professional is screened for credentials, verified
+        <div className="section__header">
+          <p className="eyebrow eyebrow--with-icon">
+            <FaShieldAlt className="eyebrow__icon" aria-hidden="true" />
+            Our vetting process
+          </p>
+          <h2>Quality, safety, and fit come first</h2>
+          <p className="section__lead">
+            We are committed to reliable, caring placements. Every professional is screened for credentials, verified
               through background checks, and matched to your goals and preferences.
             </p>
           </div>
@@ -644,7 +696,10 @@ const GovernmentProgramsPage = ({ onNavigateHome, onNavigate }) => {
         </nav>
 
         <div className="service-hero__content">
-          <p className="eyebrow">Services resource-access</p>
+          <p className="eyebrow eyebrow--with-icon">
+            <FaMapSigns className="eyebrow__icon" aria-hidden="true" />
+            Services resource-access
+          </p>
           <h1>Accessing Vital Support: Simplifying Government Program Applications</h1>
           <p className="subhead">
             We specialize in funding guidance and qualification, making sure you can quickly secure the benefits and
@@ -655,11 +710,14 @@ const GovernmentProgramsPage = ({ onNavigateHome, onNavigate }) => {
 
       <main className="service-content">
         <section className="section">
-          <div className="section__header">
-            <p className="eyebrow">The challenge</p>
-            <h2>Applications should not delay crucial care</h2>
-            <p className="section__lead">
-              Applying for government-funded services can be time-consuming and confusing, leading to delays when you
+        <div className="section__header">
+          <p className="eyebrow eyebrow--with-icon">
+            <FaExclamationCircle className="eyebrow__icon" aria-hidden="true" />
+            The challenge
+          </p>
+          <h2>Applications should not delay crucial care</h2>
+          <p className="section__lead">
+            Applying for government-funded services can be time-consuming and confusing, leading to delays when you
               need support most. We streamline every step.
             </p>
           </div>
@@ -673,11 +731,14 @@ const GovernmentProgramsPage = ({ onNavigateHome, onNavigate }) => {
         </section>
 
         <section className="section section--muted">
-          <div className="section__header">
-            <p className="eyebrow">How we help</p>
-            <h2>Hands-on assistance from start to approval</h2>
-            <p className="section__lead">
-              Our team provides documentation guidance, advocacy, and consistent communication to help you qualify for
+        <div className="section__header">
+          <p className="eyebrow eyebrow--with-icon">
+            <FaHandsHelping className="eyebrow__icon" aria-hidden="true" />
+            How we help
+          </p>
+          <h2>Hands-on assistance from start to approval</h2>
+          <p className="section__lead">
+            Our team provides documentation guidance, advocacy, and consistent communication to help you qualify for
               the financial and programmatic support you need.
             </p>
           </div>
@@ -701,11 +762,14 @@ const GovernmentProgramsPage = ({ onNavigateHome, onNavigate }) => {
         </section>
 
         <section className="section">
-          <div className="section__header">
-            <p className="eyebrow">Programs we assist with</p>
-            <h2>Connecting you to the right support</h2>
-            <p className="section__lead">We focus on programs that open doors to critical services and funding.</p>
-          </div>
+        <div className="section__header">
+          <p className="eyebrow eyebrow--with-icon">
+            <FaClipboardList className="eyebrow__icon" aria-hidden="true" />
+            Programs we assist with
+          </p>
+          <h2>Connecting you to the right support</h2>
+          <p className="section__lead">We focus on programs that open doors to critical services and funding.</p>
+        </div>
           <ul className="list">
             <li>OPWDD: Office for People With Developmental Disabilities</li>
             <li>ABA: Applied Behavioral Analysis</li>
@@ -813,7 +877,10 @@ const CareManagementPage = ({ onNavigateHome, onNavigate }) => {
         </nav>
 
         <div className="service-hero__content">
-          <p className="eyebrow">Services care-management </p>
+          <p className="eyebrow eyebrow--with-icon">
+            <FaClipboardCheck className="eyebrow__icon" aria-hidden="true" />
+            Services care-management
+          </p>
           <h1>Expert Care Management: Finding the Right Path for Success</h1>
           <p className="subhead">
             Our core coordinating service ensures you have an advocate and partner who aligns every support with your
@@ -825,7 +892,10 @@ const CareManagementPage = ({ onNavigateHome, onNavigate }) => {
       <main className="service-content">
         <section className="section">
           <div className="section__header">
-            <p className="eyebrow">What is a Care Manager?</p>
+            <p className="eyebrow eyebrow--with-icon">
+              <FaUserCog className="eyebrow__icon" aria-hidden="true" />
+              What is a Care Manager?
+            </p>
             <h2>Dedicated coordinator and advocate</h2>
             <p className="section__lead">
               We act as your dedicated coordinator and advocate. Navigating behavioral health and support systems can
@@ -851,7 +921,10 @@ const CareManagementPage = ({ onNavigateHome, onNavigate }) => {
           </div>
           <div className="process-grid">
             <div className="process-card">
-              <div className="pill">Step 1</div>
+              <div className="pill">
+                <FaClipboardList className="pill__icon" aria-hidden="true" />
+                Step 1
+              </div>
               <h3>Comprehensive Assessment</h3>
               <p>
                 A thorough evaluation to understand unique emotional, cognitive, and behavioral challenges. We consider
@@ -859,7 +932,10 @@ const CareManagementPage = ({ onNavigateHome, onNavigate }) => {
               </p>
             </div>
             <div className="process-card">
-              <div className="pill">Step 2</div>
+              <div className="pill">
+                <FaLightbulb className="pill__icon" aria-hidden="true" />
+                Step 2
+              </div>
               <h3>Strategic Planning</h3>
               <p>
                 We develop a personalized success plan with measurable goals and targeted intervention strategies,
@@ -867,7 +943,10 @@ const CareManagementPage = ({ onNavigateHome, onNavigate }) => {
               </p>
             </div>
             <div className="process-card">
-              <div className="pill">Step 3</div>
+              <div className="pill">
+                <FaHandsHelping className="pill__icon" aria-hidden="true" />
+                Step 3
+              </div>
               <h3>Expert Referral &amp; Connection</h3>
               <p>
                 We connect you immediately with the right licensed therapists, clinicians, and support services tailored
@@ -1048,7 +1127,10 @@ function App() {
 
         <div className="hero__content">
           <div className="hero__text">
-            <p className="eyebrow">Welcome &amp; Overview</p>
+            <p className="eyebrow eyebrow--with-icon">
+              <FaCompass className="eyebrow__icon" aria-hidden="true" />
+              Welcome &amp; Overview
+            </p>
             <h1>Your Partner in Navigating Emotional, Cognitive, &amp; Behavioral Growth.</h1>
             <p className="subhead">
               We simplify the path to success for children, teens, and adults by connecting you with the right
@@ -1087,7 +1169,10 @@ function App() {
       <main>
         <section className="section" id="consultation">
           <div className="section__header">
-            <p className="eyebrow">Who We Help</p>
+            <p className="eyebrow eyebrow--with-icon">
+              <FaGlobeAmericas className="eyebrow__icon" aria-hidden="true" />
+              Who We Help
+            </p>
             <h2>Care designed for children, teens, and adults.</h2>
             <p className="section__lead">
               Whether you are navigating emotional, cognitive, or behavioral challenges, we deliver guidance and
@@ -1103,7 +1188,10 @@ function App() {
 
         <section className="section section--muted" id="about">
           <div className="section__header">
-            <p className="eyebrow">About Us</p>
+            <p className="eyebrow eyebrow--with-icon">
+              <FaSeedling className="eyebrow__icon" aria-hidden="true" />
+              About Us
+            </p>
             <h2>Grounded in mission, guided by advocacy.</h2>
             <p className="section__lead">
               Learn why Aspire Success NY was founded, the values that drive our work, and the team committed to your
@@ -1131,7 +1219,10 @@ function App() {
 
         <section className="section" id="services">
           <div className="section__header">
-            <p className="eyebrow">Our Core Services</p>
+            <p className="eyebrow eyebrow--with-icon">
+              <FaUserCheck className="eyebrow__icon" aria-hidden="true" />
+              Our Core Services
+            </p>
             <h2>Quick snapshot of how we serve you.</h2>
             <p className="section__lead">Discover the guidance, access, and expert support that simplify your next steps.</p>
           </div>
