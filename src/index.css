@@ -508,6 +508,136 @@ body {
   color: #f6fbfb;
 }
 
+.contact-page {
+  background-color: #eef4f5;
+  background-image: linear-gradient(180deg, #eef4f5 0%, #dfe9eb 55%, #eef4f5 100%), var(--watercolor-pattern);
+  background-repeat: no-repeat, repeat;
+  background-size: auto, 420px 420px;
+  background-position: top center, center;
+}
+
+.contact-hero {
+  padding: 24px 24px 56px;
+  background: linear-gradient(135deg, rgba(25, 133, 149, 0.16), rgba(194, 198, 104, 0.18));
+  border-bottom: 2px solid rgba(25, 133, 149, 0.14);
+}
+
+.contact-hero__content {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 8px 16px 0;
+  display: grid;
+  gap: 12px;
+}
+
+.contact-content {
+  padding: 0 0 32px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 1.1fr) minmax(280px, 0.9fr);
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact-card,
+.contact-detail-card {
+  background: white;
+  border: 1px solid rgba(25, 133, 149, 0.14);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 14px 40px rgba(13, 27, 30, 0.08);
+}
+
+.contact-card h2,
+.contact-detail-card h3 {
+  margin-bottom: 12px;
+}
+
+.contact-form {
+  display: grid;
+  gap: 14px;
+}
+
+.form-group {
+  display: grid;
+  gap: 6px;
+}
+
+.form-group label {
+  font-weight: 700;
+  color: #1a3e45;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(25, 133, 149, 0.2);
+  background: #f8fbfb;
+  font-size: 16px;
+  color: #0d1b1e;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(25, 133, 149, 0.18);
+}
+
+.contact-info {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.contact-info li {
+  display: grid;
+  gap: 2px;
+}
+
+.contact-info span {
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+.contact-info a {
+  color: #0d1b1e;
+  font-weight: 600;
+}
+
+.contact-info p {
+  margin: 0;
+  color: #2d4c54;
+}
+
+.contact-map {
+  margin-top: 18px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(25, 133, 149, 0.16);
+  box-shadow: 0 14px 40px rgba(13, 27, 30, 0.08);
+}
+
+.contact-map iframe {
+  width: 100%;
+  height: 260px;
+  border: none;
+  display: block;
+}
+
 .service-hero__content h1 {
   font-size: clamp(32px, 4.8vw, 44px);
   line-height: 1.2;
