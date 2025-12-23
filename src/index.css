@@ -132,9 +132,23 @@ body {
 }
 
 .hero__card ul {
-  margin: 0 0 16px 18px;
+  margin: 0 0 16px;
   display: grid;
-  gap: 8px;
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-list__item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.hero-list__icon {
+  color: var(--accent);
+  margin-top: 2px;
 }
 
 .eyebrow {
@@ -238,6 +252,25 @@ body {
   gap: 12px;
   box-shadow: 0 12px 36px rgba(13, 27, 30, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card__title {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.card__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(25, 133, 149, 0.12);
+  color: var(--primary-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .card:hover {
@@ -605,12 +638,15 @@ body {
 
 .contact-info li {
   display: grid;
-  gap: 2px;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 10px;
 }
 
 .contact-info span {
   font-weight: 700;
   color: var(--primary-dark);
+  display: block;
 }
 
 .contact-info a {
@@ -621,6 +657,17 @@ body {
 .contact-info p {
   margin: 0;
   color: #2d4c54;
+}
+
+.contact-info__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(25, 133, 149, 0.12);
+  color: var(--primary-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .contact-map {
