@@ -1,43 +1,8 @@
 import { useEffect, useState } from 'react'
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa'
-import {
-  FiArrowUpRight,
-  FiBookOpen,
-  FiCheckCircle,
-  FiCompass,
-  FiHeart,
-  FiLayers,
-  FiMail,
-  FiMapPin,
-  FiPhone,
-  FiShield,
-  FiTarget,
-  FiUsers,
-} from 'react-icons/fi'
 import logo from './assets/logo.png'
 
-const values = [
-  {
-    title: 'Compassion',
-    description: 'We lead with empathy, honoring every story and celebrating meaningful wins.',
-    icon: FiHeart,
-  },
-  {
-    title: 'Integrity',
-    description: 'Transparent communication and follow-through build trust with families and partners.',
-    icon: FiShield,
-  },
-  {
-    title: 'Results-Driven',
-    description: 'We set clear goals, track progress, and adjust quickly to keep momentum strong.',
-    icon: FiTarget,
-  },
-  {
-    title: 'Advocacy',
-    description: 'We elevate your voice, ensuring resources and supports align with your needs.',
-    icon: FiUsers,
-  },
-]
+const values = ['Compassion', 'Integrity', 'Results-Driven', 'Advocacy']
 
 const teamMembers = [
   {
@@ -80,37 +45,16 @@ const services = [
     title: 'Care Management',
     description: 'Personalized coordination that keeps your goals, appointments, and supports aligned.',
     link: '/care-management',
-    icon: FiCompass,
   },
   {
     title: 'Resource Access',
     description: 'Guidance through government programs and local resources that fit your needs.',
     link: '/government-programs',
-    icon: FiLayers,
   },
   {
     title: 'Qualified Specialist Placement',
     description: 'Hand-selected providers matched to your emotional, cognitive, or behavioral goals.',
     link: '/specialist-placement',
-    icon: FiBookOpen,
-  },
-]
-
-const heroHighlights = [
-  {
-    title: 'Personalized navigation',
-    copy: 'Dedicated care managers map your path and remove bottlenecks.',
-    icon: FiCompass,
-  },
-  {
-    title: 'Serious advocacy',
-    copy: 'We coordinate with clinicians, schools, and agencies so you feel supported.',
-    icon: FiShield,
-  },
-  {
-    title: 'Measurable results',
-    copy: 'Clear milestones with ongoing check-ins to keep momentum steady.',
-    icon: FiCheckCircle,
   },
 ]
 
@@ -180,32 +124,17 @@ const ContactPage = ({ onNavigateHome }) => {
               <div className="contact-detail-card">
                 <h3>Reach us directly</h3>
                 <ul className="contact-info">
-                  <li className="contact-info__item">
-                    <span className="icon-circle icon-circle--muted">
-                      <FiPhone aria-hidden="true" />
-                    </span>
-                    <div>
-                      <span>Phone</span>
-                      <a href="tel:555-123-4567">(555) 123-4567</a>
-                    </div>
+                  <li>
+                    <span>Phone</span>
+                    <a href="tel:555-123-4567">(555) 123-4567</a>
                   </li>
-                  <li className="contact-info__item">
-                    <span className="icon-circle icon-circle--muted">
-                      <FiMail aria-hidden="true" />
-                    </span>
-                    <div>
-                      <span>Email</span>
-                      <a href="mailto:hello@aspiresuccessny.com">hello@aspiresuccessny.com</a>
-                    </div>
+                  <li>
+                    <span>Email</span>
+                    <a href="mailto:hello@aspiresuccessny.com">hello@aspiresuccessny.com</a>
                   </li>
-                  <li className="contact-info__item">
-                    <span className="icon-circle icon-circle--muted">
-                      <FiMapPin aria-hidden="true" />
-                    </span>
-                    <div>
-                      <span>Address</span>
-                      <p>123 Fifth Avenue, New York, NY 10010</p>
-                    </div>
+                  <li>
+                    <span>Address</span>
+                    <p>123 Fifth Avenue, New York, NY 10010</p>
                   </li>
                 </ul>
               </div>
@@ -371,14 +300,14 @@ const AboutPage = ({ onNavigateHome, onNavigate }) => {
           </div>
           <div className="values-grid">
             {values.map((value) => (
-              <div key={value.title} className="value-card value-card--light">
-                <div className="value-card__icon">
-                  <value.icon aria-hidden="true" />
-                </div>
-                <div>
-                  <p className="value-card__title">{value.title}</p>
-                  <p>{value.description}</p>
-                </div>
+              <div key={value} className="value-card value-card--light">
+                <div className="pill pill--outline">{value}</div>
+                <p>
+                  {value === 'Compassion' && 'We lead with empathy, honoring every story and celebrating small wins.'}
+                  {value === 'Integrity' && 'Transparent communication and follow-through build trust with families and partners.'}
+                  {value === 'Results-Driven' && 'We set clear goals, track progress, and adjust quickly to keep momentum strong.'}
+                  {value === 'Advocacy' && 'We elevate your voice, ensuring resources and supports align with your needs.'}
+                </p>
               </div>
             ))}
           </div>
@@ -1104,32 +1033,15 @@ function App() {
                 Explore our services
               </button>
             </div>
-            <div className="hero__meta">
-              <div className="pill">Coordinated care without the noise</div>
-              <div className="pill pill--outline">Serious advocacy &bull; Clear follow-through</div>
-            </div>
           </div>
           <div className="hero__card">
-            <div className="pill pill--faded">
-              <FiTarget aria-hidden="true" /> Precision care management
-            </div>
-            <ul className="feature-list">
-              {heroHighlights.map((item) => (
-                <li key={item.title} className="feature">
-                  <span className="icon-circle icon-circle--primary">
-                    <item.icon aria-hidden="true" />
-                  </span>
-                  <div>
-                    <p className="feature__title">{item.title}</p>
-                    <p className="feature__copy">{item.copy}</p>
-                  </div>
-                </li>
-              ))}
+            <h3>Support at every step</h3>
+            <ul>
+              <li>Dedicated care managers who listen and guide.</li>
+              <li>Clear pathways to resources and funding.</li>
+              <li>Trusted specialists tailored to your goals.</li>
             </ul>
-            <div className="card__footer">
-              <span className="meta-dot" aria-hidden="true"></span>
-              <p>Built for families who want a thoughtful, accountable partner.</p>
-            </div>
+            <div className="pill">Aligned with your vision of success</div>
           </div>
         </div>
       </header>
@@ -1196,18 +1108,11 @@ function App() {
                   navigate(service.link)
                 }}
               >
-                <div className="card__header">
-                  <span className="icon-circle">
-                    <service.icon aria-hidden="true" />
-                  </span>
-                  <div>
-                    <h3>{service.title}</h3>
-                    <p>{service.description}</p>
-                  </div>
+                <div>
+                  <h3>{service.title}</h3>
+                  <p>{service.description}</p>
                 </div>
-                <span className="card__link">
-                  Learn more <FiArrowUpRight aria-hidden="true" />
-                </span>
+                <span className="card__link">Learn more →</span>
               </a>
             ))}
           </div>
@@ -1262,18 +1167,11 @@ function App() {
                     setIsServicesModalOpen(false)
                   }}
                 >
-                  <div className="card__header">
-                    <span className="icon-circle">
-                      <service.icon aria-hidden="true" />
-                    </span>
-                    <div>
-                      <h3>{service.title}</h3>
-                      <p>{service.description}</p>
-                    </div>
+                  <div>
+                    <h3>{service.title}</h3>
+                    <p>{service.description}</p>
                   </div>
-                  <span className="card__link">
-                    Learn more <FiArrowUpRight aria-hidden="true" />
-                  </span>
+                  <span className="card__link">Learn more →</span>
                 </a>
               ))}
             </div>
