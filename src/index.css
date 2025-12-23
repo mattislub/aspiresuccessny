@@ -44,11 +44,7 @@ body {
 
 .hero {
   padding: 24px 24px 64px;
-  background: linear-gradient(135deg, rgba(25, 133, 149, 0.32), rgba(13, 27, 30, 0.72)), url('./assets/Aspire-2.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-blend-mode: multiply;
+  background: linear-gradient(135deg, rgba(25, 133, 149, 0.14), rgba(194, 198, 104, 0.14));
   border-bottom: 2px solid rgba(25, 133, 149, 0.12);
 }
 
@@ -394,10 +390,7 @@ body {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(25, 133, 149, 0.3), rgba(194, 198, 104, 0.3)), url('./assets/Aspire-2.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: linear-gradient(135deg, rgba(25, 133, 149, 0.3), rgba(194, 198, 104, 0.3));
   border: 1px solid rgba(25, 133, 149, 0.26);
 }
 
@@ -571,11 +564,7 @@ body {
 
 .service-hero {
   padding: 24px 24px 48px;
-  background: linear-gradient(135deg, rgba(15, 95, 107, 0.85), rgba(25, 133, 149, 0.72)), url('./assets/Aspire-2.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-blend-mode: multiply;
+  background: linear-gradient(135deg, #0f5f6b, #198595);
 }
 
 .service-hero__content {
@@ -595,11 +584,7 @@ body {
 
 .contact-hero {
   padding: 24px 24px 56px;
-  background: linear-gradient(135deg, rgba(25, 133, 149, 0.3), rgba(13, 27, 30, 0.65)), url('./assets/Aspire-2.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-blend-mode: multiply;
+  background: linear-gradient(135deg, rgba(25, 133, 149, 0.16), rgba(194, 198, 104, 0.18));
   border-bottom: 2px solid rgba(25, 133, 149, 0.14);
 }
 
