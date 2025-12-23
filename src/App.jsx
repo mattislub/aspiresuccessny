@@ -85,7 +85,102 @@ const services = [
   },
 ]
 
-const ContactPage = ({ onNavigateHome }) => {
+const footerContact = {
+  phone: {
+    label: '(555) 123-4567',
+    href: 'tel:+15551234567',
+  },
+  email: {
+    label: 'hello@aspiresuccessny.com',
+    href: 'mailto:hello@aspiresuccessny.com',
+  },
+  location: 'New York, NY',
+}
+
+const footerQuickLinks = [
+  { label: 'Home', href: '/', type: 'home' },
+  { label: 'About', href: '/about', type: 'route' },
+  { label: 'Services', href: '/#services', type: 'home', anchor: '#services' },
+  { label: 'Testimonials', href: '/#testimonials', type: 'home', anchor: '#testimonials' },
+  { label: 'Contact', href: '/contact', type: 'contact' },
+]
+
+const footerSocialLinks = [
+  { label: 'Facebook', href: 'https://www.facebook.com/aspiresuccessny', icon: FaFacebookF },
+  { label: 'Instagram', href: 'https://www.instagram.com/aspiresuccessny', icon: FaInstagram },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/aspiresuccessny', icon: FaLinkedinIn },
+]
+
+const Footer = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
+  const handleQuickLinkClick = (event, link) => {
+    if (link.type === 'home' && onNavigateHome) {
+      onNavigateHome(event, link.anchor)
+      return
+    }
+
+    if (link.type === 'contact' && onNavigateContact) {
+      onNavigateContact(event)
+      return
+    }
+
+    if (link.type === 'route' && onNavigate) {
+      onNavigate(event, link.href)
+    }
+  }
+
+  return (
+    <footer className="footer" id="contact">
+      <div>
+        <div className="brand">
+          <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
+          <div>
+            <p className="brand__name">Aspire Success NY</p>
+            <p className="brand__tagline">Your guide to meaningful growth</p>
+          </div>
+        </div>
+        <p className="footer__text">Connecting you with care, resources, and specialists that honor your journey.</p>
+      </div>
+      <div className="footer__columns">
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li>
+              <a href={footerContact.phone.href}>{footerContact.phone.label}</a>
+            </li>
+            <li>
+              <a href={footerContact.email.href}>{footerContact.email.label}</a>
+            </li>
+            <li>{footerContact.location}</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            {footerQuickLinks.map((link) => (
+              <li key={link.label}>
+                <a href={link.href} onClick={(event) => handleQuickLinkClick(event, link)}>
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h4>Follow</h4>
+          <div className="socials">
+            {footerSocialLinks.map((social) => (
+              <a key={social.label} href={social.href} aria-label={social.label} target="_blank" rel="noreferrer">
+                <social.icon aria-hidden="true" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
+}
+
+const ContactPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
   return (
     <div className="page contact-page">
       <header className="contact-hero">
@@ -204,67 +299,12 @@ const ContactPage = ({ onNavigateHome }) => {
         </section>
       </main>
 
-      <footer className="footer">
-        <div>
-          <div className="brand">
-            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-            <div>
-              <p className="brand__name">Aspire Success NY</p>
-              <p className="brand__tagline">Your guide to meaningful growth</p>
-            </div>
-          </div>
-          <p className="footer__text">Connecting you with care, resources, and specialists that honor your journey.</p>
-        </div>
-        <div className="footer__columns">
-          <div>
-            <h4>Contact</h4>
-            <ul>
-              <li><a href="tel:555-123-4567">(555) 123-4567</a></li>
-              <li><a href="mailto:hello@aspiresuccessny.com">hello@aspiresuccessny.com</a></li>
-              <li>New York, NY</li>
-            </ul>
-          </div>
-          <div>
-            <h4>Quick Links</h4>
-            <ul>
-              <li>
-                <a href="#" onClick={onNavigateHome}>
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#services" onClick={(event) => onNavigateHome(event, '#services')}>
-                  Services
-                </a>
-              </li>
-              <li>
-                <a href="#testimonials" onClick={(event) => onNavigateHome(event, '#testimonials')}>
-                  Testimonials
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4>Follow</h4>
-            <div className="socials">
-              <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noreferrer">
-                <FaFacebookF aria-hidden="true" />
-              </a>
-              <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noreferrer">
-                <FaInstagram aria-hidden="true" />
-              </a>
-              <a href="https://www.linkedin.com" aria-label="LinkedIn" target="_blank" rel="noreferrer">
-                <FaLinkedinIn aria-hidden="true" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer onNavigateHome={onNavigateHome} onNavigate={onNavigate} onNavigateContact={onNavigateContact} />
     </div>
   )
 }
 
-const AboutPage = ({ onNavigateHome, onNavigate }) => {
+const AboutPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
   return (
     <div className="page service-page">
       <header className="service-hero">
@@ -415,67 +455,12 @@ const AboutPage = ({ onNavigateHome, onNavigate }) => {
         </section>
       </main>
 
-      <footer className="footer" id="contact">
-        <div>
-          <div className="brand">
-            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-            <div>
-              <p className="brand__name">Aspire Success NY</p>
-              <p className="brand__tagline">Your guide to meaningful growth</p>
-            </div>
-          </div>
-          <p className="footer__text">Connecting you with care, resources, and specialists that honor your journey.</p>
-        </div>
-        <div className="footer__columns">
-          <div>
-            <h4>Contact</h4>
-            <ul>
-              <li><a href="tel:555-123-4567">(555) 123-4567</a></li>
-              <li><a href="mailto:hello@aspiresuccessny.com">hello@aspiresuccessny.com</a></li>
-              <li>New York, NY</li>
-            </ul>
-          </div>
-          <div>
-            <h4>Quick Links</h4>
-            <ul>
-              <li>
-                <a href="#" onClick={(event) => onNavigateHome(event)}>
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#" onClick={(event) => onNavigate(event, '/about')}>
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#" onClick={(event) => onNavigateHome(event, '#testimonials')}>
-                  Testimonials
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4>Follow</h4>
-            <div className="socials">
-              <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noreferrer">
-                <FaFacebookF aria-hidden="true" />
-              </a>
-              <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noreferrer">
-                <FaInstagram aria-hidden="true" />
-              </a>
-              <a href="https://www.linkedin.com" aria-label="LinkedIn" target="_blank" rel="noreferrer">
-                <FaLinkedinIn aria-hidden="true" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer onNavigateHome={onNavigateHome} onNavigate={onNavigate} onNavigateContact={onNavigateContact} />
     </div>
   )
 }
 
-const SpecialistPlacementPage = ({ onNavigateHome, onNavigate }) => {
+const SpecialistPlacementPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
   return (
     <div className="page service-page">
       <header className="service-hero">
@@ -613,67 +598,12 @@ const SpecialistPlacementPage = ({ onNavigateHome, onNavigate }) => {
         </section>
       </main>
 
-      <footer className="footer" id="contact">
-        <div>
-          <div className="brand">
-            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-            <div>
-              <p className="brand__name">Aspire Success NY</p>
-              <p className="brand__tagline">Your guide to meaningful growth</p>
-            </div>
-          </div>
-          <p className="footer__text">Connecting you with care, resources, and specialists that honor your journey.</p>
-        </div>
-        <div className="footer__columns">
-          <div>
-            <h4>Contact</h4>
-            <ul>
-              <li><a href="tel:555-123-4567">(555) 123-4567</a></li>
-              <li><a href="mailto:hello@aspiresuccessny.com">hello@aspiresuccessny.com</a></li>
-              <li>New York, NY</li>
-            </ul>
-          </div>
-          <div>
-            <h4>Quick Links</h4>
-            <ul>
-              <li>
-                <a href="#" onClick={(event) => onNavigateHome(event)}>
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#" onClick={(event) => onNavigate(event, '/about')}>
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#testimonials" onClick={(event) => onNavigateHome(event, '#testimonials')}>
-                  Testimonials
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4>Follow</h4>
-            <div className="socials">
-              <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noreferrer">
-                <FaFacebookF aria-hidden="true" />
-              </a>
-              <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noreferrer">
-                <FaInstagram aria-hidden="true" />
-              </a>
-              <a href="https://www.linkedin.com" aria-label="LinkedIn" target="_blank" rel="noreferrer">
-                <FaLinkedinIn aria-hidden="true" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer onNavigateHome={onNavigateHome} onNavigate={onNavigate} onNavigateContact={onNavigateContact} />
     </div>
   )
 }
 
-const GovernmentProgramsPage = ({ onNavigateHome, onNavigate }) => {
+const GovernmentProgramsPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
   return (
     <div className="page service-page">
       <header className="service-hero">
@@ -794,67 +724,12 @@ const GovernmentProgramsPage = ({ onNavigateHome, onNavigate }) => {
         </section>
       </main>
 
-      <footer className="footer" id="contact">
-        <div>
-          <div className="brand">
-            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-            <div>
-              <p className="brand__name">Aspire Success NY</p>
-              <p className="brand__tagline">Your guide to meaningful growth</p>
-            </div>
-          </div>
-          <p className="footer__text">Connecting you with care, resources, and specialists that honor your journey.</p>
-        </div>
-        <div className="footer__columns">
-          <div>
-            <h4>Contact</h4>
-            <ul>
-              <li><a href="tel:555-123-4567">(555) 123-4567</a></li>
-              <li><a href="mailto:hello@aspiresuccessny.com">hello@aspiresuccessny.com</a></li>
-              <li>New York, NY</li>
-            </ul>
-          </div>
-          <div>
-            <h4>Quick Links</h4>
-            <ul>
-              <li>
-                <a href="#" onClick={(event) => onNavigateHome(event)}>
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#" onClick={(event) => onNavigate(event, '/about')}>
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#testimonials" onClick={(event) => onNavigateHome(event, '#testimonials')}>
-                  Testimonials
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4>Follow</h4>
-            <div className="socials">
-              <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noreferrer">
-                <FaFacebookF aria-hidden="true" />
-              </a>
-              <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noreferrer">
-                <FaInstagram aria-hidden="true" />
-              </a>
-              <a href="https://www.linkedin.com" aria-label="LinkedIn" target="_blank" rel="noreferrer">
-                <FaLinkedinIn aria-hidden="true" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer onNavigateHome={onNavigateHome} onNavigate={onNavigate} onNavigateContact={onNavigateContact} />
     </div>
   )
 }
 
-const CareManagementPage = ({ onNavigateHome, onNavigate }) => {
+const CareManagementPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
   return (
     <div className="page service-page">
       <header className="service-hero">
@@ -967,57 +842,7 @@ const CareManagementPage = ({ onNavigateHome, onNavigate }) => {
         </section>
       </main>
 
-      <footer className="footer" id="contact">
-        <div>
-          <div className="brand">
-            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-            <div>
-              <p className="brand__name">Aspire Success NY</p>
-              <p className="brand__tagline">Your guide to meaningful growth</p>
-            </div>
-          </div>
-          <p className="footer__text">Connecting you with care, resources, and specialists that honor your journey.</p>
-        </div>
-        <div className="footer__columns">
-          <div>
-            <h4>Contact</h4>
-            <ul>
-              <li><a href="tel:555-123-4567">(555) 123-4567</a></li>
-              <li><a href="mailto:hello@aspiresuccessny.com">hello@aspiresuccessny.com</a></li>
-              <li>New York, NY</li>
-            </ul>
-          </div>
-          <div>
-            <h4>Quick Links</h4>
-            <ul>
-              <li>
-                <a href="#" onClick={(event) => onNavigateHome(event)}>
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#testimonials" onClick={(event) => onNavigateHome(event, '#testimonials')}>
-                  Testimonials
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4>Follow</h4>
-            <div className="socials">
-              <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noreferrer">
-                <FaFacebookF aria-hidden="true" />
-              </a>
-              <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noreferrer">
-                <FaInstagram aria-hidden="true" />
-              </a>
-              <a href="https://www.linkedin.com" aria-label="LinkedIn" target="_blank" rel="noreferrer">
-                <FaLinkedinIn aria-hidden="true" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer onNavigateHome={onNavigateHome} onNavigate={onNavigate} onNavigateContact={onNavigateContact} />
     </div>
   )
 }
@@ -1090,23 +915,53 @@ function App() {
   }
 
   if (route === '/contact') {
-    return <ContactPage onNavigateHome={handleNavigateHome} />
+    return (
+      <ContactPage
+        onNavigateHome={handleNavigateHome}
+        onNavigate={handleNavigate}
+        onNavigateContact={handleNavigateContact}
+      />
+    )
   }
 
   if (route === '/care-management') {
-    return <CareManagementPage onNavigateHome={handleNavigateHome} onNavigate={handleNavigate} />
+    return (
+      <CareManagementPage
+        onNavigateHome={handleNavigateHome}
+        onNavigate={handleNavigate}
+        onNavigateContact={handleNavigateContact}
+      />
+    )
   }
 
   if (route === '/specialist-placement') {
-    return <SpecialistPlacementPage onNavigateHome={handleNavigateHome} onNavigate={handleNavigate} />
+    return (
+      <SpecialistPlacementPage
+        onNavigateHome={handleNavigateHome}
+        onNavigate={handleNavigate}
+        onNavigateContact={handleNavigateContact}
+      />
+    )
   }
 
   if (route === '/government-programs') {
-    return <GovernmentProgramsPage onNavigateHome={handleNavigateHome} onNavigate={handleNavigate} />
+    return (
+      <GovernmentProgramsPage
+        onNavigateHome={handleNavigateHome}
+        onNavigate={handleNavigate}
+        onNavigateContact={handleNavigateContact}
+      />
+    )
   }
 
   if (route === '/about') {
-    return <AboutPage onNavigateHome={handleNavigateHome} onNavigate={handleNavigate} />
+    return (
+      <AboutPage
+        onNavigateHome={handleNavigateHome}
+        onNavigate={handleNavigate}
+        onNavigateContact={handleNavigateContact}
+      />
+    )
   }
 
   return (
@@ -1318,55 +1173,11 @@ function App() {
         </div>
       )}
 
-      <footer className="footer" id="contact">
-        <div>
-          <div className="brand">
-            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-            <div>
-              <p className="brand__name">Aspire Success NY</p>
-              <p className="brand__tagline">Your guide to meaningful growth</p>
-            </div>
-          </div>
-          <p className="footer__text">Connecting you with care, resources, and specialists that honor your journey.</p>
-        </div>
-        <div className="footer__columns">
-          <div>
-            <h4>Contact</h4>
-            <ul>
-              <li><a href="tel:555-123-4567">(555) 123-4567</a></li>
-              <li><a href="mailto:hello@aspiresuccessny.com">hello@aspiresuccessny.com</a></li>
-              <li>New York, NY</li>
-            </ul>
-          </div>
-          <div>
-            <h4>Quick Links</h4>
-            <ul>
-              <li><a href="#consultation">Who We Help</a></li>
-              <li>
-                <a href="#" onClick={(event) => onNavigate(event, '/about')}>
-                  About
-                </a>
-              </li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#testimonials">Testimonials</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4>Follow</h4>
-            <div className="socials">
-              <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noreferrer">
-                <FaFacebookF aria-hidden="true" />
-              </a>
-              <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noreferrer">
-                <FaInstagram aria-hidden="true" />
-              </a>
-              <a href="https://www.linkedin.com" aria-label="LinkedIn" target="_blank" rel="noreferrer">
-                <FaLinkedinIn aria-hidden="true" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer
+        onNavigateHome={handleNavigateHome}
+        onNavigate={handleNavigate}
+        onNavigateContact={handleNavigateContact}
+      />
     </div>
   )
 }
