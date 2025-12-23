@@ -518,6 +518,7 @@ const CareManagementPage = ({ onNavigateHome }) => {
 function App() {
   const [activeTestimonial, setActiveTestimonial] = useState(0)
   const [route, setRoute] = useState(window.location.pathname)
+  const [isServicesModalOpen, setIsServicesModalOpen] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -532,6 +533,13 @@ function App() {
     window.addEventListener('popstate', handlePopState)
     return () => window.removeEventListener('popstate', handlePopState)
   }, [])
+
+  useEffect(() => {
+    document.body.style.overflow = isServicesModalOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isServicesModalOpen])
 
   const navigate = (path) => {
     window.history.pushState({}, '', path)
@@ -593,9 +601,9 @@ function App() {
               <a className="cta" href="#consultation">
                 Start Your Free Consultation
               </a>
-              <a className="link" href="#services">
+              <button className="link link--button" type="button" onClick={() => setIsServicesModalOpen(true)}>
                 Explore our services
-              </a>
+              </button>
             </div>
           </div>
           <div className="hero__card">
@@ -676,6 +684,44 @@ function App() {
           </div>
         </section>
       </main>
+
+      {isServicesModalOpen && (
+        <div className="modal" role="dialog" aria-modal="true" aria-labelledby="services-modal-title">
+          <div className="modal__backdrop" onClick={() => setIsServicesModalOpen(false)} />
+          <div className="modal__content">
+            <button className="modal__close" type="button" aria-label="Close" onClick={() => setIsServicesModalOpen(false)}>
+              ×
+            </button>
+            <div className="modal__header">
+              <p className="eyebrow">Our Core Services</p>
+              <h2 id="services-modal-title">Quick snapshot of how we serve you.</h2>
+              <p className="section__lead">
+                Discover the guidance, access, and expert support that simplify your next steps.
+              </p>
+            </div>
+            <div className="card-grid">
+              {services.map((service) => (
+                <a
+                  key={service.title}
+                  className="card"
+                  href={service.link}
+                  onClick={(event) => {
+                    event.preventDefault()
+                    navigate(service.link)
+                    setIsServicesModalOpen(false)
+                  }}
+                >
+                  <div>
+                    <h3>{service.title}</h3>
+                    <p>{service.description}</p>
+                  </div>
+                  <span className="card__link">Learn more →</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       <footer className="footer" id="contact">
         <div>

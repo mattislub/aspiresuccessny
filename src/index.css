@@ -377,6 +377,14 @@ body {
   color: var(--primary);
 }
 
+.link--button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
 
 .service-page {
   background-color: #e3ecee;
@@ -438,6 +446,51 @@ body {
   box-shadow: 0 10px 32px rgba(13, 27, 30, 0.06);
   display: grid;
   gap: 10px;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 27, 30, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+.modal__content {
+  position: relative;
+  background: #f8fbfb;
+  border-radius: 18px;
+  padding: 32px 24px 28px;
+  width: min(960px, 92vw);
+  max-height: 90vh;
+  overflow: auto;
+  box-shadow: 0 24px 80px rgba(13, 27, 30, 0.18);
+  border: 1px solid rgba(25, 133, 149, 0.16);
+}
+
+.modal__header {
+  max-width: 720px;
+  margin-bottom: 20px;
+}
+
+.modal__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
+  line-height: 1;
+  color: #2c4a50;
 }
 
 .value-card {
