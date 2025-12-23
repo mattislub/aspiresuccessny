@@ -38,6 +38,161 @@ const services = [
   },
 ]
 
+const ContactPage = ({ onNavigateHome }) => {
+  return (
+    <div className="page contact-page">
+      <header className="contact-hero">
+        <nav className="nav">
+          <div className="brand">
+            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
+            <div>
+              <p className="brand__name">Aspire Success NY</p>
+              <p className="brand__tagline">Guidance for every stage</p>
+            </div>
+          </div>
+          <a className="cta cta--ghost" href="#" onClick={onNavigateHome}>
+            Back to Home
+          </a>
+        </nav>
+
+        <div className="contact-hero__content">
+          <div>
+            <p className="eyebrow">Contact</p>
+            <h1>Let us know how we can support you.</h1>
+            <p className="subhead">
+              Share what you need and our care team will reach out within one business day to guide you toward the right
+              services and specialists.
+            </p>
+            <div className="pill">We respond within 1 business day</div>
+          </div>
+        </div>
+      </header>
+
+      <main className="contact-content">
+        <section className="section">
+          <div className="contact-grid">
+            <div className="contact-card">
+              <h2>Send us a message</h2>
+              <form className="contact-form">
+                <div className="form-group">
+                  <label htmlFor="name">Name</label>
+                  <input id="name" name="name" type="text" placeholder="Your full name" required />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
+                  <input id="email" name="email" type="email" placeholder="you@example.com" required />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="phone">Phone</label>
+                  <input id="phone" name="phone" type="tel" placeholder="(555) 123-4567" />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="message">How can we help?</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    placeholder="Tell us about your needs, goals, or questions"
+                    required
+                  />
+                </div>
+                <button className="cta" type="submit">Submit</button>
+              </form>
+            </div>
+
+            <div className="contact-details">
+              <div className="contact-detail-card">
+                <h3>Reach us directly</h3>
+                <ul className="contact-info">
+                  <li>
+                    <span>Phone</span>
+                    <a href="tel:555-123-4567">(555) 123-4567</a>
+                  </li>
+                  <li>
+                    <span>Email</span>
+                    <a href="mailto:hello@aspiresuccessny.com">hello@aspiresuccessny.com</a>
+                  </li>
+                  <li>
+                    <span>Address</span>
+                    <p>123 Fifth Avenue, New York, NY 10010</p>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="contact-map">
+                <iframe
+                  title="Aspire Success NY location"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.844467419765!2d-73.99237802357211!3d40.73997917139021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259af18c3e6cb%3A0xe4b78a3db2e9fb1!2s123%205th%20Ave%2C%20New%20York%2C%20NY%2010011!5e0!3m2!1sen!2sus!4v1715463243522!5m2!1sen!2sus"
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="footer">
+        <div>
+          <div className="brand">
+            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
+            <div>
+              <p className="brand__name">Aspire Success NY</p>
+              <p className="brand__tagline">Your guide to meaningful growth</p>
+            </div>
+          </div>
+          <p className="footer__text">Connecting you with care, resources, and specialists that honor your journey.</p>
+        </div>
+        <div className="footer__columns">
+          <div>
+            <h4>Contact</h4>
+            <ul>
+              <li><a href="tel:555-123-4567">(555) 123-4567</a></li>
+              <li><a href="mailto:hello@aspiresuccessny.com">hello@aspiresuccessny.com</a></li>
+              <li>New York, NY</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Quick Links</h4>
+            <ul>
+              <li>
+                <a href="#" onClick={onNavigateHome}>
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#services" onClick={(event) => onNavigateHome(event, '#services')}>
+                  Services
+                </a>
+              </li>
+              <li>
+                <a href="#testimonials" onClick={(event) => onNavigateHome(event, '#testimonials')}>
+                  Testimonials
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4>Follow</h4>
+            <div className="socials">
+              <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noreferrer">
+                <FaFacebookF aria-hidden="true" />
+              </a>
+              <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noreferrer">
+                <FaInstagram aria-hidden="true" />
+              </a>
+              <a href="https://www.linkedin.com" aria-label="LinkedIn" target="_blank" rel="noreferrer">
+                <FaLinkedinIn aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}
+
 const SpecialistPlacementPage = ({ onNavigateHome }) => {
   return (
     <div className="page service-page">
@@ -553,6 +708,15 @@ function App() {
     }
   }
 
+  const handleNavigateContact = (event) => {
+    event.preventDefault()
+    navigate('/contact')
+  }
+
+  if (route === '/contact') {
+    return <ContactPage onNavigateHome={handleNavigateHome} />
+  }
+
   if (route === '/care-management') {
     return <CareManagementPage onNavigateHome={handleNavigateHome} />
   }
@@ -576,7 +740,7 @@ function App() {
               <p className="brand__tagline">Guidance for every stage</p>
             </div>
           </div>
-          <a className="cta cta--ghost" href="#contact">
+          <a className="cta cta--ghost" href="/contact" onClick={handleNavigateContact}>
             Contact
           </a>
         </nav>
