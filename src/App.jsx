@@ -25,6 +25,9 @@ import {
   FaUserCheck,
 } from 'react-icons/fa'
 import logo from './assets/logo.png'
+import heroPhoto from './assets/Aspire.jpg'
+import supportPhoto from './assets/Aspire-2.jpg'
+import communityPhoto from './assets/Aspire.png'
 
 const values = ['Compassion', 'Integrity', 'Results-Driven', 'Advocacy']
 
@@ -33,16 +36,19 @@ const teamMembers = [
     name: 'Jordan Ellis',
     role: 'Founder & Lead Care Strategist',
     bio: 'Drives vision and partnerships so every family has a clear roadmap and trusted support team.',
+    photo: heroPhoto,
   },
   {
     name: 'Taylor Morgan',
     role: 'Care Coordination Director',
     bio: 'Oversees assessments, action plans, and smooth communication between providers and families.',
+    photo: supportPhoto,
   },
   {
     name: 'Riley Chen',
     role: 'Community Resource Specialist',
     bio: 'Connects clients to funding, local programs, and advocacy networks that keep progress moving.',
+    photo: communityPhoto,
   },
 ]
 
@@ -51,16 +57,19 @@ const testimonials = [
     quote:
       'Aspire Success NY gave us clarity and hope. They connected our family with the right supports almost immediately.',
     name: 'Marisol, Parent of a teen',
+    image: supportPhoto,
   },
   {
     quote:
       'Their care managers simplified every step and made sure I had the resources to stay on track.',
     name: 'Darren, Adult client',
+    image: communityPhoto,
   },
   {
     quote:
       'We felt truly heard. The specialist they matched for our son made a huge difference in his confidence.',
     name: 'Leah, Parent of a child',
+    image: heroPhoto,
   },
 ]
 
@@ -82,6 +91,27 @@ const services = [
     description: 'Hand-selected providers matched to your emotional, cognitive, or behavioral goals.',
     link: '/specialist-placement',
     icon: FaUserCheck,
+  },
+]
+
+const galleryImages = [
+  {
+    src: heroPhoto,
+    tag: 'Care planning',
+    caption: 'Family consultation with a care manager outlining next steps.',
+    alt: 'Care manager sitting with a family and reviewing a plan together.',
+  },
+  {
+    src: supportPhoto,
+    tag: 'In the community',
+    caption: 'Resource specialist meeting clients at a community program site.',
+    alt: 'Support specialist greeting a client in a community center hallway.',
+  },
+  {
+    src: communityPhoto,
+    tag: 'Ongoing coaching',
+    caption: 'One-on-one session to practice daily living skills and confidence.',
+    alt: 'Coach speaking with an individual during a coaching session.',
   },
 ]
 
@@ -198,6 +228,13 @@ const ContactPage = ({ onNavigateHome }) => {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
+              </div>
+
+              <div className="contact-photo">
+                <img src={supportPhoto} alt="Care coordinator chatting with a family in an office." />
+                <p className="contact-photo__caption">
+                  Real coordination sessions where we listen, plan, and connect you to the right supports.
+                </p>
               </div>
             </div>
           </div>
@@ -388,7 +425,9 @@ const AboutPage = ({ onNavigateHome, onNavigate }) => {
           <div className="team-grid">
             {teamMembers.map((member) => (
               <div key={member.name} className="team-card">
-                <div className="team-photo" aria-hidden="true" />
+                <div className="team-photo">
+                  <img src={member.photo} alt={`${member.name} portrait`} />
+                </div>
                 <div>
                   <h3>{member.name}</h3>
                   <p className="team-role">{member.role}</p>
@@ -1145,23 +1184,29 @@ function App() {
               </button>
             </div>
           </div>
-          <div className="hero__card">
-            <h3>Support at every step</h3>
-            <ul className="hero-list">
-              <li className="hero-list__item">
-                <FaCheckCircle className="hero-list__icon" aria-hidden="true" />
-                <span>Dedicated care managers who listen and guide.</span>
-              </li>
-              <li className="hero-list__item">
-                <FaCheckCircle className="hero-list__icon" aria-hidden="true" />
-                <span>Clear pathways to resources and funding.</span>
-              </li>
-              <li className="hero-list__item">
-                <FaCheckCircle className="hero-list__icon" aria-hidden="true" />
-                <span>Trusted specialists tailored to your goals.</span>
-              </li>
-            </ul>
-            <div className="pill">Aligned with your vision of success</div>
+          <div className="hero__aside">
+            <div className="hero__photo-frame">
+              <img src={heroPhoto} alt="Care manager talking with a parent and child at a table." />
+              <p className="hero__photo-caption">A real coaching visit to map out next steps together.</p>
+            </div>
+            <div className="hero__card">
+              <h3>Support at every step</h3>
+              <ul className="hero-list">
+                <li className="hero-list__item">
+                  <FaCheckCircle className="hero-list__icon" aria-hidden="true" />
+                  <span>Dedicated care managers who listen and guide.</span>
+                </li>
+                <li className="hero-list__item">
+                  <FaCheckCircle className="hero-list__icon" aria-hidden="true" />
+                  <span>Clear pathways to resources and funding.</span>
+                </li>
+                <li className="hero-list__item">
+                  <FaCheckCircle className="hero-list__icon" aria-hidden="true" />
+                  <span>Trusted specialists tailored to your goals.</span>
+                </li>
+              </ul>
+              <div className="pill">Aligned with your vision of success</div>
+            </div>
           </div>
         </div>
       </header>
@@ -1217,6 +1262,25 @@ function App() {
           </div>
         </section>
 
+        <section className="section photo-section">
+          <div className="section__header">
+            <p className="eyebrow">A glimpse into our day-to-day</p>
+            <h2>Real moments from the support we provide.</h2>
+            <p className="section__lead">Photos from consultations, community visits, and ongoing coaching sessions.</p>
+          </div>
+          <div className="photo-grid">
+            {galleryImages.map((photo) => (
+              <figure key={photo.tag} className="photo-card">
+                <div className="photo-card__image">
+                  <img src={photo.src} alt={photo.alt} />
+                  <span className="pill pill--overlay">{photo.tag}</span>
+                </div>
+                <figcaption className="photo-card__caption">{photo.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
         <section className="section" id="services">
           <div className="section__header">
             <p className="eyebrow eyebrow--with-icon">
@@ -1259,8 +1323,13 @@ function App() {
             <p className="section__lead">Real voices from families and individuals we have supported.</p>
           </div>
           <div className="testimonial">
-            <p className="testimonial__quote">“{testimonials[activeTestimonial].quote}”</p>
-            <p className="testimonial__name">{testimonials[activeTestimonial].name}</p>
+            <div className="testimonial__person">
+              <img src={testimonials[activeTestimonial].image} alt={testimonials[activeTestimonial].name} />
+              <div>
+                <p className="testimonial__quote">“{testimonials[activeTestimonial].quote}”</p>
+                <p className="testimonial__name">{testimonials[activeTestimonial].name}</p>
+              </div>
+            </div>
             <div className="dots">
               {testimonials.map((_, index) => (
                 <button
