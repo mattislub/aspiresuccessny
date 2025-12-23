@@ -94,7 +94,6 @@ const SectionDivider = () => (
   </div>
 )
 
-const ContactPage = ({ onNavigateHome }) => {
 const footerContact = {
   phone: {
     label: '(555) 123-4567',
