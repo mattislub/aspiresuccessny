@@ -84,10 +84,10 @@ const GovernmentProgramsPage = ({ onNavigateHome }) => {
           </div>
           <div className="section__cta">
             <a className="cta" href="#contact">
-              התחל עכשיו
+              Start now
             </a>
             <a className="cta cta--ghost" href="#contact">
-              צור קשר
+              Contact us
             </a>
           </div>
         </section>
@@ -120,10 +120,10 @@ const GovernmentProgramsPage = ({ onNavigateHome }) => {
           </div>
           <div className="section__cta">
             <a className="cta" href="#contact">
-              התחל עכשיו
+              Start now
             </a>
             <a className="cta cta--ghost" href="#contact">
-              צור קשר
+              Contact us
             </a>
           </div>
         </section>
@@ -142,10 +142,10 @@ const GovernmentProgramsPage = ({ onNavigateHome }) => {
           </ul>
           <div className="section__cta">
             <a className="cta" href="#contact">
-              התחל עכשיו
+              Start now
             </a>
             <a className="cta cta--ghost" href="#contact">
-              צור קשר
+              Contact us
             </a>
           </div>
         </section>
@@ -267,10 +267,10 @@ const CareManagementPage = ({ onNavigateHome }) => {
           </div>
           <div className="section__cta">
             <a className="cta" href="#contact">
-              התחל עכשיו
+              Start now
             </a>
             <a className="cta cta--ghost" href="#contact">
-              צור קשר
+              Contact us
             </a>
           </div>
         </section>
@@ -311,10 +311,10 @@ const CareManagementPage = ({ onNavigateHome }) => {
           </div>
           <div className="section__cta">
             <a className="cta" href="#contact">
-              התחל עכשיו
+              Start now
             </a>
             <a className="cta cta--ghost" href="#contact">
-              צור קשר
+              Contact us
             </a>
           </div>
         </section>
@@ -329,10 +329,10 @@ const CareManagementPage = ({ onNavigateHome }) => {
           </div>
           <div className="section__cta">
             <a className="cta" href="#contact">
-              התחל עכשיו
+              Start now
             </a>
             <a className="cta cta--ghost" href="#contact">
-              צור קשר
+              Contact us
             </a>
           </div>
         </section>
@@ -501,10 +501,10 @@ function App() {
           </div>
           <div className="section__cta">
             <a className="cta" href="#contact">
-              התחל עכשיו
+              Start now
             </a>
             <a className="cta cta--ghost" href="#contact">
-              צור קשר
+              Contact us
             </a>
           </div>
         </section>
@@ -536,10 +536,10 @@ function App() {
           </div>
           <div className="section__cta">
             <a className="cta" href="#contact">
-              התחל עכשיו
+              Start now
             </a>
             <a className="cta cta--ghost" href="#contact">
-              צור קשר
+              Contact us
             </a>
           </div>
         </section>
@@ -566,10 +566,10 @@ function App() {
           </div>
           <div className="section__cta">
             <a className="cta" href="#contact">
-              התחל עכשיו
+              Start now
             </a>
             <a className="cta cta--ghost" href="#contact">
-              צור קשר
+              Contact us
             </a>
           </div>
         </section>
