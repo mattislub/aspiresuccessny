@@ -56,7 +56,7 @@ const CareManagementPage = ({ onNavigateHome }) => {
         </nav>
 
         <div className="service-hero__content">
-          <p className="eyebrow">Services Page 1</p>
+          <p className="eyebrow">Services care-management </p>
           <h1>Expert Care Management: Finding the Right Path for Success</h1>
           <p className="subhead">
             Our core coordinating service ensures you have an advocate and partner who aligns every support with your
