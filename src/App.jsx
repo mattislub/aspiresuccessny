@@ -26,6 +26,33 @@ import {
 } from 'react-icons/fa'
 import logo from './assets/logo.png'
 
+const heroImage =
+  'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1500&q=80&sat=-12'
+
+const careGallery = [
+  {
+    title: 'Warm welcomes at every visit',
+    description: 'Spaces that feel calm and inviting so you can focus on what matters.',
+    image:
+      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80&sat=-8',
+    tag: 'Comfort',
+  },
+  {
+    title: 'Collaborative planning sessions',
+    description: 'Care teams and families mapping out clear next steps together.',
+    image:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1200&q=80&sat=-12',
+    tag: 'Teamwork',
+  },
+  {
+    title: 'Community connections in action',
+    description: 'Specialists meeting clients where they are—school, home, or community.',
+    image:
+      'https://images.unsplash.com/photo-1461532257246-777de18cd58b?auto=format&fit=crop&w=1200&q=80&sat=-10',
+    tag: 'Support',
+  },
+]
+
 const values = ['Compassion', 'Integrity', 'Results-Driven', 'Advocacy']
 
 const teamMembers = [
@@ -33,16 +60,22 @@ const teamMembers = [
     name: 'Jordan Ellis',
     role: 'Founder & Lead Care Strategist',
     bio: 'Drives vision and partnerships so every family has a clear roadmap and trusted support team.',
+    photo:
+      'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80&sat=-8',
   },
   {
     name: 'Taylor Morgan',
     role: 'Care Coordination Director',
     bio: 'Oversees assessments, action plans, and smooth communication between providers and families.',
+    photo:
+      'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80&sat=-18',
   },
   {
     name: 'Riley Chen',
     role: 'Community Resource Specialist',
     bio: 'Connects clients to funding, local programs, and advocacy networks that keep progress moving.',
+    photo:
+      'https://images.unsplash.com/photo-1504595403659-9088ce801e29?auto=format&fit=crop&w=600&q=80&sat=-14',
   },
 ]
 
@@ -388,7 +421,9 @@ const AboutPage = ({ onNavigateHome, onNavigate }) => {
           <div className="team-grid">
             {teamMembers.map((member) => (
               <div key={member.name} className="team-card">
-                <div className="team-photo" aria-hidden="true" />
+                <div className="team-photo">
+                  <img src={member.photo} alt={`${member.name}, ${member.role}`} loading="lazy" />
+                </div>
                 <div>
                   <h3>{member.name}</h3>
                   <p className="team-role">{member.role}</p>
@@ -1163,6 +1198,13 @@ function App() {
             </ul>
             <div className="pill">Aligned with your vision of success</div>
           </div>
+          <div className="hero__visual">
+            <img src={heroImage} alt="Care manager smiling during a client meeting" loading="lazy" />
+            <div className="hero__badge">
+              <FaHeart aria-hidden="true" />
+              <span>Human-first care, every time</span>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -1214,6 +1256,33 @@ function App() {
                 Talk with us
               </a>
             </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="section__header">
+            <p className="eyebrow eyebrow--with-icon">
+              <FaHandsHelping className="eyebrow__icon" aria-hidden="true" />
+              Care in pictures
+            </p>
+            <h2>Moments that show how we support you.</h2>
+            <p className="section__lead">
+              See the environments, collaboration, and community connections that help our clients feel confident.
+            </p>
+          </div>
+          <div className="gallery-grid">
+            {careGallery.map((item) => (
+              <article key={item.title} className="gallery-card">
+                <div className="gallery-card__image">
+                  <img src={item.image} alt={item.title} loading="lazy" />
+                  <span className="pill pill--overlay">{item.tag}</span>
+                </div>
+                <div className="gallery-card__body">
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
 
