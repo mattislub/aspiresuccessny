@@ -228,6 +228,23 @@ body {
   padding: 0 16px;
 }
 
+.section-divider {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin: 12px auto -12px;
+  padding: 0 16px;
+}
+
+.section-divider__image {
+  width: 110px;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 10px 26px rgba(13, 27, 30, 0.12);
+  border: 1px solid rgba(25, 133, 149, 0.18);
+}
+
 .section--muted {
   background: var(--muted);
   border-radius: 24px;
