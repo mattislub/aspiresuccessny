@@ -32,11 +32,181 @@ const services = [
     link: '/government-programs',
   },
   {
-    title: 'Specialist Placement',
+    title: 'Qualified Specialist Placement',
     description: 'Hand-selected providers matched to your emotional, cognitive, or behavioral goals.',
     link: '/specialist-placement',
   },
 ]
+
+const SpecialistPlacementPage = ({ onNavigateHome }) => {
+  return (
+    <div className="page service-page">
+      <header className="service-hero">
+        <nav className="nav">
+          <div className="brand">
+            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
+            <div>
+              <p className="brand__name">Aspire Success NY</p>
+              <p className="brand__tagline">Guidance for every stage</p>
+            </div>
+          </div>
+          <a className="cta cta--ghost" href="#" onClick={onNavigateHome}>
+            Back to Home
+          </a>
+        </nav>
+
+        <div className="service-hero__content">
+          <p className="eyebrow">Services specialist-placement</p>
+          <h1>Building Your Support Team: Connecting You with Qualified Personnel</h1>
+          <p className="subhead">
+            We source, vet, and match skilled professionals to fit your care needs, goals, and personality so you feel
+            supported from day one.
+          </p>
+        </div>
+      </header>
+
+      <main className="service-content">
+        <section className="section">
+          <div className="section__header">
+            <p className="eyebrow">Our mission</p>
+            <h2>Every great plan needs the right people</h2>
+            <p className="section__lead">
+              A comprehensive care plan requires skilled, dedicated personnel to implement the work. We bring together
+              the professionals whose expertise and approach align with your needs and personality.
+            </p>
+          </div>
+          <div className="service-highlight">
+            <div className="pill">Purpose-built teams</div>
+            <p>
+              From the first conversation to the final placement, we prioritize clear expectations, collaborative
+              communication, and a culture of respect that lets support staff do their best work for you.
+            </p>
+          </div>
+        </section>
+
+        <section className="section section--muted">
+          <div className="section__header">
+            <p className="eyebrow">Roles we place</p>
+            <h2>Matching the right expertise to your environment</h2>
+            <p className="section__lead">We recruit with intention so every role directly advances your goals.</p>
+          </div>
+          <div className="process-grid">
+            <div className="process-card">
+              <div className="pill">DSPs</div>
+              <h3>Direct Support Professionals</h3>
+              <p>Providing direct, hands-on support for daily living, personal goals, and independence.</p>
+            </div>
+            <div className="process-card">
+              <div className="pill">Para-Professionals</div>
+              <h3>Para-Professionals</h3>
+              <p>Assistance in educational or community settings with patience, consistency, and skill.</p>
+            </div>
+            <div className="process-card">
+              <div className="pill">Peer Support</div>
+              <h3>Peer Support Specialists</h3>
+              <p>Non-clinical emotional support from team members with lived experience you can relate to.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="section__header">
+            <p className="eyebrow">Our vetting process</p>
+            <h2>Quality, safety, and fit come first</h2>
+            <p className="section__lead">
+              We are committed to reliable, caring placements. Every professional is screened for credentials, verified
+              through background checks, and matched to your goals and preferences.
+            </p>
+          </div>
+          <div className="process-grid">
+            <div className="process-card">
+              <div className="pill">Quality</div>
+              <h3>Credential verification</h3>
+              <p>Licensure checks, references, and experience reviews ensure we only present qualified candidates.</p>
+            </div>
+            <div className="process-card">
+              <div className="pill">Safety</div>
+              <h3>Background screening</h3>
+              <p>Comprehensive background checks and interviews confirm professionalism, reliability, and readiness.</p>
+            </div>
+            <div className="process-card">
+              <div className="pill">Alignment</div>
+              <h3>Personalized matching</h3>
+              <p>We factor communication style, personality fit, and scheduling needs to set up lasting success.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="value-card">
+            <h3>Ready to build your support team?</h3>
+            <p>
+              Tell us about your goals, daily routines, and what a great partnership looks like. We will curate a shortlist
+              of qualified specialists who feel like the right fit.
+            </p>
+            <div style={{ marginTop: '16px' }}>
+              <a className="cta" href="#" onClick={(event) => onNavigateHome(event, '#contact')}>
+                Start a placement request
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="footer" id="contact">
+        <div>
+          <div className="brand">
+            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
+            <div>
+              <p className="brand__name">Aspire Success NY</p>
+              <p className="brand__tagline">Your guide to meaningful growth</p>
+            </div>
+          </div>
+          <p className="footer__text">Connecting you with care, resources, and specialists that honor your journey.</p>
+        </div>
+        <div className="footer__columns">
+          <div>
+            <h4>Contact</h4>
+            <ul>
+              <li><a href="tel:555-123-4567">(555) 123-4567</a></li>
+              <li><a href="mailto:hello@aspiresuccessny.com">hello@aspiresuccessny.com</a></li>
+              <li>New York, NY</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Quick Links</h4>
+            <ul>
+              <li>
+                <a href="#" onClick={(event) => onNavigateHome(event)}>
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#testimonials" onClick={(event) => onNavigateHome(event, '#testimonials')}>
+                  Testimonials
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4>Follow</h4>
+            <div className="socials">
+              <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noreferrer">
+                <FaFacebookF aria-hidden="true" />
+              </a>
+              <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noreferrer">
+                <FaInstagram aria-hidden="true" />
+              </a>
+              <a href="https://www.linkedin.com" aria-label="LinkedIn" target="_blank" rel="noreferrer">
+                <FaLinkedinIn aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}
 
 const GovernmentProgramsPage = ({ onNavigateHome }) => {
   return (
@@ -385,6 +555,10 @@ function App() {
 
   if (route === '/care-management') {
     return <CareManagementPage onNavigateHome={handleNavigateHome} />
+  }
+
+  if (route === '/specialist-placement') {
+    return <SpecialistPlacementPage onNavigateHome={handleNavigateHome} />
   }
 
   if (route === '/government-programs') {
