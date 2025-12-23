@@ -61,6 +61,12 @@ body {
   margin: 0 auto 32px;
 }
 
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .brand {
   display: flex;
   align-items: center;
@@ -179,6 +185,27 @@ body {
   margin: 0;
 }
 
+.section__cta {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.about-preview {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.about-preview__actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
 .pill-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -230,6 +257,81 @@ body {
 .card__link {
   color: var(--primary);
   font-weight: 700;
+}
+
+.about-highlight {
+  background: white;
+  border: 1px solid rgba(25, 133, 149, 0.14);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(13, 27, 30, 0.06);
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.story-card {
+  background: white;
+  border: 1px solid rgba(25, 133, 149, 0.16);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 8px 24px rgba(13, 27, 30, 0.05);
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.value-card--light {
+  background: white;
+  border: 1px solid rgba(25, 133, 149, 0.12);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 8px 24px rgba(13, 27, 30, 0.05);
+}
+
+.pill--outline {
+  background: transparent;
+  color: var(--primary-dark);
+  border: 1px solid rgba(25, 133, 149, 0.4);
+  margin-bottom: 8px;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.team-card {
+  background: white;
+  border: 1px solid rgba(25, 133, 149, 0.14);
+  border-radius: 16px;
+  padding: 18px;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 80px 1fr;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(13, 27, 30, 0.06);
+}
+
+.team-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(25, 133, 149, 0.3), rgba(194, 198, 104, 0.3));
+  border: 1px solid rgba(25, 133, 149, 0.26);
+}
+
+.team-role {
+  color: #36545c;
+  font-weight: 600;
+  margin: 4px 0;
 }
 
 .testimonial {

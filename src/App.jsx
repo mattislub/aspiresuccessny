@@ -2,6 +2,26 @@ import { useEffect, useState } from 'react'
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa'
 import logo from './assets/logo.png'
 
+const values = ['Compassion', 'Integrity', 'Results-Driven', 'Advocacy']
+
+const teamMembers = [
+  {
+    name: 'Jordan Ellis',
+    role: 'Founder & Lead Care Strategist',
+    bio: 'Drives vision and partnerships so every family has a clear roadmap and trusted support team.',
+  },
+  {
+    name: 'Taylor Morgan',
+    role: 'Care Coordination Director',
+    bio: 'Oversees assessments, action plans, and smooth communication between providers and families.',
+  },
+  {
+    name: 'Riley Chen',
+    role: 'Community Resource Specialist',
+    bio: 'Connects clients to funding, local programs, and advocacy networks that keep progress moving.',
+  },
+]
+
 const testimonials = [
   {
     quote:
@@ -205,9 +225,213 @@ const SpecialistPlacementPage = ({ onNavigateHome }) => {
               <p className="brand__tagline">Guidance for every stage</p>
             </div>
           </div>
-          <a className="cta cta--ghost" href="#" onClick={onNavigateHome}>
-            Back to Home
-          </a>
+          <div className="nav__actions">
+            <a className="cta cta--ghost" href="#" onClick={onNavigateHome}>
+              Back to Home
+            </a>
+            <a className="cta" href="#contact" onClick={(event) => onNavigate(event, '/#contact')}>
+              Contact
+            </a>
+          </div>
+        </nav>
+
+        <div className="service-hero__content">
+          <p className="eyebrow">About Aspire Success NY</p>
+          <h1>Our Story, Mission, and the People Championing Your Growth</h1>
+          <p className="subhead">
+            We exist to bridge gaps in care so individuals and families facing emotional, cognitive, and behavioral
+            challenges get coordinated, compassionate support.
+          </p>
+        </div>
+      </header>
+
+      <main className="service-content about">
+        <section className="section">
+          <div className="section__header">
+            <p className="eyebrow">Our Mission</p>
+            <h2>Empowering every step forward</h2>
+            <p className="section__lead">
+              We empower individuals by providing clear direction, expert care coordination, and access to essential
+              resources that make meaningful growth possible.
+            </p>
+          </div>
+          <div className="about-highlight">
+            <div className="pill">Mission-driven</div>
+            <p>
+              From the first conversation, we focus on listening and translating needs into an actionable plan. Our
+              coordination ensures therapies, specialists, and funding align so you can focus on progress, not
+              logistics.
+            </p>
+          </div>
+        </section>
+
+        <section className="section section--muted">
+          <div className="section__header">
+            <p className="eyebrow">Why we were founded</p>
+            <h2>Closing the gap between needs and resources</h2>
+            <p className="section__lead">
+              Our team saw families struggling to access the right support despite their determination. Aspire Success NY
+              was founded to be the advocate and organizer who makes sure no step is missed.
+            </p>
+          </div>
+          <div className="story-grid">
+            <div className="story-card">
+              <h3>Built on lived experience</h3>
+              <p>
+                We have walked beside parents, guardians, and adults who needed a guide through complex systems. That
+                empathy shapes how we coordinate care and communicate every milestone.
+              </p>
+            </div>
+            <div className="story-card">
+              <h3>Committed to advocacy</h3>
+              <p>
+                We partner with providers, schools, and community programs to keep the circle of support connected,
+                responsive, and focused on measurable outcomes.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="section__header">
+            <p className="eyebrow">Our values</p>
+            <h2>The principles guiding every decision</h2>
+            <p className="section__lead">These values shape how we show up for you and advocate on your behalf.</p>
+          </div>
+          <div className="values-grid">
+            {values.map((value) => (
+              <div key={value} className="value-card value-card--light">
+                <div className="pill pill--outline">{value}</div>
+                <p>
+                  {value === 'Compassion' && 'We lead with empathy, honoring every story and celebrating small wins.'}
+                  {value === 'Integrity' && 'Transparent communication and follow-through build trust with families and partners.'}
+                  {value === 'Results-Driven' && 'We set clear goals, track progress, and adjust quickly to keep momentum strong.'}
+                  {value === 'Advocacy' && 'We elevate your voice, ensuring resources and supports align with your needs.'}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="section section--muted">
+          <div className="section__header">
+            <p className="eyebrow">Meet our team</p>
+            <h2>People dedicated to your success</h2>
+            <p className="section__lead">
+              Each team member brings expertise in care coordination, community resources, and advocacy to guide your
+              journey.
+            </p>
+          </div>
+          <div className="team-grid">
+            {teamMembers.map((member) => (
+              <div key={member.name} className="team-card">
+                <div className="team-photo" aria-hidden="true" />
+                <div>
+                  <h3>{member.name}</h3>
+                  <p className="team-role">{member.role}</p>
+                  <p>{member.bio}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="value-card">
+            <h3>Ready to learn how we can help?</h3>
+            <p>
+              Share your goals and challenges, and we will design a coordinated plan that connects you with the right
+              resources and specialists.
+            </p>
+            <div style={{ marginTop: '16px' }}>
+              <a className="cta" href="#" onClick={(event) => onNavigate(event, '/#contact')}>
+                Talk with our team
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="footer" id="contact">
+        <div>
+          <div className="brand">
+            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
+            <div>
+              <p className="brand__name">Aspire Success NY</p>
+              <p className="brand__tagline">Your guide to meaningful growth</p>
+            </div>
+          </div>
+          <p className="footer__text">Connecting you with care, resources, and specialists that honor your journey.</p>
+        </div>
+        <div className="footer__columns">
+          <div>
+            <h4>Contact</h4>
+            <ul>
+              <li><a href="tel:555-123-4567">(555) 123-4567</a></li>
+              <li><a href="mailto:hello@aspiresuccessny.com">hello@aspiresuccessny.com</a></li>
+              <li>New York, NY</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Quick Links</h4>
+            <ul>
+              <li>
+                <a href="#" onClick={(event) => onNavigateHome(event)}>
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#" onClick={(event) => onNavigate(event, '/about')}>
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#" onClick={(event) => onNavigateHome(event, '#testimonials')}>
+                  Testimonials
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4>Follow</h4>
+            <div className="socials">
+              <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noreferrer">
+                <FaFacebookF aria-hidden="true" />
+              </a>
+              <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noreferrer">
+                <FaInstagram aria-hidden="true" />
+              </a>
+              <a href="https://www.linkedin.com" aria-label="LinkedIn" target="_blank" rel="noreferrer">
+                <FaLinkedinIn aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}
+
+const SpecialistPlacementPage = ({ onNavigateHome, onNavigate }) => {
+  return (
+    <div className="page service-page">
+      <header className="service-hero">
+        <nav className="nav">
+          <div className="brand">
+            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
+            <div>
+              <p className="brand__name">Aspire Success NY</p>
+              <p className="brand__tagline">Guidance for every stage</p>
+            </div>
+          </div>
+          <div className="nav__actions">
+            <a className="cta cta--ghost" href="#" onClick={onNavigateHome}>
+              Back to Home
+            </a>
+            <a className="cta" href="#" onClick={(event) => onNavigate(event, '/about')}>
+              About
+            </a>
+          </div>
         </nav>
 
         <div className="service-hero__content">
@@ -337,6 +561,11 @@ const SpecialistPlacementPage = ({ onNavigateHome }) => {
                 </a>
               </li>
               <li>
+                <a href="#" onClick={(event) => onNavigate(event, '/about')}>
+                  About
+                </a>
+              </li>
+              <li>
                 <a href="#testimonials" onClick={(event) => onNavigateHome(event, '#testimonials')}>
                   Testimonials
                 </a>
@@ -363,7 +592,7 @@ const SpecialistPlacementPage = ({ onNavigateHome }) => {
   )
 }
 
-const GovernmentProgramsPage = ({ onNavigateHome }) => {
+const GovernmentProgramsPage = ({ onNavigateHome, onNavigate }) => {
   return (
     <div className="page service-page">
       <header className="service-hero">
@@ -375,9 +604,14 @@ const GovernmentProgramsPage = ({ onNavigateHome }) => {
               <p className="brand__tagline">Guidance for every stage</p>
             </div>
           </div>
-          <a className="cta cta--ghost" href="#" onClick={onNavigateHome}>
-            Back to Home
-          </a>
+          <div className="nav__actions">
+            <a className="cta cta--ghost" href="#" onClick={onNavigateHome}>
+              Back to Home
+            </a>
+            <a className="cta" href="#" onClick={(event) => onNavigate(event, '/about')}>
+              About
+            </a>
+          </div>
         </nav>
 
         <div className="service-hero__content">
@@ -496,6 +730,11 @@ const GovernmentProgramsPage = ({ onNavigateHome }) => {
                 </a>
               </li>
               <li>
+                <a href="#" onClick={(event) => onNavigate(event, '/about')}>
+                  About
+                </a>
+              </li>
+              <li>
                 <a href="#testimonials" onClick={(event) => onNavigateHome(event, '#testimonials')}>
                   Testimonials
                 </a>
@@ -522,7 +761,7 @@ const GovernmentProgramsPage = ({ onNavigateHome }) => {
   )
 }
 
-const CareManagementPage = ({ onNavigateHome }) => {
+const CareManagementPage = ({ onNavigateHome, onNavigate }) => {
   return (
     <div className="page service-page">
       <header className="service-hero">
@@ -534,9 +773,14 @@ const CareManagementPage = ({ onNavigateHome }) => {
               <p className="brand__tagline">Guidance for every stage</p>
             </div>
           </div>
-          <a className="cta cta--ghost" href="#" onClick={onNavigateHome}>
-            Back to Home
-          </a>
+          <div className="nav__actions">
+            <a className="cta cta--ghost" href="#" onClick={onNavigateHome}>
+              Back to Home
+            </a>
+            <a className="cta" href="#" onClick={(event) => onNavigate(event, '/about')}>
+              About
+            </a>
+          </div>
         </nav>
 
         <div className="service-hero__content">
@@ -718,15 +962,19 @@ function App() {
   }
 
   if (route === '/care-management') {
-    return <CareManagementPage onNavigateHome={handleNavigateHome} />
+    return <CareManagementPage onNavigateHome={handleNavigateHome} onNavigate={handleNavigate} />
   }
 
   if (route === '/specialist-placement') {
-    return <SpecialistPlacementPage onNavigateHome={handleNavigateHome} />
+    return <SpecialistPlacementPage onNavigateHome={handleNavigateHome} onNavigate={handleNavigate} />
   }
 
   if (route === '/government-programs') {
-    return <GovernmentProgramsPage onNavigateHome={handleNavigateHome} />
+    return <GovernmentProgramsPage onNavigateHome={handleNavigateHome} onNavigate={handleNavigate} />
+  }
+
+  if (route === '/about') {
+    return <AboutPage onNavigateHome={handleNavigateHome} onNavigate={handleNavigate} />
   }
 
   return (
@@ -788,6 +1036,34 @@ function App() {
             <div className="pill-card">Children</div>
             <div className="pill-card">Teens</div>
             <div className="pill-card">Adults</div>
+          </div>
+        </section>
+
+        <section className="section section--muted" id="about">
+          <div className="section__header">
+            <p className="eyebrow">About Us</p>
+            <h2>Grounded in mission, guided by advocacy.</h2>
+            <p className="section__lead">
+              Learn why Aspire Success NY was founded, the values that drive our work, and the team committed to your
+              success.
+            </p>
+          </div>
+          <div className="about-preview">
+            <div>
+              <div className="pill">Our Mission</div>
+              <p>
+                To empower individuals facing emotional, cognitive, and behavioral challenges by providing clear
+                direction, expert care coordination, and access to essential resources.
+              </p>
+            </div>
+            <div className="about-preview__actions">
+              <a className="cta" href="/about" onClick={(event) => handleNavigate(event, '/about')}>
+                Explore our story
+              </a>
+              <a className="cta cta--ghost" href="#contact">
+                Talk with us
+              </a>
+            </div>
           </div>
         </section>
 
@@ -865,6 +1141,11 @@ function App() {
             <h4>Quick Links</h4>
             <ul>
               <li><a href="#consultation">Who We Help</a></li>
+              <li>
+                <a href="#" onClick={(event) => onNavigate(event, '/about')}>
+                  About
+                </a>
+              </li>
               <li><a href="#services">Services</a></li>
               <li><a href="#testimonials">Testimonials</a></li>
             </ul>
