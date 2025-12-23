@@ -213,7 +213,7 @@ const ContactPage = ({ onNavigateHome }) => {
   )
 }
 
-const SpecialistPlacementPage = ({ onNavigateHome }) => {
+const AboutPage = ({ onNavigateHome, onNavigate }) => {
   return (
     <div className="page service-page">
       <header className="service-hero">
@@ -944,6 +944,22 @@ function App() {
     window.history.pushState({}, '', path)
     setRoute(path)
     window.scrollTo(0, 0)
+  }
+
+  const handleNavigate = (event, path) => {
+    event.preventDefault()
+    const [pathname, hash] = path.split('#')
+
+    navigate(pathname || '/')
+
+    if (hash) {
+      setTimeout(() => {
+        const target = document.getElementById(hash)
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 50)
+    }
   }
 
   const handleNavigateHome = (event, hash) => {
