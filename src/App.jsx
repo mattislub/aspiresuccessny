@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa'
 import logo from './assets/logo.png'
 
 const testimonials = [
@@ -183,14 +184,14 @@ function App() {
           <div>
             <h4>Follow</h4>
             <div className="socials">
-              <a href="https://www.facebook.com" aria-label="Facebook">
-                <span></span>
+              <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noreferrer">
+                <FaFacebookF aria-hidden="true" />
               </a>
-              <a href="https://www.instagram.com" aria-label="Instagram">
-                <span></span>
+              <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noreferrer">
+                <FaInstagram aria-hidden="true" />
               </a>
-              <a href="https://www.linkedin.com" aria-label="LinkedIn">
-                <span></span>
+              <a href="https://www.linkedin.com" aria-label="LinkedIn" target="_blank" rel="noreferrer">
+                <FaLinkedinIn aria-hidden="true" />
               </a>
             </div>
           </div>
