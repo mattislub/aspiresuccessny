@@ -1,5 +1,17 @@
 import { useEffect, useState } from 'react'
-import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa'
+import {
+  FaClipboardList,
+  FaCompass,
+  FaEnvelope,
+  FaFacebookF,
+  FaHandsHelping,
+  FaInstagram,
+  FaLifeRing,
+  FaLink,
+  FaLinkedinIn,
+  FaQuoteLeft,
+  FaShareAlt,
+} from 'react-icons/fa'
 import logo from './assets/logo.png'
 
 const testimonials = [
@@ -68,7 +80,12 @@ function App() {
         <div className="hero__content">
           <div className="hero__text">
             <p className="eyebrow">Welcome &amp; Overview</p>
-            <h1>Your Partner in Navigating Emotional, Cognitive, &amp; Behavioral Growth.</h1>
+            <div className="heading-with-icon heading-with-icon--hero">
+              <span className="heading-icon" aria-hidden="true">
+                <FaCompass />
+              </span>
+              <h1>Your Partner in Navigating Emotional, Cognitive, &amp; Behavioral Growth.</h1>
+            </div>
             <p className="subhead">
               We simplify the path to success for children, teens, and adults by connecting you with the right
               care and resources.
@@ -83,7 +100,12 @@ function App() {
             </div>
           </div>
           <div className="hero__card">
-            <h3>Support at every step</h3>
+            <div className="heading-with-icon heading-with-icon--tight">
+              <span className="heading-icon heading-icon--small" aria-hidden="true">
+                <FaLifeRing />
+              </span>
+              <h3>Support at every step</h3>
+            </div>
             <ul>
               <li>Dedicated care managers who listen and guide.</li>
               <li>Clear pathways to resources and funding.</li>
@@ -98,7 +120,12 @@ function App() {
         <section className="section" id="consultation">
           <div className="section__header">
             <p className="eyebrow">Who We Help</p>
-            <h2>Care designed for children, teens, and adults.</h2>
+            <div className="heading-with-icon">
+              <span className="heading-icon" aria-hidden="true">
+                <FaHandsHelping />
+              </span>
+              <h2>Care designed for children, teens, and adults.</h2>
+            </div>
             <p className="section__lead">
               Whether you are navigating emotional, cognitive, or behavioral challenges, we deliver guidance and
               advocacy that meets you where you are.
@@ -114,7 +141,12 @@ function App() {
         <section className="section" id="services">
           <div className="section__header">
             <p className="eyebrow">Our Core Services</p>
-            <h2>Quick snapshot of how we serve you.</h2>
+            <div className="heading-with-icon">
+              <span className="heading-icon" aria-hidden="true">
+                <FaClipboardList />
+              </span>
+              <h2>Quick snapshot of how we serve you.</h2>
+            </div>
             <p className="section__lead">Discover the guidance, access, and expert support that simplify your next steps.</p>
           </div>
           <div className="card-grid">
@@ -133,7 +165,12 @@ function App() {
         <section className="section section--muted" id="testimonials">
           <div className="section__header">
             <p className="eyebrow">Testimonials</p>
-            <h2>Stories of confidence and progress.</h2>
+            <div className="heading-with-icon">
+              <span className="heading-icon" aria-hidden="true">
+                <FaQuoteLeft />
+              </span>
+              <h2>Stories of confidence and progress.</h2>
+            </div>
             <p className="section__lead">Real voices from families and individuals we have supported.</p>
           </div>
           <div className="testimonial">
@@ -166,7 +203,12 @@ function App() {
         </div>
         <div className="footer__columns">
           <div>
-            <h4>Contact</h4>
+            <div className="heading-with-icon heading-with-icon--tight">
+              <span className="heading-icon heading-icon--small" aria-hidden="true">
+                <FaEnvelope />
+              </span>
+              <h4>Contact</h4>
+            </div>
             <ul>
               <li><a href="tel:555-123-4567">(555) 123-4567</a></li>
               <li><a href="mailto:hello@aspiresuccessny.com">hello@aspiresuccessny.com</a></li>
@@ -174,7 +216,12 @@ function App() {
             </ul>
           </div>
           <div>
-            <h4>Quick Links</h4>
+            <div className="heading-with-icon heading-with-icon--tight">
+              <span className="heading-icon heading-icon--small" aria-hidden="true">
+                <FaLink />
+              </span>
+              <h4>Quick Links</h4>
+            </div>
             <ul>
               <li><a href="#consultation">Who We Help</a></li>
               <li><a href="#services">Services</a></li>
@@ -182,7 +229,12 @@ function App() {
             </ul>
           </div>
           <div>
-            <h4>Follow</h4>
+            <div className="heading-with-icon heading-with-icon--tight">
+              <span className="heading-icon heading-icon--small" aria-hidden="true">
+                <FaShareAlt />
+              </span>
+              <h4>Follow</h4>
+            </div>
             <div className="socials">
               <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noreferrer">
                 <FaFacebookF aria-hidden="true" />
