@@ -114,6 +114,44 @@ const footerQuickLinks = [
   { label: 'Contact', href: '/contact', type: 'contact' },
 ]
 
+const headerTagline = 'Guidance for every stage'
+
+const NavigationLinksBar = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
+  const handleQuickLinkClick = (event, link) => {
+    if (link.type === 'home' && onNavigateHome) {
+      onNavigateHome(event, link.anchor)
+      return
+    }
+
+    if (link.type === 'contact' && onNavigateContact) {
+      onNavigateContact(event)
+      return
+    }
+
+    if (link.type === 'route' && onNavigate) {
+      onNavigate(event, link.href)
+    }
+  }
+
+  return (
+    <div className="nav-links-bar" aria-label="Primary navigation">
+      <div className="nav-links-bar__links">
+        {footerQuickLinks.map((link) => (
+          <a
+            key={link.label}
+            className="nav-links-bar__link"
+            href={link.href}
+            onClick={(event) => handleQuickLinkClick(event, link)}
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+      <span className="nav-links-bar__tagline">{headerTagline}</span>
+    </div>
+  )
+}
+
 const footerSocialLinks = [
   { label: 'Facebook', href: 'https://www.facebook.com/aspiresuccessny', icon: FaFacebookF },
   { label: 'Instagram', href: 'https://www.instagram.com/aspiresuccessny', icon: FaInstagram },
@@ -198,7 +236,6 @@ const ContactPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
             <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
             <div>
               <p className="brand__name">Aspire Success NY</p>
-              <p className="brand__tagline">Guidance for every stage</p>
             </div>
           </div>
           <a className="cta cta--ghost" href="#" onClick={onNavigateHome}>
@@ -317,12 +354,16 @@ const AboutPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
   return (
     <div className="page service-page">
       <header className="service-hero">
+        <NavigationLinksBar
+          onNavigateHome={onNavigateHome}
+          onNavigate={onNavigate}
+          onNavigateContact={onNavigateContact}
+        />
         <nav className="nav">
           <div className="brand">
             <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
             <div>
               <p className="brand__name">Aspire Success NY</p>
-              <p className="brand__tagline">Guidance for every stage</p>
             </div>
           </div>
           <div className="nav__actions">
@@ -473,12 +514,16 @@ const SpecialistPlacementPage = ({ onNavigateHome, onNavigate, onNavigateContact
   return (
     <div className="page service-page">
       <header className="service-hero">
+        <NavigationLinksBar
+          onNavigateHome={onNavigateHome}
+          onNavigate={onNavigate}
+          onNavigateContact={onNavigateContact}
+        />
         <nav className="nav">
           <div className="brand">
             <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
             <div>
               <p className="brand__name">Aspire Success NY</p>
-              <p className="brand__tagline">Guidance for every stage</p>
             </div>
           </div>
           <div className="nav__actions">
@@ -616,12 +661,16 @@ const GovernmentProgramsPage = ({ onNavigateHome, onNavigate, onNavigateContact 
   return (
     <div className="page service-page">
       <header className="service-hero">
+        <NavigationLinksBar
+          onNavigateHome={onNavigateHome}
+          onNavigate={onNavigate}
+          onNavigateContact={onNavigateContact}
+        />
         <nav className="nav">
           <div className="brand">
             <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
             <div>
               <p className="brand__name">Aspire Success NY</p>
-              <p className="brand__tagline">Guidance for every stage</p>
             </div>
           </div>
           <div className="nav__actions">
@@ -742,12 +791,16 @@ const CareManagementPage = ({ onNavigateHome, onNavigate, onNavigateContact }) =
   return (
     <div className="page service-page">
       <header className="service-hero">
+        <NavigationLinksBar
+          onNavigateHome={onNavigateHome}
+          onNavigate={onNavigate}
+          onNavigateContact={onNavigateContact}
+        />
         <nav className="nav">
           <div className="brand">
             <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
             <div>
               <p className="brand__name">Aspire Success NY</p>
-              <p className="brand__tagline">Guidance for every stage</p>
             </div>
           </div>
           <div className="nav__actions">
@@ -976,12 +1029,16 @@ function App() {
   return (
     <div className="page">
       <header className="hero">
+        <NavigationLinksBar
+          onNavigateHome={handleNavigateHome}
+          onNavigate={handleNavigate}
+          onNavigateContact={handleNavigateContact}
+        />
         <nav className="nav">
           <div className="brand">
             <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
             <div>
               <p className="brand__name">Aspire Success NY</p>
-              <p className="brand__tagline">Guidance for every stage</p>
             </div>
           </div>
           <a className="cta cta--ghost" href="/contact" onClick={handleNavigateContact}>
