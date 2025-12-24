@@ -71,12 +71,19 @@ body {
 }
 
 .nav-links-bar__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-weight: 700;
   color: var(--primary-dark);
 }
 
 .nav-links-bar__link:hover {
   color: var(--primary);
+}
+
+.nav-links-bar__icon {
+  font-size: 15px;
 }
 
 .nav-links-bar__tagline {

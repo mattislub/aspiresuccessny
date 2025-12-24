@@ -4,6 +4,7 @@ import {
   FaCheckCircle,
   FaClipboardCheck,
   FaClipboardList,
+  FaCommentDots,
   FaEnvelope,
   FaEnvelopeOpenText,
   FaExclamationCircle,
@@ -12,6 +13,8 @@ import {
   FaHandshake,
   FaHeart,
   FaHandsHelping,
+  FaHome,
+  FaInfoCircle,
   FaInstagram,
   FaLinkedinIn,
   FaLightbulb,
@@ -112,11 +115,11 @@ const footerContact = {
 }
 
 const footerQuickLinks = [
-  { label: 'Home', href: '/', type: 'home' },
-  { label: 'About', href: '/about', type: 'route' },
-  { label: 'Services', href: '/#services', type: 'services' },
-  { label: 'Testimonials', href: '/#testimonials', type: 'home', anchor: '#testimonials' },
-  { label: 'Contact', href: '/contact', type: 'contact' },
+  { label: 'Home', href: '/', type: 'home', icon: FaHome },
+  { label: 'About', href: '/about', type: 'route', icon: FaInfoCircle },
+  { label: 'Services', href: '/#services', type: 'services', icon: FaHandsHelping },
+  { label: 'Testimonials', href: '/#testimonials', type: 'home', anchor: '#testimonials', icon: FaCommentDots },
+  { label: 'Contact', href: '/contact', type: 'contact', icon: FaEnvelope },
 ]
 
 const headerTagline = 'Guidance for every stage'
@@ -153,6 +156,7 @@ const NavigationLinksBar = ({ onNavigateHome, onNavigate, onNavigateContact, onO
             href={link.href}
             onClick={(event) => handleQuickLinkClick(event, link)}
           >
+            {link.icon && <link.icon className="nav-links-bar__icon" aria-hidden="true" />}
             {link.label}
           </a>
         ))}
