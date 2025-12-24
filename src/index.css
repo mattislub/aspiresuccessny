@@ -48,6 +48,43 @@ body {
   border-bottom: 2px solid rgba(25, 133, 149, 0.12);
 }
 
+.nav-links-bar {
+  max-width: 1080px;
+  margin: 0 auto 16px;
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(25, 133, 149, 0.12);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.nav-links-bar__links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.nav-links-bar__link {
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+.nav-links-bar__link:hover {
+  color: var(--primary);
+}
+
+.nav-links-bar__tagline {
+  color: #2d4c54;
+  font-weight: 600;
+  font-size: 14px;
+}
+
 .nav {
   display: flex;
   align-items: center;
@@ -902,6 +939,11 @@ body {
 
   .hero {
     padding: 18px 12px 48px;
+  }
+
+  .nav-links-bar {
+    padding: 10px 14px;
+    margin-bottom: 12px;
   }
 
   .hero__actions {
