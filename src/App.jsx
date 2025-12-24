@@ -238,9 +238,6 @@ const ContactPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
               <p className="brand__name">Aspire Success NY</p>
             </div>
           </div>
-          <a className="cta cta--ghost" href="#" onClick={onNavigateHome}>
-            Back to Home
-          </a>
         </nav>
 
         <div className="contact-hero__content">
@@ -365,14 +362,6 @@ const AboutPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
             <div>
               <p className="brand__name">Aspire Success NY</p>
             </div>
-          </div>
-          <div className="nav__actions">
-            <a className="cta cta--ghost" href="#" onClick={onNavigateHome}>
-              Back to Home
-            </a>
-            <a className="cta" href="#contact" onClick={(event) => onNavigate(event, '/#contact')}>
-              Contact
-            </a>
           </div>
         </nav>
 
@@ -526,14 +515,6 @@ const SpecialistPlacementPage = ({ onNavigateHome, onNavigate, onNavigateContact
               <p className="brand__name">Aspire Success NY</p>
             </div>
           </div>
-          <div className="nav__actions">
-            <a className="cta cta--ghost" href="#" onClick={onNavigateHome}>
-              Back to Home
-            </a>
-            <a className="cta" href="#" onClick={(event) => onNavigate(event, '/about')}>
-              About
-            </a>
-          </div>
         </nav>
 
         <div className="service-hero__content">
@@ -673,14 +654,6 @@ const GovernmentProgramsPage = ({ onNavigateHome, onNavigate, onNavigateContact 
               <p className="brand__name">Aspire Success NY</p>
             </div>
           </div>
-          <div className="nav__actions">
-            <a className="cta cta--ghost" href="#" onClick={onNavigateHome}>
-              Back to Home
-            </a>
-            <a className="cta" href="#" onClick={(event) => onNavigate(event, '/about')}>
-              About
-            </a>
-          </div>
         </nav>
 
         <div className="service-hero__content">
@@ -802,14 +775,6 @@ const CareManagementPage = ({ onNavigateHome, onNavigate, onNavigateContact }) =
             <div>
               <p className="brand__name">Aspire Success NY</p>
             </div>
-          </div>
-          <div className="nav__actions">
-            <a className="cta cta--ghost" href="#" onClick={onNavigateHome}>
-              Back to Home
-            </a>
-            <a className="cta" href="#" onClick={(event) => onNavigate(event, '/about')}>
-              About
-            </a>
           </div>
         </nav>
 
@@ -1041,9 +1006,6 @@ function App() {
               <p className="brand__name">Aspire Success NY</p>
             </div>
           </div>
-          <a className="cta cta--ghost" href="/contact" onClick={handleNavigateContact}>
-            Contact
-          </a>
         </nav>
 
         <div className="hero__content">
