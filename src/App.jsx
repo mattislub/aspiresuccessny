@@ -231,6 +231,11 @@ const ContactPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
   return (
     <div className="page contact-page">
       <header className="contact-hero">
+        <NavigationLinksBar
+          onNavigateHome={onNavigateHome}
+          onNavigate={onNavigate}
+          onNavigateContact={onNavigateContact}
+        />
         <nav className="nav">
           <div className="brand">
             <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
