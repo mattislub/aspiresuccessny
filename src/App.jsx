@@ -112,6 +112,8 @@ const footerQuickLinks = [
   { label: 'Services', href: '/#services', type: 'home', anchor: '#services' },
   { label: 'Testimonials', href: '/#testimonials', type: 'home', anchor: '#testimonials' },
   { label: 'Contact', href: '/contact', type: 'contact' },
+  { label: 'Enroll as a Specialist', href: '/specialist-enrollment', type: 'route' },
+  { label: 'Enroll for Support & Assistance', href: '/support-enrollment', type: 'route' },
 ]
 
 const headerTagline = 'Guidance for every stage'
@@ -149,6 +151,48 @@ const NavigationLinksBar = ({ onNavigateHome, onNavigate, onNavigateContact }) =
       </div>
       <span className="nav-links-bar__tagline">{headerTagline}</span>
     </div>
+  )
+}
+
+const navActions = [
+  { label: 'Enroll as a Specialist', href: '/specialist-enrollment' },
+  { label: 'Enroll for Support & Assistance', href: '/support-enrollment', primary: true },
+]
+
+const NavigationBar = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
+  const handleNavigateHome = (event) => {
+    if (onNavigateHome) {
+      onNavigateHome(event)
+    }
+  }
+
+  const handleNavigate = (event, href) => {
+    if (onNavigate) {
+      onNavigate(event, href)
+    }
+  }
+
+  return (
+    <nav className="nav">
+      <a className="brand brand--link" href="/" onClick={handleNavigateHome}>
+        <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
+        <div>
+          <p className="brand__name">Aspire Success NY</p>
+        </div>
+      </a>
+      <div className="nav__actions">
+        {navActions.map((action) => (
+          <a
+            key={action.label}
+            className={`nav__action ${action.primary ? 'nav__action--primary' : ''}`}
+            href={action.href}
+            onClick={(event) => handleNavigate(event, action.href)}
+          >
+            {action.label}
+          </a>
+        ))}
+      </div>
+    </nav>
   )
 }
 
@@ -231,14 +275,11 @@ const ContactPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
   return (
     <div className="page contact-page">
       <header className="contact-hero">
-        <nav className="nav">
-          <div className="brand">
-            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-            <div>
-              <p className="brand__name">Aspire Success NY</p>
-            </div>
-          </div>
-        </nav>
+        <NavigationBar
+          onNavigateHome={onNavigateHome}
+          onNavigate={onNavigate}
+          onNavigateContact={onNavigateContact}
+        />
 
         <div className="contact-hero__content">
           <div>
@@ -347,6 +388,63 @@ const ContactPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
   )
 }
 
+const enrollmentIntro = {
+  title: 'How easy it is to begin',
+  subtitle: 'We will support and guide you every step of the way.',
+}
+
+const enrollmentFields = [
+  { id: 'name', label: 'Name', type: 'text', placeholder: 'Your full name' },
+  { id: 'email', label: 'Email', type: 'email', placeholder: 'you@example.com' },
+  { id: 'phone', label: 'Phone', type: 'tel', placeholder: '(555) 123-4567' },
+  { id: 'message', label: 'How can we help?', type: 'textarea', placeholder: 'Share your goals, needs, or questions' },
+]
+
+const EnrollmentForm = ({ title, highlight }) => {
+  return (
+    <section className="section section--muted enrollment">
+      <div className="enrollment__intro">
+        <p className="eyebrow eyebrow--with-icon">
+          <FaHandsHelping className="eyebrow__icon" aria-hidden="true" />
+          {highlight}
+        </p>
+        <h1>{title}</h1>
+        <p className="subhead">
+          {enrollmentIntro.title}
+          <br />
+          {enrollmentIntro.subtitle}
+        </p>
+      </div>
+
+      <div className="enrollment__form-card">
+        <h2 className="heading-with-icon">
+          <FaEnvelopeOpenText className="heading-icon" aria-hidden="true" />
+          Send us your details
+        </h2>
+        <form className="contact-form contact-form--centered">
+          {enrollmentFields.map((field) => (
+            <div key={field.id} className="form-group">
+              <label htmlFor={field.id}>{field.label}</label>
+              {field.type === 'textarea' ? (
+                <textarea
+                  id={field.id}
+                  name={field.id}
+                  rows="4"
+                  placeholder={field.placeholder}
+                  required
+                />
+              ) : (
+                <input id={field.id} name={field.id} type={field.type} placeholder={field.placeholder} required />
+              )}
+            </div>
+          ))}
+          <button className="cta" type="submit">Submit</button>
+        </form>
+      </div>
+    </section>
+  )
+}
+
 const AboutPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
   return (
     <div className="page service-page">
@@ -356,14 +454,11 @@ const AboutPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
           onNavigate={onNavigate}
           onNavigateContact={onNavigateContact}
         />
-        <nav className="nav">
-          <div className="brand">
-            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-            <div>
-              <p className="brand__name">Aspire Success NY</p>
-            </div>
-          </div>
-        </nav>
+        <NavigationBar
+          onNavigateHome={onNavigateHome}
+          onNavigate={onNavigate}
+          onNavigateContact={onNavigateContact}
+        />
 
         <div className="service-hero__content">
           <p className="eyebrow eyebrow--with-icon">
@@ -508,14 +603,11 @@ const SpecialistPlacementPage = ({ onNavigateHome, onNavigate, onNavigateContact
           onNavigate={onNavigate}
           onNavigateContact={onNavigateContact}
         />
-        <nav className="nav">
-          <div className="brand">
-            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-            <div>
-              <p className="brand__name">Aspire Success NY</p>
-            </div>
-          </div>
-        </nav>
+        <NavigationBar
+          onNavigateHome={onNavigateHome}
+          onNavigate={onNavigate}
+          onNavigateContact={onNavigateContact}
+        />
 
         <div className="service-hero__content">
           <p className="eyebrow eyebrow--with-icon">
@@ -638,6 +730,42 @@ const SpecialistPlacementPage = ({ onNavigateHome, onNavigate, onNavigateContact
   )
 }
 
+const SpecialistEnrollmentPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
+  return (
+    <div className="page service-page">
+      <header className="service-hero">
+        <NavigationLinksBar
+          onNavigateHome={onNavigateHome}
+          onNavigate={onNavigate}
+          onNavigateContact={onNavigateContact}
+        />
+        <NavigationBar
+          onNavigateHome={onNavigateHome}
+          onNavigate={onNavigate}
+          onNavigateContact={onNavigateContact}
+        />
+
+        <div className="service-hero__content">
+          <p className="eyebrow eyebrow--with-icon">
+            <FaUserCheck className="eyebrow__icon" aria-hidden="true" />
+            Specialist Enrollment
+          </p>
+          <h1>Apply to join our specialist network</h1>
+          <p className="subhead">
+            Share your background and we will connect you with individuals and families who need your expertise and care.
+          </p>
+        </div>
+      </header>
+
+      <main className="service-content">
+        <EnrollmentForm title="Enroll as a Specialist" highlight="Join our trusted specialists" />
+      </main>
+
+      <Footer onNavigateHome={onNavigateHome} onNavigate={onNavigate} onNavigateContact={onNavigateContact} />
+    </div>
+  )
+}
+
 const GovernmentProgramsPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
   return (
     <div className="page service-page">
@@ -647,14 +775,11 @@ const GovernmentProgramsPage = ({ onNavigateHome, onNavigate, onNavigateContact 
           onNavigate={onNavigate}
           onNavigateContact={onNavigateContact}
         />
-        <nav className="nav">
-          <div className="brand">
-            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-            <div>
-              <p className="brand__name">Aspire Success NY</p>
-            </div>
-          </div>
-        </nav>
+        <NavigationBar
+          onNavigateHome={onNavigateHome}
+          onNavigate={onNavigate}
+          onNavigateContact={onNavigateContact}
+        />
 
         <div className="service-hero__content">
           <p className="eyebrow eyebrow--with-icon">
@@ -760,6 +885,42 @@ const GovernmentProgramsPage = ({ onNavigateHome, onNavigate, onNavigateContact 
   )
 }
 
+const SupportEnrollmentPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
+  return (
+    <div className="page service-page">
+      <header className="service-hero">
+        <NavigationLinksBar
+          onNavigateHome={onNavigateHome}
+          onNavigate={onNavigate}
+          onNavigateContact={onNavigateContact}
+        />
+        <NavigationBar
+          onNavigateHome={onNavigateHome}
+          onNavigate={onNavigate}
+          onNavigateContact={onNavigateContact}
+        />
+
+        <div className="service-hero__content">
+          <p className="eyebrow eyebrow--with-icon">
+            <FaHandsHelping className="eyebrow__icon" aria-hidden="true" />
+            Support Enrollment
+          </p>
+          <h1>Get support and guidance tailored to you</h1>
+          <p className="subhead">
+            Tell us what you need, and we will pair you with the right resources, specialists, and ongoing support.
+          </p>
+        </div>
+      </header>
+
+      <main className="service-content">
+        <EnrollmentForm title="Enroll for Support & Assistance" highlight="Start receiving dedicated support" />
+      </main>
+
+      <Footer onNavigateHome={onNavigateHome} onNavigate={onNavigate} onNavigateContact={onNavigateContact} />
+    </div>
+  )
+}
+
 const CareManagementPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
   return (
     <div className="page service-page">
@@ -769,14 +930,11 @@ const CareManagementPage = ({ onNavigateHome, onNavigate, onNavigateContact }) =
           onNavigate={onNavigate}
           onNavigateContact={onNavigateContact}
         />
-        <nav className="nav">
-          <div className="brand">
-            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-            <div>
-              <p className="brand__name">Aspire Success NY</p>
-            </div>
-          </div>
-        </nav>
+        <NavigationBar
+          onNavigateHome={onNavigateHome}
+          onNavigate={onNavigate}
+          onNavigateContact={onNavigateContact}
+        />
 
         <div className="service-hero__content">
           <p className="eyebrow eyebrow--with-icon">
@@ -991,6 +1149,26 @@ function App() {
     )
   }
 
+  if (route === '/specialist-enrollment') {
+    return (
+      <SpecialistEnrollmentPage
+        onNavigateHome={handleNavigateHome}
+        onNavigate={handleNavigate}
+        onNavigateContact={handleNavigateContact}
+      />
+    )
+  }
+
+  if (route === '/support-enrollment') {
+    return (
+      <SupportEnrollmentPage
+        onNavigateHome={handleNavigateHome}
+        onNavigate={handleNavigate}
+        onNavigateContact={handleNavigateContact}
+      />
+    )
+  }
+
   return (
     <div className="page">
       <header className="hero">
@@ -999,14 +1177,11 @@ function App() {
           onNavigate={handleNavigate}
           onNavigateContact={handleNavigateContact}
         />
-        <nav className="nav">
-          <div className="brand">
-            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-            <div>
-              <p className="brand__name">Aspire Success NY</p>
-            </div>
-          </div>
-        </nav>
+        <NavigationBar
+          onNavigateHome={handleNavigateHome}
+          onNavigate={handleNavigate}
+          onNavigateContact={handleNavigateContact}
+        />
 
         <div className="hero__content">
           <div className="hero__text">
