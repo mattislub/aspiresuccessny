@@ -82,18 +82,18 @@ body {
 }
 
 .nav .brand__logo {
-  width: 104px;
-  height: 104px;
+  width: 480px;
+  height: 240px;
 }
 
 .nav .brand {
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .nav .brand > div {
-  text-align: left;
+  text-align: center;
 }
 
 .brand__name {
