@@ -110,7 +110,7 @@ body {
 .nav__actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 18px;
 }
 
 .brand {
@@ -165,7 +165,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 12px;
+  gap: 18px;
   flex: 1;
   min-width: 260px;
 }
