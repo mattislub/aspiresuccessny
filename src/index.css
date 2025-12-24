@@ -119,8 +119,8 @@ body {
 }
 
 .nav .brand__logo {
-  width: 480px;
-  height: 240px;
+  width: 200px;
+  height: 120px;
 }
 
 .nav .brand {
@@ -152,6 +152,15 @@ body {
 
 .nav .brand__tagline {
   font-size: 16px;
+}
+
+.nav__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex: 1;
+  min-width: 260px;
 }
 
 .hero__content {
@@ -689,6 +698,40 @@ body {
   gap: 12px;
 }
 
+.registration-page {
+  background-color: #eef4f5;
+  background-image: linear-gradient(180deg, #eef4f5 0%, #dfe9eb 55%, #eef4f5 100%), var(--watercolor-pattern);
+  background-repeat: no-repeat, repeat;
+  background-size: auto, 420px 420px;
+  background-position: top center, center;
+}
+
+.registration-hero {
+  padding: 24px 24px 56px;
+  background: linear-gradient(135deg, rgba(25, 133, 149, 0.18), rgba(194, 198, 104, 0.18));
+  border-bottom: 2px solid rgba(25, 133, 149, 0.14);
+}
+
+.registration-hero__content {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 8px 16px 0;
+  display: grid;
+  gap: 12px;
+}
+
+.registration-hero__support {
+  background: rgba(255, 255, 255, 0.82);
+  border-radius: 16px;
+  padding: 14px 16px;
+  border: 1px solid rgba(25, 133, 149, 0.16);
+  box-shadow: 0 14px 36px rgba(13, 27, 30, 0.06);
+}
+
+.registration-hero__support h2 {
+  margin-bottom: 6px;
+}
+
 .contact-content {
   padding: 0 0 32px;
 }
@@ -752,6 +795,27 @@ body {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(25, 133, 149, 0.18);
+}
+
+.registration-content {
+  padding: 0 0 40px;
+}
+
+.section--narrow {
+  max-width: 780px;
+  margin: 48px auto;
+}
+
+.registration-form-card {
+  background: white;
+  border: 1px solid rgba(25, 133, 149, 0.14);
+  border-radius: 18px;
+  padding: 28px 26px;
+  box-shadow: 0 16px 44px rgba(13, 27, 30, 0.1);
+}
+
+.registration-form {
+  margin-top: 10px;
 }
 
 .contact-info {
@@ -948,6 +1012,16 @@ body {
 
   .hero__actions {
     flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav__actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .nav {
     align-items: flex-start;
   }
 }

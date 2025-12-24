@@ -86,6 +86,11 @@ const services = [
   },
 ]
 
+const applicationRoutes = {
+  specialist: '/specialist-placement-registration',
+  support: '/support-assistance-registration',
+}
+
 const SectionDivider = () => (
   <div className="section-divider" aria-hidden="true">
     {[...Array(3)].map((_, index) => (
@@ -154,6 +159,42 @@ const NavigationLinksBar = ({ onNavigateHome, onNavigate, onNavigateContact, onO
       </div>
       <span className="nav-links-bar__tagline">{headerTagline}</span>
     </div>
+  )
+}
+
+const BrandNav = ({ onNavigate }) => {
+  const handleQuickApplyClick = (event, path) => {
+    if (onNavigate) {
+      onNavigate(event, path)
+    }
+  }
+
+  return (
+    <nav className="nav">
+      <div className="brand">
+        <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
+        <div>
+          <p className="brand__name">Aspire Success NY</p>
+        </div>
+      </div>
+
+      <div className="nav__actions" aria-label="Quick actions">
+        <a
+          className="cta cta--ghost"
+          href={applicationRoutes.specialist}
+          onClick={(event) => handleQuickApplyClick(event, applicationRoutes.specialist)}
+        >
+          Register for placement as a specialist
+        </a>
+        <a
+          className="cta"
+          href={applicationRoutes.support}
+          onClick={(event) => handleQuickApplyClick(event, applicationRoutes.support)}
+        >
+          Register for support &amp; assistance
+        </a>
+      </div>
+    </nav>
   )
 }
 
@@ -247,14 +288,7 @@ const ContactPage = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServ
           onNavigateContact={onNavigateContact}
           onOpenServicesModal={onOpenServicesModal}
         />
-        <nav className="nav">
-          <div className="brand">
-            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-            <div>
-              <p className="brand__name">Aspire Success NY</p>
-            </div>
-          </div>
-        </nav>
+        <BrandNav onNavigate={onNavigate} />
 
         <div className="contact-hero__content">
           <div>
@@ -368,6 +402,87 @@ const ContactPage = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServ
   )
 }
 
+const RegistrationPage = ({
+  title,
+  description,
+  formHeading,
+  formCta,
+  onNavigateHome,
+  onNavigate,
+  onNavigateContact,
+  onOpenServicesModal,
+}) => {
+  return (
+    <div className="page registration-page">
+      <header className="registration-hero">
+        <NavigationLinksBar
+          onNavigateHome={onNavigateHome}
+          onNavigate={onNavigate}
+          onNavigateContact={onNavigateContact}
+          onOpenServicesModal={onOpenServicesModal}
+        />
+        <BrandNav onNavigate={onNavigate} />
+
+        <div className="registration-hero__content">
+          <p className="eyebrow eyebrow--with-icon">
+            <FaHandsHelping className="eyebrow__icon" aria-hidden="true" />
+            Quick Start
+          </p>
+          <h1>{title}</h1>
+          <p className="subhead">{description}</p>
+          <div className="registration-hero__support">
+            <h2>How easy it is to get started</h2>
+            <p>We will assist and support you all the way until the finish line.</p>
+          </div>
+        </div>
+      </header>
+
+      <main className="registration-content">
+        <section className="section section--narrow">
+          <div className="registration-form-card">
+            <h2 className="heading-with-icon">
+              <FaEnvelopeOpenText className="heading-icon" aria-hidden="true" />
+              {formHeading}
+            </h2>
+            <form className="contact-form registration-form">
+              <div className="form-group">
+                <label htmlFor="reg-name">Name</label>
+                <input id="reg-name" name="name" type="text" placeholder="Your full name" required />
+              </div>
+              <div className="form-group">
+                <label htmlFor="reg-email">Email</label>
+                <input id="reg-email" name="email" type="email" placeholder="you@example.com" required />
+              </div>
+              <div className="form-group">
+                <label htmlFor="reg-phone">Phone</label>
+                <input id="reg-phone" name="phone" type="tel" placeholder="(555) 123-4567" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="reg-message">How can we help?</label>
+                <textarea
+                  id="reg-message"
+                  name="message"
+                  rows="4"
+                  placeholder="Tell us about your goals and needs"
+                  required
+                />
+              </div>
+              <button className="cta" type="submit">{formCta}</button>
+            </form>
+          </div>
+        </section>
+      </main>
+
+      <Footer
+        onNavigateHome={onNavigateHome}
+        onNavigate={onNavigate}
+        onNavigateContact={onNavigateContact}
+        onOpenServicesModal={onOpenServicesModal}
+      />
+    </div>
+  )
+}
+
 const AboutPage = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServicesModal }) => {
   return (
     <div className="page service-page">
@@ -378,14 +493,7 @@ const AboutPage = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServic
           onNavigateContact={onNavigateContact}
           onOpenServicesModal={onOpenServicesModal}
         />
-        <nav className="nav">
-          <div className="brand">
-            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-            <div>
-              <p className="brand__name">Aspire Success NY</p>
-            </div>
-          </div>
-        </nav>
+        <BrandNav onNavigate={onNavigate} />
 
         <div className="service-hero__content">
           <p className="eyebrow eyebrow--with-icon">
@@ -536,14 +644,7 @@ const SpecialistPlacementPage = ({ onNavigateHome, onNavigate, onNavigateContact
           onNavigateContact={onNavigateContact}
           onOpenServicesModal={onOpenServicesModal}
         />
-        <nav className="nav">
-          <div className="brand">
-            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-            <div>
-              <p className="brand__name">Aspire Success NY</p>
-            </div>
-          </div>
-        </nav>
+        <BrandNav onNavigate={onNavigate} />
 
         <div className="service-hero__content">
           <p className="eyebrow eyebrow--with-icon">
@@ -681,14 +782,7 @@ const GovernmentProgramsPage = ({ onNavigateHome, onNavigate, onNavigateContact,
           onNavigateContact={onNavigateContact}
           onOpenServicesModal={onOpenServicesModal}
         />
-        <nav className="nav">
-          <div className="brand">
-            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-            <div>
-              <p className="brand__name">Aspire Success NY</p>
-            </div>
-          </div>
-        </nav>
+        <BrandNav onNavigate={onNavigate} />
 
         <div className="service-hero__content">
           <p className="eyebrow eyebrow--with-icon">
@@ -809,14 +903,7 @@ const CareManagementPage = ({ onNavigateHome, onNavigate, onNavigateContact, onO
           onNavigateContact={onNavigateContact}
           onOpenServicesModal={onOpenServicesModal}
         />
-        <nav className="nav">
-          <div className="brand">
-            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-            <div>
-              <p className="brand__name">Aspire Success NY</p>
-            </div>
-          </div>
-        </nav>
+        <BrandNav onNavigate={onNavigate} />
 
         <div className="service-hero__content">
           <p className="eyebrow eyebrow--with-icon">
@@ -997,6 +1084,36 @@ function App() {
     setIsServicesModalOpen(true)
   }
 
+  if (route === applicationRoutes.specialist) {
+    return (
+      <RegistrationPage
+        title="Register for placement as a specialist"
+        description="Share your details so we can align you with families and individuals seeking qualified support."
+        formHeading="Tell us about your expertise"
+        formCta="Submit placement registration"
+        onNavigateHome={handleNavigateHome}
+        onNavigate={handleNavigate}
+        onNavigateContact={handleNavigateContact}
+        onOpenServicesModal={handleOpenServicesModal}
+      />
+    )
+  }
+
+  if (route === applicationRoutes.support) {
+    return (
+      <RegistrationPage
+        title="Register for support & assistance"
+        description="Let us know how we can assist you, and we will guide you through every step of the process."
+        formHeading="Share your needs"
+        formCta="Submit support request"
+        onNavigateHome={handleNavigateHome}
+        onNavigate={handleNavigate}
+        onNavigateContact={handleNavigateContact}
+        onOpenServicesModal={handleOpenServicesModal}
+      />
+    )
+  }
+
   if (route === '/contact') {
     return (
       <ContactPage
@@ -1061,14 +1178,7 @@ function App() {
           onNavigateContact={handleNavigateContact}
           onOpenServicesModal={handleOpenServicesModal}
         />
-        <nav className="nav">
-          <div className="brand">
-            <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-            <div>
-              <p className="brand__name">Aspire Success NY</p>
-            </div>
-          </div>
-        </nav>
+        <BrandNav onNavigate={handleNavigate} />
 
         <div className="hero__content">
           <div className="hero__text">
