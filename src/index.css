@@ -558,33 +558,101 @@ body {
 .footer {
   background: #0d1b1e;
   color: #f6fbfb;
-  padding: 48px 24px;
+  padding: 64px 24px;
   margin-top: 64px;
+}
+
+.footer__inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: center;
+  text-align: center;
+}
+
+.footer__brand-block {
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+}
+
+.brand--footer {
+  flex-direction: column;
+  align-items: center;
+}
+
+.brand__logo--footer {
+  width: 120px;
+  height: 120px;
 }
 
 .footer__text {
   max-width: 400px;
   margin-top: 12px;
   color: #cdd8db;
+  text-align: center;
 }
 
 .footer__columns {
-  margin-top: 24px;
+  margin-top: 18px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  width: 100%;
 }
 
 .footer h4 {
   margin-bottom: 10px;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
-.footer ul {
+.footer__card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 16px;
+  min-height: 120px;
+  display: grid;
+  gap: 12px;
+}
+
+.footer ul,
+.footer__list {
   list-style: none;
   padding: 0;
   display: grid;
   gap: 8px;
   color: #dce5e7;
+}
+
+.footer__chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.footer__chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(25, 133, 149, 0.14);
+  color: #f6fbfb;
+  border: 1px solid rgba(25, 133, 149, 0.28);
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.footer__chip:hover {
+  background: rgba(25, 133, 149, 0.22);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+  transform: translateY(-2px);
 }
 
 .footer a {
@@ -622,6 +690,21 @@ body {
 .socials svg {
   width: calc(18px * var(--icon-scale));
   height: calc(18px * var(--icon-scale));
+}
+
+.socials--footer {
+  justify-content: center;
+}
+
+.footer__bottom {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 16px;
+  color: #d4dedf;
+  font-size: 14px;
 }
 
 .cta {

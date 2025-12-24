@@ -209,6 +209,8 @@ const footerSocialLinks = [
 ]
 
 const Footer = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServicesModal }) => {
+  const currentYear = new Date().getFullYear()
+
   const handleQuickLinkClick = (event, link) => {
     if (link.type === 'services' && onOpenServicesModal) {
       onOpenServicesModal(event)
@@ -232,50 +234,60 @@ const Footer = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServicesM
 
   return (
     <footer className="footer" id="contact">
-      <div>
-        <div className="brand">
-          <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-          <div>
-            <p className="brand__name">Aspire Success NY</p>
-            <p className="brand__tagline">Your guide to meaningful growth</p>
+      <div className="footer__inner">
+        <div className="footer__brand-block">
+          <div className="brand brand--footer">
+            <img src={logo} alt="Aspire Success NY logo" className="brand__logo brand__logo--footer" />
+            <div>
+              <p className="brand__name">Aspire Success NY</p>
+              <p className="brand__tagline">Your guide to meaningful growth</p>
+            </div>
           </div>
+          <p className="footer__text">
+            Connecting you with care, resources, and specialists that honor your journey.
+          </p>
         </div>
-        <p className="footer__text">Connecting you with care, resources, and specialists that honor your journey.</p>
-      </div>
-      <div className="footer__columns">
-        <div>
-          <h4>Contact</h4>
-          <ul>
-            <li>
-              <a href={footerContact.phone.href}>{footerContact.phone.label}</a>
-            </li>
-            <li>
-              <a href={footerContact.email.href}>{footerContact.email.label}</a>
-            </li>
-            <li>{footerContact.location}</li>
-          </ul>
-        </div>
-        <div>
-          <h4>Quick Links</h4>
-          <ul>
-            {footerQuickLinks.map((link) => (
-              <li key={link.label}>
-                <a href={link.href} onClick={(event) => handleQuickLinkClick(event, link)}>
+        <div className="footer__columns">
+          <div className="footer__card">
+            <h4>Contact</h4>
+            <ul className="footer__list">
+              <li>
+                <a href={footerContact.phone.href}>{footerContact.phone.label}</a>
+              </li>
+              <li>
+                <a href={footerContact.email.href}>{footerContact.email.label}</a>
+              </li>
+              <li>{footerContact.location}</li>
+            </ul>
+          </div>
+          <div className="footer__card">
+            <h4>Quick links</h4>
+            <div className="footer__chips">
+              {footerQuickLinks.map((link) => (
+                <a
+                  key={link.label}
+                  className="footer__chip"
+                  href={link.href}
+                  onClick={(event) => handleQuickLinkClick(event, link)}
+                >
                   {link.label}
                 </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h4>Follow</h4>
-          <div className="socials">
-            {footerSocialLinks.map((social) => (
-              <a key={social.label} href={social.href} aria-label={social.label} target="_blank" rel="noreferrer">
-                <social.icon aria-hidden="true" />
-              </a>
-            ))}
+              ))}
+            </div>
           </div>
+          <div className="footer__card">
+            <h4>Follow</h4>
+            <div className="socials socials--footer">
+              {footerSocialLinks.map((social) => (
+                <a key={social.label} href={social.href} aria-label={social.label} target="_blank" rel="noreferrer">
+                  <social.icon aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="footer__bottom">
+          <span>© {currentYear} Aspire Success NY. All rights reserved.</span>
         </div>
       </div>
     </footer>
