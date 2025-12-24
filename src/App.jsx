@@ -109,15 +109,20 @@ const footerContact = {
 const footerQuickLinks = [
   { label: 'Home', href: '/', type: 'home' },
   { label: 'About', href: '/about', type: 'route' },
-  { label: 'Services', href: '/#services', type: 'home', anchor: '#services' },
+  { label: 'Services', href: '/#services', type: 'services' },
   { label: 'Testimonials', href: '/#testimonials', type: 'home', anchor: '#testimonials' },
   { label: 'Contact', href: '/contact', type: 'contact' },
 ]
 
 const headerTagline = 'Guidance for every stage'
 
-const NavigationLinksBar = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
+const NavigationLinksBar = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServicesModal }) => {
   const handleQuickLinkClick = (event, link) => {
+    if (link.type === 'services' && onOpenServicesModal) {
+      onOpenServicesModal(event)
+      return
+    }
+
     if (link.type === 'home' && onNavigateHome) {
       onNavigateHome(event, link.anchor)
       return
@@ -158,8 +163,13 @@ const footerSocialLinks = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/company/aspiresuccessny', icon: FaLinkedinIn },
 ]
 
-const Footer = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
+const Footer = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServicesModal }) => {
   const handleQuickLinkClick = (event, link) => {
+    if (link.type === 'services' && onOpenServicesModal) {
+      onOpenServicesModal(event)
+      return
+    }
+
     if (link.type === 'home' && onNavigateHome) {
       onNavigateHome(event, link.anchor)
       return
@@ -227,7 +237,7 @@ const Footer = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
   )
 }
 
-const ContactPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
+const ContactPage = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServicesModal }) => {
   return (
     <div className="page contact-page">
       <header className="contact-hero">
@@ -235,6 +245,7 @@ const ContactPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
           onNavigateHome={onNavigateHome}
           onNavigate={onNavigate}
           onNavigateContact={onNavigateContact}
+          onOpenServicesModal={onOpenServicesModal}
         />
         <nav className="nav">
           <div className="brand">
@@ -347,12 +358,17 @@ const ContactPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
         </section>
       </main>
 
-      <Footer onNavigateHome={onNavigateHome} onNavigate={onNavigate} onNavigateContact={onNavigateContact} />
+      <Footer
+        onNavigateHome={onNavigateHome}
+        onNavigate={onNavigate}
+        onNavigateContact={onNavigateContact}
+        onOpenServicesModal={onOpenServicesModal}
+      />
     </div>
   )
 }
 
-const AboutPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
+const AboutPage = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServicesModal }) => {
   return (
     <div className="page service-page">
       <header className="service-hero">
@@ -360,6 +376,7 @@ const AboutPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
           onNavigateHome={onNavigateHome}
           onNavigate={onNavigate}
           onNavigateContact={onNavigateContact}
+          onOpenServicesModal={onOpenServicesModal}
         />
         <nav className="nav">
           <div className="brand">
@@ -499,12 +516,17 @@ const AboutPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
         </section>
       </main>
 
-      <Footer onNavigateHome={onNavigateHome} onNavigate={onNavigate} onNavigateContact={onNavigateContact} />
+      <Footer
+        onNavigateHome={onNavigateHome}
+        onNavigate={onNavigate}
+        onNavigateContact={onNavigateContact}
+        onOpenServicesModal={onOpenServicesModal}
+      />
     </div>
   )
 }
 
-const SpecialistPlacementPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
+const SpecialistPlacementPage = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServicesModal }) => {
   return (
     <div className="page service-page">
       <header className="service-hero">
@@ -512,6 +534,7 @@ const SpecialistPlacementPage = ({ onNavigateHome, onNavigate, onNavigateContact
           onNavigateHome={onNavigateHome}
           onNavigate={onNavigate}
           onNavigateContact={onNavigateContact}
+          onOpenServicesModal={onOpenServicesModal}
         />
         <nav className="nav">
           <div className="brand">
@@ -638,12 +661,17 @@ const SpecialistPlacementPage = ({ onNavigateHome, onNavigate, onNavigateContact
         </section>
       </main>
 
-      <Footer onNavigateHome={onNavigateHome} onNavigate={onNavigate} onNavigateContact={onNavigateContact} />
+      <Footer
+        onNavigateHome={onNavigateHome}
+        onNavigate={onNavigate}
+        onNavigateContact={onNavigateContact}
+        onOpenServicesModal={onOpenServicesModal}
+      />
     </div>
   )
 }
 
-const GovernmentProgramsPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
+const GovernmentProgramsPage = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServicesModal }) => {
   return (
     <div className="page service-page">
       <header className="service-hero">
@@ -651,6 +679,7 @@ const GovernmentProgramsPage = ({ onNavigateHome, onNavigate, onNavigateContact 
           onNavigateHome={onNavigateHome}
           onNavigate={onNavigate}
           onNavigateContact={onNavigateContact}
+          onOpenServicesModal={onOpenServicesModal}
         />
         <nav className="nav">
           <div className="brand">
@@ -760,12 +789,17 @@ const GovernmentProgramsPage = ({ onNavigateHome, onNavigate, onNavigateContact 
         </section>
       </main>
 
-      <Footer onNavigateHome={onNavigateHome} onNavigate={onNavigate} onNavigateContact={onNavigateContact} />
+      <Footer
+        onNavigateHome={onNavigateHome}
+        onNavigate={onNavigate}
+        onNavigateContact={onNavigateContact}
+        onOpenServicesModal={onOpenServicesModal}
+      />
     </div>
   )
 }
 
-const CareManagementPage = ({ onNavigateHome, onNavigate, onNavigateContact }) => {
+const CareManagementPage = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServicesModal }) => {
   return (
     <div className="page service-page">
       <header className="service-hero">
@@ -773,6 +807,7 @@ const CareManagementPage = ({ onNavigateHome, onNavigate, onNavigateContact }) =
           onNavigateHome={onNavigateHome}
           onNavigate={onNavigate}
           onNavigateContact={onNavigateContact}
+          onOpenServicesModal={onOpenServicesModal}
         />
         <nav className="nav">
           <div className="brand">
@@ -874,7 +909,12 @@ const CareManagementPage = ({ onNavigateHome, onNavigate, onNavigateContact }) =
         </section>
       </main>
 
-      <Footer onNavigateHome={onNavigateHome} onNavigate={onNavigate} onNavigateContact={onNavigateContact} />
+      <Footer
+        onNavigateHome={onNavigateHome}
+        onNavigate={onNavigate}
+        onNavigateContact={onNavigateContact}
+        onOpenServicesModal={onOpenServicesModal}
+      />
     </div>
   )
 }
@@ -946,12 +986,24 @@ function App() {
     navigate('/contact')
   }
 
+  const handleOpenServicesModal = (event) => {
+    event.preventDefault()
+    if (route !== '/') {
+      navigate('/')
+      setTimeout(() => setIsServicesModalOpen(true), 50)
+      return
+    }
+
+    setIsServicesModalOpen(true)
+  }
+
   if (route === '/contact') {
     return (
       <ContactPage
         onNavigateHome={handleNavigateHome}
         onNavigate={handleNavigate}
         onNavigateContact={handleNavigateContact}
+        onOpenServicesModal={handleOpenServicesModal}
       />
     )
   }
@@ -962,6 +1014,7 @@ function App() {
         onNavigateHome={handleNavigateHome}
         onNavigate={handleNavigate}
         onNavigateContact={handleNavigateContact}
+        onOpenServicesModal={handleOpenServicesModal}
       />
     )
   }
@@ -972,6 +1025,7 @@ function App() {
         onNavigateHome={handleNavigateHome}
         onNavigate={handleNavigate}
         onNavigateContact={handleNavigateContact}
+        onOpenServicesModal={handleOpenServicesModal}
       />
     )
   }
@@ -982,6 +1036,7 @@ function App() {
         onNavigateHome={handleNavigateHome}
         onNavigate={handleNavigate}
         onNavigateContact={handleNavigateContact}
+        onOpenServicesModal={handleOpenServicesModal}
       />
     )
   }
@@ -992,6 +1047,7 @@ function App() {
         onNavigateHome={handleNavigateHome}
         onNavigate={handleNavigate}
         onNavigateContact={handleNavigateContact}
+        onOpenServicesModal={handleOpenServicesModal}
       />
     )
   }
@@ -1003,6 +1059,7 @@ function App() {
           onNavigateHome={handleNavigateHome}
           onNavigate={handleNavigate}
           onNavigateContact={handleNavigateContact}
+          onOpenServicesModal={handleOpenServicesModal}
         />
         <nav className="nav">
           <div className="brand">
@@ -1216,6 +1273,7 @@ function App() {
         onNavigateHome={handleNavigateHome}
         onNavigate={handleNavigate}
         onNavigateContact={handleNavigateContact}
+        onOpenServicesModal={handleOpenServicesModal}
       />
     </div>
   )
