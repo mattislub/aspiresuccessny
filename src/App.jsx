@@ -184,18 +184,20 @@ const BrandNav = ({ onNavigate }) => {
 
       <div className="nav__actions" aria-label="Quick actions">
         <a
-          className="cta cta--ghost"
+          className="cta cta--ghost nav__action-button"
           href={applicationRoutes.specialist}
           onClick={(event) => handleQuickApplyClick(event, applicationRoutes.specialist)}
         >
-          Register for placement as a specialist
+          <FaClipboardCheck aria-hidden="true" className="nav__action-icon" />
+          <span className="nav__action-label">Register for placement as a specialist</span>
         </a>
         <a
-          className="cta"
+          className="cta nav__action-button"
           href={applicationRoutes.support}
           onClick={(event) => handleQuickApplyClick(event, applicationRoutes.support)}
         >
-          Register for support &amp; assistance
+          <FaHandsHelping aria-hidden="true" className="nav__action-icon" />
+          <span className="nav__action-label">Register for support &amp; assistance</span>
         </a>
       </div>
     </nav>
