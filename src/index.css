@@ -128,8 +128,8 @@ body {
 }
 
 .nav .brand__logo {
-  width: 240px;
-  height: 140px;
+  width: 360px;
+  height: 210px;
 }
 
 .nav .brand {
@@ -174,9 +174,10 @@ body {
 }
 
 .nav__actions .cta {
-  font-size: 15px;
-  width: 100%;
-  text-align: center;
+  font-size: 13px;
+  width: auto;
+  min-width: fit-content;
+  padding: 8px 12px;
 }
 
 .hero__content {
@@ -1102,8 +1103,8 @@ body {
   }
 
   .nav .brand__logo {
-    width: 128px;
-    height: 128px;
+    width: 192px;
+    height: 192px;
   }
 
   .hero {
