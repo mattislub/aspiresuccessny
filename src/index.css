@@ -245,7 +245,7 @@ body {
 .eyebrow {
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 24px;
   color: var(--primary-dark);
   margin-bottom: 10px;
   font-weight: 700;
@@ -259,7 +259,7 @@ body {
 
 .eyebrow__icon {
   color: var(--primary);
-  font-size: calc(12px * var(--icon-scale));
+  font-size: calc(24px * var(--icon-scale));
 }
 
 .pill {
