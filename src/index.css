@@ -114,10 +114,27 @@ body {
   gap: 16px;
 }
 
+.brand__visuals {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .brand__logo {
   width: 80px;
   height: 80px;
   object-fit: contain;
+}
+
+.brand__companion-image {
+  width: clamp(160px, 28vw, 220px);
+  height: clamp(160px, 28vw, 220px);
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid rgba(25, 133, 149, 0.14);
+  box-shadow: 0 10px 26px rgba(13, 27, 30, 0.14);
 }
 
 .nav .brand__logo {
@@ -129,6 +146,10 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 12px;
+}
+
+.nav .brand__visuals {
+  gap: 16px;
 }
 
 .nav .brand > div {
