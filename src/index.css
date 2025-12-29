@@ -357,7 +357,7 @@ body {
 
 .section {
   max-width: 1080px;
-  margin: 64px auto;
+  margin: 88px auto;
   padding: 0 16px;
 }
 
@@ -1073,7 +1073,7 @@ body {
 
 .section--narrow {
   max-width: 780px;
-  margin: 48px auto;
+  margin: 64px auto;
 }
 
 .registration-form-card {
@@ -1302,6 +1302,13 @@ body {
 }
 
 @media (max-width: 640px) {
+  .section {
+    margin: 72px auto;
+  }
+
+  .section--narrow {
+    margin: 56px auto;
+  }
   .nav {
     flex-direction: column;
     gap: 12px;
