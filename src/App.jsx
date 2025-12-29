@@ -170,12 +170,6 @@ const NavigationLinksBar = ({ onNavigateHome, onNavigate, onNavigateContact, onO
 }
 
 const BrandNav = ({ onNavigate }) => {
-  const handleQuickApplyClick = (event, path) => {
-    if (onNavigate) {
-      onNavigate(event, path)
-    }
-  }
-
   return (
     <nav className="nav">
       <div className="brand">
@@ -183,25 +177,6 @@ const BrandNav = ({ onNavigate }) => {
         <div>
           <p className="brand__name">Aspire Success NY</p>
         </div>
-      </div>
-
-      <div className="nav__actions" aria-label="Quick actions">
-        <a
-          className="cta cta--ghost nav__action-button"
-          href={applicationRoutes.specialist}
-          onClick={(event) => handleQuickApplyClick(event, applicationRoutes.specialist)}
-        >
-          <FaClipboardCheck aria-hidden="true" className="nav__action-icon" />
-          <span className="nav__action-label">Register for placement as a specialist</span>
-        </a>
-        <a
-          className="cta nav__action-button"
-          href={applicationRoutes.support}
-          onClick={(event) => handleQuickApplyClick(event, applicationRoutes.support)}
-        >
-          <FaHandsHelping aria-hidden="true" className="nav__action-icon" />
-          <span className="nav__action-label">Register for support &amp; assistance</span>
-        </a>
       </div>
     </nav>
   )
