@@ -8,7 +8,6 @@ import {
   FaEnvelope,
   FaEnvelopeOpenText,
   FaExclamationCircle,
-  FaImages,
   FaFacebookF,
   FaGlobeAmericas,
   FaHandshake,
@@ -97,37 +96,6 @@ const applicationRoutes = {
   specialist: '/specialist-placement-registration',
   support: '/support-assistance-registration',
 }
-
-const inspirationImages = [
-  {
-    src: 'https://images.pexels.com/photos/6173660/pexels-photo-6173660.jpeg?auto=compress&cs=tinysrgb&w=1200&dpr=1',
-    alt: 'Care manager listening attentively during a conversation',
-    tag: 'Coaching in action',
-    caption: 'Care managers guiding conversations that turn needs into next steps.',
-    layout: 'image-card--portrait',
-  },
-  {
-    src: 'https://images.pexels.com/photos/7551446/pexels-photo-7551446.jpeg?auto=compress&cs=tinysrgb&w=1200&dpr=1',
-    alt: 'Family walking forward together outdoors',
-    tag: 'Community connection',
-    caption: 'Families moving forward together with a clear path and steady support.',
-    layout: 'image-card--wide',
-  },
-  {
-    src: 'https://images.pexels.com/photos/5699457/pexels-photo-5699457.jpeg?auto=compress&cs=tinysrgb&w=1200&dpr=1',
-    alt: 'Child painting with guidance from a specialist',
-    tag: 'Creative growth',
-    caption: 'Hands-on encouragement that builds confidence and celebrates milestones.',
-    layout: 'image-card--circle',
-  },
-  {
-    src: 'https://images.pexels.com/photos/8485995/pexels-photo-8485995.jpeg?auto=compress&cs=tinysrgb&w=1200&dpr=1',
-    alt: 'Specialist reviewing a clipboard with a client',
-    tag: 'Structured follow-up',
-    caption: 'Check-ins that keep action plans on track and personalized to you.',
-    layout: 'image-card--tilt',
-  },
-]
 
 const SectionDivider = () => (
   <div className="section-divider" aria-hidden="true">
@@ -1232,30 +1200,6 @@ function App() {
       </header>
 
       <main>
-        <section className="section visual-section" id="moments">
-          <div className="section__header">
-            <p className="eyebrow eyebrow--with-icon">
-              <FaImages className="eyebrow__icon" aria-hidden="true" />
-              Visual snapshots
-            </p>
-            <h2>Tailored support in motion.</h2>
-            <p className="section__lead">
-              Handpicked images from Pexels that showcase how our guidance adapts to every family, pace, and goal.
-            </p>
-          </div>
-          <div className="image-showcase">
-            {inspirationImages.map((image) => (
-              <figure key={image.src} className={`image-card ${image.layout}`}>
-                <img src={image.src} alt={image.alt} className="image-card__img" />
-                <figcaption className="image-card__caption">
-                  <span className="pill pill--soft">{image.tag}</span>
-                  <p>{image.caption}</p>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </section>
-
         <section className="section support-section" id="support">
           <div className="support-section__inner">
             <div className="support-section__text">
