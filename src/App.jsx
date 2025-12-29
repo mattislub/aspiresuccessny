@@ -28,7 +28,6 @@ import {
   FaUserCheck,
 } from 'react-icons/fa'
 import logo from './assets/logo.png'
-import sectionDividerImage from './assets/Aspire-2.jpg'
 
 const values = ['Compassion', 'Integrity', 'Results-Driven', 'Advocacy']
 
@@ -94,13 +93,59 @@ const applicationRoutes = {
   support: '/support-assistance-registration',
 }
 
-const SectionDivider = () => (
-  <div className="section-divider" aria-hidden="true">
-    {[...Array(3)].map((_, index) => (
-      <img key={index} src={sectionDividerImage} alt="" className="section-divider__image" />
-    ))}
-  </div>
-)
+const promiseHighlights = [
+  {
+    title: 'Clear, guided path',
+    description: 'Dedicated care strategists keep the next step obvious so you never feel stuck.',
+    icon: FaCompass,
+  },
+  {
+    title: 'Coordinated support',
+    description: 'We align providers, resources, and schedules into one cohesive plan that fits your life.',
+    icon: FaHandshake,
+  },
+  {
+    title: 'Momentum you can feel',
+    description: 'Regular check-ins and advocacy make sure progress is visible and celebrated.',
+    icon: FaLightbulb,
+  },
+]
+
+const audienceGroups = [
+  {
+    label: 'Children & Families',
+    detail: 'Early guidance that pairs therapy, school collaboration, and daily routines.',
+    icon: FaSeedling,
+  },
+  {
+    label: 'Teens & Young Adults',
+    detail: 'Transition planning, confidence-building supports, and community connections.',
+    icon: FaMapSigns,
+  },
+  {
+    label: 'Adults',
+    detail: 'Coordinated care, funding navigation, and specialists who respect your goals.',
+    icon: FaUserCheck,
+  },
+]
+
+const approachSteps = [
+  {
+    title: 'Listen & orient',
+    description: 'We learn your story, strengths, and stress points to define what success looks like.',
+    icon: FaInfoCircle,
+  },
+  {
+    title: 'Design the roadmap',
+    description: 'You get a clear plan that pairs services, specialists, and funding milestones.',
+    icon: FaClipboardCheck,
+  },
+  {
+    title: 'Activate & adjust',
+    description: 'We coordinate the team, track progress, and advocate so momentum never stalls.',
+    icon: FaCalendarCheck,
+  },
+]
 
 const footerContact = {
   phone: {
@@ -1240,11 +1285,37 @@ function App() {
       </header>
 
       <main>
-        <section className="section" id="consultation">
+        <section className="section section--panel" id="consultation">
+          <div className="section__header">
+            <p className="eyebrow eyebrow--with-icon">
+              <FaShieldAlt className="eyebrow__icon" aria-hidden="true" />
+              Our promise
+            </p>
+            <h2>Structure, coordination, and advocacy in every step.</h2>
+            <p className="section__lead">
+              We simplify the journey with clear communication, reliable resources, and a team that fights for your goals.
+            </p>
+          </div>
+          <div className="highlight-grid">
+            {promiseHighlights.map((item) => (
+              <div key={item.title} className="feature-card">
+                <div className="feature-card__icon" aria-hidden="true">
+                  <item.icon />
+                </div>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="section section--muted" id="about">
           <div className="section__header">
             <p className="eyebrow eyebrow--with-icon">
               <FaGlobeAmericas className="eyebrow__icon" aria-hidden="true" />
-              Who We Help
+              Who we support
             </p>
             <h2>Care designed for children, teens, and adults.</h2>
             <p className="section__lead">
@@ -1252,62 +1323,35 @@ function App() {
               advocacy that meets you where you are.
             </p>
           </div>
-          <div className="pill-grid">
-            <div className="pill-card">Children</div>
-            <div className="pill-card">Teens</div>
-            <div className="pill-card">Adults</div>
+          <div className="audience-grid">
+            {audienceGroups.map((group) => (
+              <div key={group.label} className="audience-card">
+                <div className="audience-card__icon" aria-hidden="true">
+                  <group.icon />
+                </div>
+                <h3>{group.label}</h3>
+                <p>{group.detail}</p>
+              </div>
+            ))}
           </div>
         </section>
-
-        <SectionDivider />
-
-        <section className="section section--muted" id="about">
-          <div className="section__header">
-            <p className="eyebrow eyebrow--with-icon">
-              <FaSeedling className="eyebrow__icon" aria-hidden="true" />
-              About Us
-            </p>
-            <h2>Grounded in mission, guided by advocacy.</h2>
-            <p className="section__lead">
-              Learn why Aspire Success NY was founded, the values that drive our work, and the team committed to your
-              success.
-            </p>
-          </div>
-          <div className="about-preview">
-            <div>
-              <div className="pill">Our Mission</div>
-              <p>
-                To empower individuals facing emotional, cognitive, and behavioral challenges by providing clear
-                direction, expert care coordination, and access to essential resources.
-              </p>
-            </div>
-            <div className="about-preview__actions">
-              <a className="cta" href="/about" onClick={(event) => handleNavigate(event, '/about')}>
-                Explore our story
-              </a>
-              <a className="cta cta--ghost" href="#contact">
-                Talk with us
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <SectionDivider />
 
         <section className="section" id="services">
           <div className="section__header">
             <p className="eyebrow eyebrow--with-icon">
               <FaUserCheck className="eyebrow__icon" aria-hidden="true" />
-              Our Core Services
+              Services made for momentum
             </p>
-            <h2>Quick snapshot of how we serve you.</h2>
-            <p className="section__lead">Discover the guidance, access, and expert support that simplify your next steps.</p>
+            <h2>Clear, distinct pathways for your needs.</h2>
+            <p className="section__lead">
+              Pick the support that meets you where you are, then let us coordinate the details.
+            </p>
           </div>
-          <div className="card-grid">
+          <div className="card-grid card-grid--services">
             {services.map((service) => (
               <a
                 key={service.title}
-                className="card"
+                className="card card--service"
                 href={service.link}
                 onClick={(event) => {
                   event.preventDefault()
@@ -1329,7 +1373,32 @@ function App() {
           </div>
         </section>
 
-        <SectionDivider />
+        <section className="section section--panel" id="approach">
+          <div className="section__header">
+            <p className="eyebrow eyebrow--with-icon">
+              <FaClipboardList className="eyebrow__icon" aria-hidden="true" />
+              Our approach
+            </p>
+            <h2>A simple, transparent process.</h2>
+            <p className="section__lead">
+              Each phase is handled by our team so you have clarity, accountability, and steady movement.
+            </p>
+          </div>
+          <div className="steps-grid">
+            {approachSteps.map((step, index) => (
+              <div key={step.title} className="step-card">
+                <div className="step-card__badge">
+                  <span>Step {index + 1}</span>
+                </div>
+                <div className="step-card__icon" aria-hidden="true">
+                  <step.icon />
+                </div>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
         <section className="section section--muted" id="testimonials">
           <div className="section__header">
@@ -1349,6 +1418,49 @@ function App() {
                   aria-label={`View testimonial ${index + 1}`}
                 />
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section section--panel" id="contact-preview">
+          <div className="split-panel">
+            <div>
+              <p className="eyebrow eyebrow--with-icon">
+                <FaEnvelopeOpenText className="eyebrow__icon" aria-hidden="true" />
+                Start with a conversation
+              </p>
+              <h2>Tell us your goals and we will map the path.</h2>
+              <p className="section__lead">
+                Share what you need—our team will respond within one business day with guidance tailored to you.
+              </p>
+              <div className="split-panel__actions">
+                <a className="cta" href="#contact" onClick={(event) => handleNavigate(event, '/contact')}>
+                  Contact our team
+                </a>
+                <button className="cta cta--ghost" type="button" onClick={() => setIsServicesModalOpen(true)}>
+                  View all services
+                </button>
+              </div>
+            </div>
+            <div className="contact-preview-card">
+              <div className="pill">
+                <FaCalendarCheck className="pill__icon" aria-hidden="true" />
+                Response in 1 business day
+              </div>
+              <ul className="contact-preview-list">
+                <li>
+                  <FaClipboardCheck aria-hidden="true" />
+                  Personalized plan within reach.
+                </li>
+                <li>
+                  <FaHandsHelping aria-hidden="true" />
+                  Coordinated specialists that fit you.
+                </li>
+                <li>
+                  <FaMapMarkerAlt aria-hidden="true" />
+                  Rooted in New York, serving statewide.
+                </li>
+              </ul>
             </div>
           </div>
         </section>
