@@ -1,1419 +1,429 @@
-import { useEffect, useState } from 'react'
-import {
-  FaCalendarCheck,
-  FaCheckCircle,
-  FaClipboardCheck,
-  FaClipboardList,
-  FaCommentDots,
-  FaEnvelope,
-  FaEnvelopeOpenText,
-  FaExclamationCircle,
-  FaFacebookF,
-  FaGlobeAmericas,
-  FaHandshake,
-  FaHeart,
-  FaHandsHelping,
-  FaHome,
-  FaInfoCircle,
-  FaInstagram,
-  FaLinkedinIn,
-  FaLightbulb,
-  FaMapMarkerAlt,
-  FaMapSigns,
-  FaPhoneAlt,
-  FaCompass,
-  FaSeedling,
-  FaShieldAlt,
-  FaUserCog,
-  FaUserCheck,
-} from 'react-icons/fa'
-import logo from './assets/logo.png'
-import sectionDividerImage from './assets/Aspire-2.jpg'
+import { useEffect, useMemo, useState } from 'react';
+import { FiActivity, FiArrowRight, FiBarChart2, FiBell, FiBookOpen, FiCheckCircle, FiClock, FiCompass, FiEdit, FiGrid, FiPlus, FiSearch, FiSun, FiUsers } from 'react-icons/fi';
+import Button from './components/Button';
+import Card from './components/Card';
+import Icon from './components/Icon';
+import InputField from './components/InputField';
+import Layout from './components/Layout';
+import Modal from './components/Modal';
+import Tabs from './components/Tabs';
+import Toast from './components/Toast';
 
-const supportSectionImage =
-  'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80'
+const navigation = [
+  { id: 'home', label: 'Home' },
+  { id: 'requests', label: 'Requests' },
+  { id: 'guide', label: 'Playbook' },
+];
 
-const values = ['Compassion', 'Integrity', 'Results-Driven', 'Advocacy']
+const sidebarLinks = [
+  { href: '#hero', label: 'Hero & CTA', icon: FiCompass },
+  { href: '#actions', label: 'Actions & Cards', icon: FiGrid },
+  { href: '#components', label: 'Components', icon: FiBookOpen },
+  { href: '#table', label: 'Data table', icon: FiBarChart2 },
+  { href: '#statuses', label: 'Statuses', icon: FiActivity },
+];
 
-const teamMembers = [
+const requestRows = [
   {
-    name: 'Jordan Ellis',
-    role: 'Founder & Lead Care Strategist',
-    bio: 'Drives vision and partnerships so every family has a clear roadmap and trusted support team.',
+    name: 'Care plan kickoff',
+    owner: 'Jordan Ellis',
+    status: 'Active',
+    type: 'Care Management',
+    updated: '2h ago',
   },
   {
-    name: 'Taylor Morgan',
-    role: 'Care Coordination Director',
-    bio: 'Oversees assessments, action plans, and smooth communication between providers and families.',
+    name: 'DSP placement',
+    owner: 'Taylor Morgan',
+    status: 'Pending',
+    type: 'Specialist placement',
+    updated: 'Today',
   },
   {
-    name: 'Riley Chen',
-    role: 'Community Resource Specialist',
-    bio: 'Connects clients to funding, local programs, and advocacy networks that keep progress moving.',
-  },
-]
-
-const testimonials = [
-  {
-    quote:
-      'Aspire Success NY gave us clarity and hope. They connected our family with the right supports almost immediately.',
-    name: 'Marisol, Parent of a teen',
+    name: 'OPWDD eligibility',
+    owner: 'Riley Chen',
+    status: 'At risk',
+    type: 'Government programs',
+    updated: 'Yesterday',
   },
   {
-    quote:
-      'Their care managers simplified every step and made sure I had the resources to stay on track.',
-    name: 'Darren, Adult client',
+    name: 'ABA renewal',
+    owner: 'Jordan Ellis',
+    status: 'Complete',
+    type: 'Care Management',
+    updated: 'Mon',
+  },
+];
+
+const statusTone = {
+  Active: 'info',
+  Pending: 'warning',
+  'At risk': 'error',
+  Complete: 'success',
+};
+
+const quickActions = [
+  {
+    title: 'Log a new intake',
+    desc: 'Collect context and route to the right care manager.',
+    icon: FiPlus,
+    cta: 'Start intake',
   },
   {
-    quote:
-      'We felt truly heard. The specialist they matched for our son made a huge difference in his confidence.',
-    name: 'Leah, Parent of a child',
-  },
-]
-
-const services = [
-  {
-    title: 'Care Management',
-    description: 'Personalized coordination that keeps your goals, appointments, and supports aligned.',
-    link: '/care-management',
-    icon: FaClipboardList,
+    title: 'Schedule a consult',
+    desc: 'Share availability and invite the family for next steps.',
+    icon: FiClock,
+    cta: 'Book time',
   },
   {
-    title: 'Resource Access',
-    description: 'Guidance through government programs and local resources that fit your needs.',
-    link: '/government-programs',
-    icon: FaHandsHelping,
+    title: 'Match a specialist',
+    desc: 'Use filters to recommend the right DSP, peer, or clinician.',
+    icon: FiUsers,
+    cta: 'Open roster',
   },
   {
-    title: 'Qualified Specialist Placement',
-    description: 'Hand-selected providers matched to your emotional, cognitive, or behavioral goals.',
-    link: '/specialist-placement',
-    icon: FaUserCheck,
+    title: 'Send an update',
+    desc: 'Keep families in the loop with concise action notes.',
+    icon: FiEdit,
+    cta: 'Write update',
   },
-]
+];
 
-const applicationRoutes = {
-  specialist: '/specialist-placement-registration',
-  support: '/support-assistance-registration',
-}
+const metrics = [
+  { label: 'Active journeys', value: '24', delta: '+3 this week' },
+  { label: 'Avg. response', value: '1.2h', delta: 'SLA: < 4h' },
+  { label: 'Placement fill', value: '92%', delta: 'Last 30 days' },
+  { label: 'Satisfaction', value: '4.8/5', delta: 'Voice of family' },
+];
 
-const SectionDivider = () => (
-  <div className="section-divider" aria-hidden="true">
-    {[...Array(3)].map((_, index) => (
-      <img key={index} src={sectionDividerImage} alt="" className="section-divider__image" />
-    ))}
-  </div>
-)
+const badgeClass = {
+  success: 'badge badge--success',
+  warning: 'badge badge--warning',
+  error: 'badge badge--error',
+  info: 'badge badge--info',
+};
 
-const footerContact = {
-  phone: {
-    label: '(555) 123-4567',
-    href: 'tel:+15551234567',
-  },
-  email: {
-    label: 'hello@aspiresuccessny.com',
-    href: 'mailto:hello@aspiresuccessny.com',
-  },
-  location: 'New York, NY',
-}
-
-const footerQuickLinks = [
-  { label: 'Home', href: '/', type: 'home', icon: FaHome },
-  { label: 'About', href: '/about', type: 'route', icon: FaInfoCircle },
-  { label: 'Services', href: '/#services', type: 'services', icon: FaHandsHelping },
-  { label: 'Testimonials', href: '/#testimonials', type: 'home', anchor: '#testimonials', icon: FaCommentDots },
-  { label: 'Contact', href: '/contact', type: 'contact', icon: FaEnvelope },
-]
-
-const headerTagline = 'Guidance for every stage'
-
-const NavigationLinksBar = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServicesModal }) => {
-  const handleQuickLinkClick = (event, link) => {
-    if (link.type === 'services' && onOpenServicesModal) {
-      onOpenServicesModal(event)
-      return
-    }
-
-    if (link.type === 'home' && onNavigateHome) {
-      onNavigateHome(event, link.anchor)
-      return
-    }
-
-    if (link.type === 'contact' && onNavigateContact) {
-      onNavigateContact(event)
-      return
-    }
-
-    if (link.type === 'route' && onNavigate) {
-      onNavigate(event, link.href)
-    }
-  }
-
-  return (
-    <div className="nav-links-bar" aria-label="Primary navigation">
-      <div className="nav-links-bar__links">
-        {footerQuickLinks.map((link) => (
-          <a
-            key={link.label}
-            className="nav-links-bar__link"
-            href={link.href}
-            onClick={(event) => handleQuickLinkClick(event, link)}
-          >
-            {link.icon && <link.icon className="nav-links-bar__icon" aria-hidden="true" />}
-            {link.label}
-          </a>
-        ))}
-      </div>
-      <span className="nav-links-bar__tagline">{headerTagline}</span>
-    </div>
-  )
-}
-
-const BrandNav = ({ onNavigate }) => {
-  return (
-    <nav className="nav">
-      <div className="brand">
-        <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-        <div>
-          <p className="brand__name">Aspire Success NY</p>
-        </div>
-      </div>
-    </nav>
-  )
-}
-
-const footerSocialLinks = [
-  { label: 'Facebook', href: 'https://www.facebook.com/aspiresuccessny', icon: FaFacebookF },
-  { label: 'Instagram', href: 'https://www.instagram.com/aspiresuccessny', icon: FaInstagram },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/aspiresuccessny', icon: FaLinkedinIn },
-]
-
-const Footer = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServicesModal }) => {
-  const currentYear = new Date().getFullYear()
-
-  const handleQuickLinkClick = (event, link) => {
-    if (link.type === 'services' && onOpenServicesModal) {
-      onOpenServicesModal(event)
-      return
-    }
-
-    if (link.type === 'home' && onNavigateHome) {
-      onNavigateHome(event, link.anchor)
-      return
-    }
-
-    if (link.type === 'contact' && onNavigateContact) {
-      onNavigateContact(event)
-      return
-    }
-
-    if (link.type === 'route' && onNavigate) {
-      onNavigate(event, link.href)
-    }
-  }
-
-  return (
-    <footer className="footer" id="contact">
-      <div className="footer__inner">
-        <div className="footer__brand-block">
-          <div className="brand brand--footer">
-            <img src={logo} alt="Aspire Success NY logo" className="brand__logo brand__logo--footer" />
-            <div>
-              <p className="brand__name">Aspire Success NY</p>
-              <p className="brand__tagline">Your guide to meaningful growth</p>
-            </div>
-          </div>
-          <p className="footer__text">
-            Connecting you with care, resources, and specialists that honor your journey.
-          </p>
-        </div>
-        <div className="footer__columns">
-          <div className="footer__card">
-            <h4>Contact</h4>
-            <ul className="footer__list">
-              <li>
-                <a href={footerContact.phone.href}>{footerContact.phone.label}</a>
-              </li>
-              <li>
-                <a href={footerContact.email.href}>{footerContact.email.label}</a>
-              </li>
-              <li>{footerContact.location}</li>
-            </ul>
-          </div>
-          <div className="footer__card">
-            <h4>Quick links</h4>
-            <div className="footer__chips">
-              {footerQuickLinks.map((link) => (
-                <a
-                  key={link.label}
-                  className="footer__chip"
-                  href={link.href}
-                  onClick={(event) => handleQuickLinkClick(event, link)}
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          </div>
-          <div className="footer__card">
-            <h4>Follow</h4>
-            <div className="socials socials--footer">
-              {footerSocialLinks.map((social) => (
-                <a key={social.label} href={social.href} aria-label={social.label} target="_blank" rel="noreferrer">
-                  <social.icon aria-hidden="true" />
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="footer__bottom">
-          <span>© {currentYear} Aspire Success NY. All rights reserved.</span>
-        </div>
-      </div>
-    </footer>
-  )
-}
-
-const ContactPage = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServicesModal }) => {
-  return (
-    <div className="page contact-page">
-      <header className="contact-hero">
-        <NavigationLinksBar
-          onNavigateHome={onNavigateHome}
-          onNavigate={onNavigate}
-          onNavigateContact={onNavigateContact}
-          onOpenServicesModal={onOpenServicesModal}
-        />
-        <BrandNav onNavigate={onNavigate} />
-
-        <div className="contact-hero__content">
-          <div>
-            <p className="eyebrow eyebrow--with-icon">
-              <FaGlobeAmericas className="eyebrow__icon" aria-hidden="true" />
-              Contact
-            </p>
-            <h1>Let us know how we can support you.</h1>
-            <p className="subhead">
-              Share what you need and our care team will reach out within one business day to guide you toward the right
-              services and specialists.
-            </p>
-            <div className="pill">
-              <FaCalendarCheck className="pill__icon" aria-hidden="true" />
-              We respond within 1 business day
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <main className="contact-content">
-        <section className="section">
-          <div className="contact-grid">
-            <div className="contact-card">
-              <h2 className="heading-with-icon">
-                <FaEnvelopeOpenText className="heading-icon" aria-hidden="true" />
-                Send us a message
-              </h2>
-              <form className="contact-form">
-                <div className="form-group">
-                  <label htmlFor="name">Name</label>
-                  <input id="name" name="name" type="text" placeholder="Your full name" required />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="email">Email</label>
-                  <input id="email" name="email" type="email" placeholder="you@example.com" required />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="phone">Phone</label>
-                  <input id="phone" name="phone" type="tel" placeholder="(555) 123-4567" />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="message">How can we help?</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="4"
-                    placeholder="Tell us about your needs, goals, or questions"
-                    required
-                  />
-                </div>
-                <button className="cta" type="submit">Submit</button>
-              </form>
-            </div>
-
-            <div className="contact-details">
-              <div className="contact-detail-card">
-                <h3>Reach us directly</h3>
-                <ul className="contact-info">
-                  <li>
-                    <div className="contact-info__icon" aria-hidden="true">
-                      <FaPhoneAlt />
-                    </div>
-                    <div>
-                      <span>Phone</span>
-                      <a href="tel:555-123-4567">(555) 123-4567</a>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="contact-info__icon" aria-hidden="true">
-                      <FaEnvelope />
-                    </div>
-                    <div>
-                      <span>Email</span>
-                      <a href="mailto:hello@aspiresuccessny.com">hello@aspiresuccessny.com</a>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="contact-info__icon" aria-hidden="true">
-                      <FaMapMarkerAlt />
-                    </div>
-                    <div>
-                      <span>Address</span>
-                      <p>123 Fifth Avenue, New York, NY 10010</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="contact-map">
-                <iframe
-                  title="Aspire Success NY location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.844467419765!2d-73.99237802357211!3d40.73997917139021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259af18c3e6cb%3A0xe4b78a3db2e9fb1!2s123%205th%20Ave%2C%20New%20York%2C%20NY%2010011!5e0!3m2!1sen!2sus!4v1715463243522!5m2!1sen!2sus"
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <Footer
-        onNavigateHome={onNavigateHome}
-        onNavigate={onNavigate}
-        onNavigateContact={onNavigateContact}
-        onOpenServicesModal={onOpenServicesModal}
-      />
-    </div>
-  )
-}
-
-const RegistrationPage = ({
-  title,
-  description,
-  formHeading,
-  formCta,
-  onNavigateHome,
-  onNavigate,
-  onNavigateContact,
-  onOpenServicesModal,
-}) => {
-  return (
-    <div className="page registration-page">
-      <header className="registration-hero">
-        <NavigationLinksBar
-          onNavigateHome={onNavigateHome}
-          onNavigate={onNavigate}
-          onNavigateContact={onNavigateContact}
-          onOpenServicesModal={onOpenServicesModal}
-        />
-        <BrandNav onNavigate={onNavigate} />
-
-        <div className="registration-hero__content">
-          <p className="eyebrow eyebrow--with-icon">
-            <FaHandsHelping className="eyebrow__icon" aria-hidden="true" />
-            Quick Start
-          </p>
-          <h1>{title}</h1>
-          <p className="subhead">{description}</p>
-          <div className="registration-hero__support">
-            <h2>How easy it is to get started</h2>
-            <p>We will assist and support you all the way until the finish line.</p>
-          </div>
-        </div>
-      </header>
-
-      <main className="registration-content">
-        <section className="section section--narrow">
-          <div className="registration-form-card">
-            <h2 className="heading-with-icon">
-              <FaEnvelopeOpenText className="heading-icon" aria-hidden="true" />
-              {formHeading}
-            </h2>
-            <form className="contact-form registration-form">
-              <div className="form-group">
-                <label htmlFor="reg-name">Name</label>
-                <input id="reg-name" name="name" type="text" placeholder="Your full name" required />
-              </div>
-              <div className="form-group">
-                <label htmlFor="reg-email">Email</label>
-                <input id="reg-email" name="email" type="email" placeholder="you@example.com" required />
-              </div>
-              <div className="form-group">
-                <label htmlFor="reg-phone">Phone</label>
-                <input id="reg-phone" name="phone" type="tel" placeholder="(555) 123-4567" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="reg-message">How can we help?</label>
-                <textarea
-                  id="reg-message"
-                  name="message"
-                  rows="4"
-                  placeholder="Tell us about your goals and needs"
-                  required
-                />
-              </div>
-              <button className="cta" type="submit">{formCta}</button>
-            </form>
-          </div>
-        </section>
-      </main>
-
-      <Footer
-        onNavigateHome={onNavigateHome}
-        onNavigate={onNavigate}
-        onNavigateContact={onNavigateContact}
-        onOpenServicesModal={onOpenServicesModal}
-      />
-    </div>
-  )
-}
-
-const AboutPage = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServicesModal }) => {
-  return (
-    <div className="page service-page">
-      <header className="service-hero">
-        <NavigationLinksBar
-          onNavigateHome={onNavigateHome}
-          onNavigate={onNavigate}
-          onNavigateContact={onNavigateContact}
-          onOpenServicesModal={onOpenServicesModal}
-        />
-        <BrandNav onNavigate={onNavigate} />
-
-        <div className="service-hero__content">
-          <p className="eyebrow eyebrow--with-icon">
-            <FaSeedling className="eyebrow__icon" aria-hidden="true" />
-            About Aspire Success NY
-          </p>
-          <h1>Our Story, Mission, and the People Championing Your Growth</h1>
-          <p className="subhead">
-            We exist to bridge gaps in care so individuals and families facing emotional, cognitive, and behavioral
-            challenges get coordinated, compassionate support.
-          </p>
-        </div>
-      </header>
-
-      <main className="service-content about">
-        <section className="section">
-          <div className="section__header">
-            <p className="eyebrow eyebrow--with-icon">
-              <FaLightbulb className="eyebrow__icon" aria-hidden="true" />
-              Our Mission
-            </p>
-            <h2>Empowering every step forward</h2>
-            <p className="section__lead">
-              We empower individuals by providing clear direction, expert care coordination, and access to essential
-              resources that make meaningful growth possible.
-            </p>
-          </div>
-          <div className="about-highlight">
-            <div className="pill">Mission-driven</div>
-            <p>
-              From the first conversation, we focus on listening and translating needs into an actionable plan. Our
-              coordination ensures therapies, specialists, and funding align so you can focus on progress, not
-              logistics.
-            </p>
-          </div>
-        </section>
-
-        <section className="section section--muted">
-          <div className="section__header">
-            <p className="eyebrow eyebrow--with-icon">
-              <FaCompass className="eyebrow__icon" aria-hidden="true" />
-              Why we were founded
-            </p>
-            <h2>Closing the gap between needs and resources</h2>
-            <p className="section__lead">
-              Our team saw families struggling to access the right support despite their determination. Aspire Success NY
-              was founded to be the advocate and organizer who makes sure no step is missed.
-            </p>
-          </div>
-          <div className="story-grid">
-            <div className="story-card">
-              <h3>Built on lived experience</h3>
-              <p>
-                We have walked beside parents, guardians, and adults who needed a guide through complex systems. That
-                empathy shapes how we coordinate care and communicate every milestone.
-              </p>
-            </div>
-            <div className="story-card">
-              <h3>Committed to advocacy</h3>
-              <p>
-                We partner with providers, schools, and community programs to keep the circle of support connected,
-                responsive, and focused on measurable outcomes.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="section">
-          <div className="section__header">
-            <p className="eyebrow eyebrow--with-icon">
-              <FaShieldAlt className="eyebrow__icon" aria-hidden="true" />
-              Our values
-            </p>
-            <h2>The principles guiding every decision</h2>
-            <p className="section__lead">These values shape how we show up for you and advocate on your behalf.</p>
-          </div>
-          <div className="values-grid">
-            {values.map((value) => (
-              <div key={value} className="value-card value-card--light">
-                <div className="pill pill--outline">{value}</div>
-                <p>
-                  {value === 'Compassion' && 'We lead with empathy, honoring every story and celebrating small wins.'}
-                  {value === 'Integrity' && 'Transparent communication and follow-through build trust with families and partners.'}
-                  {value === 'Results-Driven' && 'We set clear goals, track progress, and adjust quickly to keep momentum strong.'}
-                  {value === 'Advocacy' && 'We elevate your voice, ensuring resources and supports align with your needs.'}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="section section--muted">
-          <div className="section__header">
-            <p className="eyebrow">Meet our team</p>
-            <h2>People dedicated to your success</h2>
-            <p className="section__lead">
-              Each team member brings expertise in care coordination, community resources, and advocacy to guide your
-              journey.
-            </p>
-          </div>
-          <div className="team-grid">
-            {teamMembers.map((member) => (
-              <div key={member.name} className="team-card">
-                <div className="team-photo" aria-hidden="true" />
-                <div>
-                  <h3>{member.name}</h3>
-                  <p className="team-role">{member.role}</p>
-                  <p>{member.bio}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="section">
-          <div className="value-card">
-            <h3>Ready to learn how we can help?</h3>
-            <p>
-              Share your goals and challenges, and we will design a coordinated plan that connects you with the right
-              resources and specialists.
-            </p>
-            <div style={{ marginTop: '16px' }}>
-              <a className="cta" href="#" onClick={(event) => onNavigate(event, '/#contact')}>
-                Talk with our team
-              </a>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <Footer
-        onNavigateHome={onNavigateHome}
-        onNavigate={onNavigate}
-        onNavigateContact={onNavigateContact}
-        onOpenServicesModal={onOpenServicesModal}
-      />
-    </div>
-  )
-}
-
-const SpecialistPlacementPage = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServicesModal }) => {
-  return (
-    <div className="page service-page">
-      <header className="service-hero">
-        <NavigationLinksBar
-          onNavigateHome={onNavigateHome}
-          onNavigate={onNavigate}
-          onNavigateContact={onNavigateContact}
-          onOpenServicesModal={onOpenServicesModal}
-        />
-        <BrandNav onNavigate={onNavigate} />
-
-        <div className="service-hero__content">
-          <p className="eyebrow eyebrow--with-icon">
-            <FaUserCog className="eyebrow__icon" aria-hidden="true" />
-            Services specialist-placement
-          </p>
-          <h1>Building Your Support Team: Connecting You with Qualified Personnel</h1>
-          <p className="subhead">
-            We source, vet, and match skilled professionals to fit your care needs, goals, and personality so you feel
-            supported from day one.
-          </p>
-        </div>
-      </header>
-
-      <main className="service-content">
-        <section className="section">
-        <div className="section__header">
-          <p className="eyebrow eyebrow--with-icon">
-            <FaHandshake className="eyebrow__icon" aria-hidden="true" />
-            Our mission
-          </p>
-          <h2>Every great plan needs the right people</h2>
-          <p className="section__lead">
-            A comprehensive care plan requires skilled, dedicated personnel to implement the work. We bring together
-              the professionals whose expertise and approach align with your needs and personality.
-            </p>
-          </div>
-          <div className="service-highlight">
-            <div className="pill">Purpose-built teams</div>
-            <p>
-              From the first conversation to the final placement, we prioritize clear expectations, collaborative
-              communication, and a culture of respect that lets support staff do their best work for you.
-            </p>
-          </div>
-        </section>
-
-        <section className="section section--muted">
-          <div className="section__header">
-            <p className="eyebrow">Roles we place</p>
-            <h2>Matching the right expertise to your environment</h2>
-            <p className="section__lead">We recruit with intention so every role directly advances your goals.</p>
-          </div>
-          <div className="process-grid">
-            <div className="process-card">
-              <div className="pill">
-                <FaUserCheck className="pill__icon" aria-hidden="true" />
-                DSPs
-              </div>
-              <h3>Direct Support Professionals</h3>
-              <p>Providing direct, hands-on support for daily living, personal goals, and independence.</p>
-            </div>
-            <div className="process-card">
-              <div className="pill">
-                <FaClipboardCheck className="pill__icon" aria-hidden="true" />
-                Para-Professionals
-              </div>
-              <h3>Para-Professionals</h3>
-              <p>Assistance in educational or community settings with patience, consistency, and skill.</p>
-            </div>
-            <div className="process-card">
-              <div className="pill">
-                <FaHeart className="pill__icon" aria-hidden="true" />
-                Peer Support
-              </div>
-              <h3>Peer Support Specialists</h3>
-              <p>Non-clinical emotional support from team members with lived experience you can relate to.</p>
-            </div>
-          </div>
-        </section>
-
-        <section className="section">
-        <div className="section__header">
-          <p className="eyebrow eyebrow--with-icon">
-            <FaShieldAlt className="eyebrow__icon" aria-hidden="true" />
-            Our vetting process
-          </p>
-          <h2>Quality, safety, and fit come first</h2>
-          <p className="section__lead">
-            We are committed to reliable, caring placements. Every professional is screened for credentials, verified
-              through background checks, and matched to your goals and preferences.
-            </p>
-          </div>
-          <div className="process-grid">
-            <div className="process-card">
-              <div className="pill">Quality</div>
-              <h3>Credential verification</h3>
-              <p>Licensure checks, references, and experience reviews ensure we only present qualified candidates.</p>
-            </div>
-            <div className="process-card">
-              <div className="pill">Safety</div>
-              <h3>Background screening</h3>
-              <p>Comprehensive background checks and interviews confirm professionalism, reliability, and readiness.</p>
-            </div>
-            <div className="process-card">
-              <div className="pill">Alignment</div>
-              <h3>Personalized matching</h3>
-              <p>We factor communication style, personality fit, and scheduling needs to set up lasting success.</p>
-            </div>
-          </div>
-        </section>
-
-        <section className="section">
-          <div className="value-card">
-            <h3>Ready to build your support team?</h3>
-            <p>
-              Tell us about your goals, daily routines, and what a great partnership looks like. We will curate a shortlist
-              of qualified specialists who feel like the right fit.
-            </p>
-            <div style={{ marginTop: '16px' }}>
-              <a className="cta" href="#" onClick={(event) => onNavigateHome(event, '#contact')}>
-                Start a placement request
-              </a>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <Footer
-        onNavigateHome={onNavigateHome}
-        onNavigate={onNavigate}
-        onNavigateContact={onNavigateContact}
-        onOpenServicesModal={onOpenServicesModal}
-      />
-    </div>
-  )
-}
-
-const GovernmentProgramsPage = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServicesModal }) => {
-  return (
-    <div className="page service-page">
-      <header className="service-hero">
-        <NavigationLinksBar
-          onNavigateHome={onNavigateHome}
-          onNavigate={onNavigate}
-          onNavigateContact={onNavigateContact}
-          onOpenServicesModal={onOpenServicesModal}
-        />
-        <BrandNav onNavigate={onNavigate} />
-
-        <div className="service-hero__content">
-          <p className="eyebrow eyebrow--with-icon">
-            <FaMapSigns className="eyebrow__icon" aria-hidden="true" />
-            Services resource-access
-          </p>
-          <h1>Accessing Vital Support: Simplifying Government Program Applications</h1>
-          <p className="subhead">
-            We specialize in funding guidance and qualification, making sure you can quickly secure the benefits and
-            services you deserve.
-          </p>
-        </div>
-      </header>
-
-      <main className="service-content">
-        <section className="section">
-        <div className="section__header">
-          <p className="eyebrow eyebrow--with-icon">
-            <FaExclamationCircle className="eyebrow__icon" aria-hidden="true" />
-            The challenge
-          </p>
-          <h2>Applications should not delay crucial care</h2>
-          <p className="section__lead">
-            Applying for government-funded services can be time-consuming and confusing, leading to delays when you
-              need support most. We streamline every step.
-            </p>
-          </div>
-          <div className="service-highlight">
-            <div className="pill">Clarity &amp; momentum</div>
-            <p>
-              From forms to follow-ups, we remove the guesswork so you can focus on your well-being while we keep your
-              applications moving.
-            </p>
-          </div>
-        </section>
-
-        <section className="section section--muted">
-        <div className="section__header">
-          <p className="eyebrow eyebrow--with-icon">
-            <FaHandsHelping className="eyebrow__icon" aria-hidden="true" />
-            How we help
-          </p>
-          <h2>Hands-on assistance from start to approval</h2>
-          <p className="section__lead">
-            Our team provides documentation guidance, advocacy, and consistent communication to help you qualify for
-              the financial and programmatic support you need.
-            </p>
-          </div>
-          <div className="process-grid">
-            <div className="process-card">
-              <div className="pill">Step-by-step</div>
-              <h3>Application mapping</h3>
-              <p>We outline the exact forms, timelines, and contacts for each program so nothing falls through.</p>
-            </div>
-            <div className="process-card">
-              <div className="pill">Documentation</div>
-              <h3>Evidence &amp; letters</h3>
-              <p>We gather records, write supporting letters, and organize materials to strengthen your case.</p>
-            </div>
-            <div className="process-card">
-              <div className="pill">Advocacy</div>
-              <h3>Follow-through</h3>
-              <p>We communicate with agencies, track status updates, and escalate when needed to keep things on track.</p>
-            </div>
-          </div>
-        </section>
-
-        <section className="section">
-        <div className="section__header">
-          <p className="eyebrow eyebrow--with-icon">
-            <FaClipboardList className="eyebrow__icon" aria-hidden="true" />
-            Programs we assist with
-          </p>
-          <h2>Connecting you to the right support</h2>
-          <p className="section__lead">We focus on programs that open doors to critical services and funding.</p>
-        </div>
-          <ul className="list">
-            <li>OPWDD: Office for People With Developmental Disabilities</li>
-            <li>ABA: Applied Behavioral Analysis</li>
-            <li>HCBS: Home and Community-Based Services</li>
-            <li>Peer Support Services</li>
-          </ul>
-        </section>
-
-        <section className="section">
-          <div className="value-card">
-            <h3>Ready to confirm your eligibility?</h3>
-            <p>
-              Do not miss out on the funding you deserve. Contact us to verify qualifications and start your application
-              with confidence.
-            </p>
-            <div style={{ marginTop: '16px' }}>
-              <a className="cta" href="#" onClick={(event) => onNavigateHome(event, '#contact')}>
-                Verify eligibility today
-              </a>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <Footer
-        onNavigateHome={onNavigateHome}
-        onNavigate={onNavigate}
-        onNavigateContact={onNavigateContact}
-        onOpenServicesModal={onOpenServicesModal}
-      />
-    </div>
-  )
-}
-
-const CareManagementPage = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServicesModal }) => {
-  return (
-    <div className="page service-page">
-      <header className="service-hero">
-        <NavigationLinksBar
-          onNavigateHome={onNavigateHome}
-          onNavigate={onNavigate}
-          onNavigateContact={onNavigateContact}
-          onOpenServicesModal={onOpenServicesModal}
-        />
-        <BrandNav onNavigate={onNavigate} />
-
-        <div className="service-hero__content">
-          <p className="eyebrow eyebrow--with-icon">
-            <FaClipboardCheck className="eyebrow__icon" aria-hidden="true" />
-            Services care-management
-          </p>
-          <h1>Expert Care Management: Finding the Right Path for Success</h1>
-          <p className="subhead">
-            Our core coordinating service ensures you have an advocate and partner who aligns every support with your
-            goals from day one.
-          </p>
-        </div>
-      </header>
-
-      <main className="service-content">
-        <section className="section">
-          <div className="section__header">
-            <p className="eyebrow eyebrow--with-icon">
-              <FaUserCog className="eyebrow__icon" aria-hidden="true" />
-              What is a Care Manager?
-            </p>
-            <h2>Dedicated coordinator and advocate</h2>
-            <p className="section__lead">
-              We act as your dedicated coordinator and advocate. Navigating behavioral health and support systems can
-              be complex—we ensure you never navigate it alone.
-            </p>
-          </div>
-          <div className="service-highlight">
-            <div className="pill">Personalized &amp; proactive guidance</div>
-            <p>
-              A care manager listens closely, clarifies priorities, and maps out the services that will make the biggest
-              difference for you or your family.
-            </p>
-          </div>
-        </section>
-
-        <section className="section section--muted">
-          <div className="section__header">
-            <p className="eyebrow">Our 3-Step Process</p>
-            <h2>Structured support that keeps you moving forward</h2>
-            <p className="section__lead">
-              Every plan is tailored, but our process always centers on clarity, measurable goals, and immediate action.
-            </p>
-          </div>
-          <div className="process-grid">
-            <div className="process-card">
-              <div className="pill">
-                <FaClipboardList className="pill__icon" aria-hidden="true" />
-                Step 1
-              </div>
-              <h3>Comprehensive Assessment</h3>
-              <p>
-                A thorough evaluation to understand unique emotional, cognitive, and behavioral challenges. We consider
-                current supports, strengths, and barriers.
-              </p>
-            </div>
-            <div className="process-card">
-              <div className="pill">
-                <FaLightbulb className="pill__icon" aria-hidden="true" />
-                Step 2
-              </div>
-              <h3>Strategic Planning</h3>
-              <p>
-                We develop a personalized success plan with measurable goals and targeted intervention strategies,
-                aligning with timelines that work for you.
-              </p>
-            </div>
-            <div className="process-card">
-              <div className="pill">
-                <FaHandsHelping className="pill__icon" aria-hidden="true" />
-                Step 3
-              </div>
-              <h3>Expert Referral &amp; Connection</h3>
-              <p>
-                We connect you immediately with the right licensed therapists, clinicians, and support services tailored
-                to your specific needs.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="section">
-          <div className="value-card">
-            <h3>Why it matters</h3>
-            <p>
-              We save you time and stress by ensuring the most effective support is in place from day one. With one
-              consistent point of contact, you avoid delays and stay focused on progress.
-            </p>
-          </div>
-        </section>
-      </main>
-
-      <Footer
-        onNavigateHome={onNavigateHome}
-        onNavigate={onNavigate}
-        onNavigateContact={onNavigateContact}
-        onOpenServicesModal={onOpenServicesModal}
-      />
-    </div>
-  )
-}
+const getPreferredTheme = () => {
+  const stored = localStorage.getItem('as-theme');
+  if (stored) return stored;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+};
 
 function App() {
-  const [activeTestimonial, setActiveTestimonial] = useState(0)
-  const [route, setRoute] = useState(window.location.pathname)
-  const [isServicesModalOpen, setIsServicesModalOpen] = useState(false)
+  const [theme, setTheme] = useState(getPreferredTheme);
+  const [activeNav, setActiveNav] = useState('home');
+  const [activeTab, setActiveTab] = useState('dashboard');
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [search, setSearch] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [toasts, setToasts] = useState([{ id: 1, tone: 'info', title: 'Design tokens applied', message: 'Spacing grid and theme tokens now power every surface.' }]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveTestimonial((prev) => (prev + 1) % testimonials.length)
-    }, 6000)
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('as-theme', theme);
+  }, [theme]);
 
-    return () => clearInterval(interval)
-  }, [])
+  const filteredRows = useMemo(() => {
+    return requestRows.filter((row) => {
+      const matchesStatus = statusFilter === 'all' || row.status === statusFilter;
+      const matchesSearch = row.name.toLowerCase().includes(search.toLowerCase()) || row.owner.toLowerCase().includes(search.toLowerCase());
+      return matchesStatus && matchesSearch;
+    });
+  }, [statusFilter, search]);
 
-  useEffect(() => {
-    const handlePopState = () => setRoute(window.location.pathname)
-    window.addEventListener('popstate', handlePopState)
-    return () => window.removeEventListener('popstate', handlePopState)
-  }, [])
+  const handleToastDismiss = (id) => setToasts((prev) => prev.filter((toast) => toast.id !== id));
 
-  useEffect(() => {
-    document.body.style.overflow = isServicesModalOpen ? 'hidden' : ''
-    return () => {
-      document.body.style.overflow = ''
-    }
-  }, [isServicesModalOpen])
-
-  const navigate = (path) => {
-    window.history.pushState({}, '', path)
-    setRoute(path)
-    window.scrollTo(0, 0)
-  }
-
-  const handleNavigate = (event, path) => {
-    event.preventDefault()
-    const [pathname, hash] = path.split('#')
-
-    navigate(pathname || '/')
-
-    if (hash) {
-      setTimeout(() => {
-        const target = document.getElementById(hash)
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' })
-        }
-      }, 50)
-    }
-  }
-
-  const handleNavigateHome = (event, hash) => {
-    event.preventDefault()
-    navigate('/')
-
-    if (hash) {
-      setTimeout(() => {
-        const target = document.querySelector(hash)
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' })
-        }
-      }, 50)
-    }
-  }
-
-  const handleNavigateContact = (event) => {
-    event.preventDefault()
-    navigate('/contact')
-  }
-
-  const handleOpenServicesModal = (event) => {
-    event.preventDefault()
-    if (route !== '/') {
-      navigate('/')
-      setTimeout(() => setIsServicesModalOpen(true), 50)
-      return
-    }
-
-    setIsServicesModalOpen(true)
-  }
-
-  if (route === applicationRoutes.specialist) {
-    return (
-      <RegistrationPage
-        title="Register for placement as a specialist"
-        description="Share your details so we can align you with families and individuals seeking qualified support."
-        formHeading="Tell us about your expertise"
-        formCta="Submit placement registration"
-        onNavigateHome={handleNavigateHome}
-        onNavigate={handleNavigate}
-        onNavigateContact={handleNavigateContact}
-        onOpenServicesModal={handleOpenServicesModal}
-      />
-    )
-  }
-
-  if (route === applicationRoutes.support) {
-    return (
-      <RegistrationPage
-        title="Register for support & assistance"
-        description="Let us know how we can assist you, and we will guide you through every step of the process."
-        formHeading="Share your needs"
-        formCta="Submit support request"
-        onNavigateHome={handleNavigateHome}
-        onNavigate={handleNavigate}
-        onNavigateContact={handleNavigateContact}
-        onOpenServicesModal={handleOpenServicesModal}
-      />
-    )
-  }
-
-  if (route === '/contact') {
-    return (
-      <ContactPage
-        onNavigateHome={handleNavigateHome}
-        onNavigate={handleNavigate}
-        onNavigateContact={handleNavigateContact}
-        onOpenServicesModal={handleOpenServicesModal}
-      />
-    )
-  }
-
-  if (route === '/care-management') {
-    return (
-      <CareManagementPage
-        onNavigateHome={handleNavigateHome}
-        onNavigate={handleNavigate}
-        onNavigateContact={handleNavigateContact}
-        onOpenServicesModal={handleOpenServicesModal}
-      />
-    )
-  }
-
-  if (route === '/specialist-placement') {
-    return (
-      <SpecialistPlacementPage
-        onNavigateHome={handleNavigateHome}
-        onNavigate={handleNavigate}
-        onNavigateContact={handleNavigateContact}
-        onOpenServicesModal={handleOpenServicesModal}
-      />
-    )
-  }
-
-  if (route === '/government-programs') {
-    return (
-      <GovernmentProgramsPage
-        onNavigateHome={handleNavigateHome}
-        onNavigate={handleNavigate}
-        onNavigateContact={handleNavigateContact}
-        onOpenServicesModal={handleOpenServicesModal}
-      />
-    )
-  }
-
-  if (route === '/about') {
-    return (
-      <AboutPage
-        onNavigateHome={handleNavigateHome}
-        onNavigate={handleNavigate}
-        onNavigateContact={handleNavigateContact}
-        onOpenServicesModal={handleOpenServicesModal}
-      />
-    )
-  }
+  const toggleTheme = () => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
 
   return (
-    <div className="page">
-      <header className="hero">
-        <NavigationLinksBar
-          onNavigateHome={handleNavigateHome}
-          onNavigate={handleNavigate}
-          onNavigateContact={handleNavigateContact}
-          onOpenServicesModal={handleOpenServicesModal}
-        />
-        <BrandNav onNavigate={handleNavigate} />
-
-        <div className="hero__content">
-          <div className="hero__text">
-            <p className="eyebrow eyebrow--with-icon">
-              <FaCompass className="eyebrow__icon" aria-hidden="true" />
-              Welcome &amp; Overview
-            </p>
-            <h1>Your Partner in Navigating Emotional, Cognitive, &amp; Behavioral Growth.</h1>
-            <p className="subhead">
-              We simplify the path to success for children, teens, and adults by connecting you with the right
-              care and resources.
+    <Layout
+      navigation={navigation}
+      activeNav={activeNav}
+      onNavChange={setActiveNav}
+      onToggleTheme={toggleTheme}
+      theme={theme}
+      sidebarLinks={sidebarLinks}
+      sidebarActions={
+        <Button variant="secondary" onClick={() => setShowModal(true)}>
+          View component anatomy
+        </Button>
+      }
+    >
+      <section className="section section--muted" id="hero">
+        <div className="section__header">
+          <p className="eyebrow">New design language</p>
+          <h1 className="title-lg">A modular system for Aspire Success NY dashboards and pages.</h1>
+          <p className="lead">
+            Tokens for color, type, spacing, and elevation power every component. Layout includes a stable header, sidebar, responsive grid, and mobile-first breakpoints.
+          </p>
+        </div>
+        <div className="hero">
+          <div>
+            <p className="eyebrow">Hero / CTA</p>
+            <h2 className="title-md">Guide every journey with clarity.</h2>
+            <p className="lead">
+              Use this hero for home, dashboard, and list pages. Keep actions grouped and align to our 8px spacing scale.
             </p>
             <div className="hero__actions">
-              <a className="cta" href="#consultation">
-                Start Your Free Consultation
-              </a>
-              <button className="link link--button" type="button" onClick={() => setIsServicesModalOpen(true)}>
-                Explore our services
-              </button>
+              <Button startIcon={FiArrowRight}>Start consultation</Button>
+              <Button variant="secondary" startIcon={FiBell}>
+                Notify team
+              </Button>
+              <Button variant="ghost" startIcon={FiBookOpen}>
+                View playbook
+              </Button>
             </div>
           </div>
-        </div>
-      </header>
-
-      <main>
-        <section className="section support-section" id="support">
-          <div className="support-section__inner">
-            <div className="support-section__text">
-              <p className="eyebrow eyebrow--with-icon">
-                <FaSeedling className="eyebrow__icon" aria-hidden="true" />
-                Support at every step
-              </p>
-              <h2>We stay by your side with guidance, resources, and advocacy.</h2>
-              <p className="section__lead section__lead--muted">
-                From the first conversation to every milestone, our team simplifies complex systems, connects you
-                with care, and celebrates progress alongside you.
-              </p>
-              <ul className="support-list">
-                <li className="support-list__item">
-                  <FaCheckCircle className="support-list__icon" aria-hidden="true" />
-                  <div>
-                    <p className="support-list__title">Personal care navigation</p>
-                    <p className="support-list__copy">Dedicated managers who listen, coordinate, and remove roadblocks.</p>
-                  </div>
-                </li>
-                <li className="support-list__item">
-                  <FaCheckCircle className="support-list__icon" aria-hidden="true" />
-                  <div>
-                    <p className="support-list__title">Clarity on next steps</p>
-                    <p className="support-list__copy">Straightforward pathways to services, funding, and community resources.</p>
-                  </div>
-                </li>
-                <li className="support-list__item">
-                  <FaCheckCircle className="support-list__icon" aria-hidden="true" />
-                  <div>
-                    <p className="support-list__title">Specialists who fit you</p>
-                    <p className="support-list__copy">Trusted providers matched to your goals, preferences, and pace.</p>
-                  </div>
-                </li>
-              </ul>
-              <div className="pill support-pill">Aligned with your vision of success</div>
-            </div>
-            <div className="support-section__image-wrapper">
-              <div className="support-section__image-frame">
-                <img
-                  src={supportSectionImage}
-                  alt="Children receiving supportive guidance together"
-                  className="support-section__image"
-                />
+          <div className="metrics">
+            {metrics.map((metric) => (
+              <div key={metric.label} className="metric">
+                <strong>{metric.value}</strong>
+                <p className="lead" style={{ fontSize: 'var(--font-size-sm)' }}>
+                  {metric.label}
+                </p>
+                <p className="eyebrow">{metric.delta}</p>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="section" id="consultation">
-          <div className="section__header">
-            <p className="eyebrow eyebrow--with-icon">
-              <FaGlobeAmericas className="eyebrow__icon" aria-hidden="true" />
-              Who We Help
-            </p>
-            <h2>Care designed for children, teens, and adults.</h2>
-            <p className="section__lead">
-              Whether you are navigating emotional, cognitive, or behavioral challenges, we deliver guidance and
-              advocacy that meets you where you are.
-            </p>
-          </div>
-          <div className="pill-grid">
-            <div className="pill-card">Children</div>
-            <div className="pill-card">Teens</div>
-            <div className="pill-card">Adults</div>
-          </div>
-        </section>
-
-        <SectionDivider />
-
-        <section className="section section--muted" id="about">
-          <div className="section__header">
-            <p className="eyebrow eyebrow--with-icon">
-              <FaSeedling className="eyebrow__icon" aria-hidden="true" />
-              About Us
-            </p>
-            <h2>Grounded in mission, guided by advocacy.</h2>
-            <p className="section__lead">
-              Learn why Aspire Success NY was founded, the values that drive our work, and the team committed to your
-              success.
-            </p>
-          </div>
-          <div className="about-preview">
-            <div>
-              <div className="pill">Our Mission</div>
-              <p>
-                To empower individuals facing emotional, cognitive, and behavioral challenges by providing clear
-                direction, expert care coordination, and access to essential resources.
-              </p>
-            </div>
-            <div className="about-preview__actions">
-              <a className="cta" href="/about" onClick={(event) => handleNavigate(event, '/about')}>
-                Explore our story
-              </a>
-              <a className="cta cta--ghost" href="#contact">
-                Talk with us
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <SectionDivider />
-
-        <section className="section" id="services">
-          <div className="section__header">
-            <p className="eyebrow eyebrow--with-icon">
-              <FaUserCheck className="eyebrow__icon" aria-hidden="true" />
-              Our Core Services
-            </p>
-            <h2>Quick snapshot of how we serve you.</h2>
-            <p className="section__lead">Discover the guidance, access, and expert support that simplify your next steps.</p>
-          </div>
-          <div className="card-grid">
-            {services.map((service) => (
-              <a
-                key={service.title}
-                className="card"
-                href={service.link}
-                onClick={(event) => {
-                  event.preventDefault()
-                  navigate(service.link)
-                }}
-              >
-                <div className="card__title">
-                  <div className="card__icon" aria-hidden="true">
-                    <service.icon />
-                  </div>
-                  <div>
-                    <h3>{service.title}</h3>
-                    <p>{service.description}</p>
-                  </div>
-                </div>
-                <span className="card__link">Learn more →</span>
-              </a>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <SectionDivider />
-
-        <section className="section section--muted" id="testimonials">
-          <div className="section__header">
-            <p className="eyebrow">Testimonials</p>
-            <h2>Stories of confidence and progress.</h2>
-            <p className="section__lead">Real voices from families and individuals we have supported.</p>
-          </div>
-          <div className="testimonial">
-            <p className="testimonial__quote">“{testimonials[activeTestimonial].quote}”</p>
-            <p className="testimonial__name">{testimonials[activeTestimonial].name}</p>
-            <div className="dots">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  className={`dot ${index === activeTestimonial ? 'dot--active' : ''}`}
-                  onClick={() => setActiveTestimonial(index)}
-                  aria-label={`View testimonial ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-      </main>
-
-      {isServicesModalOpen && (
-        <div className="modal" role="dialog" aria-modal="true" aria-labelledby="services-modal-title">
-          <div className="modal__backdrop" onClick={() => setIsServicesModalOpen(false)} />
-          <div className="modal__content">
-            <button className="modal__close" type="button" aria-label="Close" onClick={() => setIsServicesModalOpen(false)}>
-              ×
-            </button>
-            <div className="modal__header">
-              <p className="eyebrow">Our Core Services</p>
-              <h2 id="services-modal-title">Quick snapshot of how we serve you.</h2>
-              <p className="section__lead">
-                Discover the guidance, access, and expert support that simplify your next steps.
+      <section className="section" id="actions">
+        <div className="section__header">
+          <p className="eyebrow">Actions & cards</p>
+          <h2 className="title-md">Consistent cards, actions, and iconography.</h2>
+          <p className="lead">
+            Buttons ship in primary, secondary, and ghost variants with focus-visible outlines and reduced-motion support. Cards use soft radius and medium shadow for legibility.
+          </p>
+        </div>
+        <div className="grid grid--3">
+          {quickActions.map((action) => (
+            <Card key={action.title} icon={() => <Icon as={action.icon} tone="primary" />} title={action.title}>
+              <p className="lead" style={{ fontSize: 'var(--font-size-sm)' }}>
+                {action.desc}
               </p>
+              <div className="hero__actions" style={{ gap: 'var(--space-2)' }}>
+                <Button size="small" endIcon={FiArrowRight}>
+                  {action.cta}
+                </Button>
+                <Button variant="ghost">Details</Button>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="section" id="components">
+        <div className="section__header">
+          <p className="eyebrow">Component library</p>
+          <h2 className="title-md">Buttons, inputs, tabs, tags, and alerts.</h2>
+          <p className="lead">Use helper text for guidance, error text for validation, and keep inputs full width on mobile.</p>
+        </div>
+        <div className="grid grid--2">
+          <div className="surface">
+            <p className="eyebrow">Buttons</p>
+            <div className="hero__actions">
+              <Button startIcon={FiPlus}>Primary</Button>
+              <Button variant="secondary">Secondary</Button>
+              <Button variant="ghost">Ghost</Button>
             </div>
-            <div className="card-grid">
-              {services.map((service) => (
-                <a
-                  key={service.title}
-                  className="card"
-                  href={service.link}
-                  onClick={(event) => {
-                    event.preventDefault()
-                    navigate(service.link)
-                    setIsServicesModalOpen(false)
-                  }}
-                >
-                  <div className="card__title">
-                    <div className="card__icon" aria-hidden="true">
-                      <service.icon />
-                    </div>
-                    <div>
-                      <h3>{service.title}</h3>
-                      <p>{service.description}</p>
-                    </div>
-                  </div>
-                  <span className="card__link">Learn more →</span>
-                </a>
-              ))}
+          </div>
+          <div className="surface">
+            <p className="eyebrow">Inputs</p>
+            <InputField id="name" label="Full name" placeholder="Jordan Ellis" helper="Use sentence case labels." required />
+            <InputField
+              id="email"
+              label="Email"
+              type="email"
+              placeholder="you@example.com"
+              error="Email is required."
+            />
+          </div>
+          <div className="surface">
+            <p className="eyebrow">Tabs</p>
+            <Tabs
+              tabs={[
+                { id: 'dashboard', label: 'Dashboard' },
+                { id: 'requests', label: 'Requests' },
+                { id: 'insights', label: 'Insights' },
+              ]}
+              active={activeTab}
+              onChange={setActiveTab}
+            />
+            <p className="lead" style={{ marginTop: 'var(--space-3)', fontSize: 'var(--font-size-sm)' }}>
+              Use tabs for sibling content; never nest them. Keep 12–16px padding and accent underline for the active tab.
+            </p>
+          </div>
+          <div className="surface">
+            <p className="eyebrow">Tags & states</p>
+            <div className="status-row">
+              <span className={badgeClass.success}>Success</span>
+              <span className={badgeClass.warning}>Warning</span>
+              <span className={badgeClass.error}>Error</span>
+              <span className={badgeClass.info}>Info</span>
+            </div>
+            <p className="lead" style={{ marginTop: 'var(--space-2)', fontSize: 'var(--font-size-sm)' }}>
+              Pair status tags with icons in tables and lists. Keep contrast AA+ across light/dark themes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="table">
+        <div className="toolbar">
+          <div className="section__header" style={{ margin: 0 }}>
+            <p className="eyebrow">Data table</p>
+            <h2 className="title-md">Requests overview</h2>
+            <p className="lead">
+              Use toolbar for filters, search, and table actions. Stick to 14px text and 48px hit areas.
+            </p>
+          </div>
+          <div className="toolbar__controls">
+            <div className="chip">
+              <Icon as={FiSun} size="sm" /> Theme ready
+            </div>
+            <div className="chip">
+              <Icon as={FiActivity} size="sm" /> Focus visible
+            </div>
+            <div className="chip">
+              <Icon as={FiBell} size="sm" /> Alerts
             </div>
           </div>
         </div>
-      )}
+        <div className="hero__actions" style={{ justifyContent: 'space-between' }}>
+          <div className="hero__actions" style={{ flexWrap: 'wrap' }}>
+            <InputField
+              id="search"
+              label="Search"
+              placeholder="Search requests"
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+              startIcon={FiSearch}
+            />
+            <div className="input">
+              <label htmlFor="status">Status</label>
+              <select id="status" value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)}>
+                <option value="all">All</option>
+                <option value="Active">Active</option>
+                <option value="Pending">Pending</option>
+                <option value="At risk">At risk</option>
+                <option value="Complete">Complete</option>
+              </select>
+            </div>
+          </div>
+          <div className="hero__actions">
+            <Button variant="ghost" startIcon={FiGrid}>
+              Export
+            </Button>
+            <Button startIcon={FiPlus}>New request</Button>
+          </div>
+        </div>
+        <div className="surface">
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Owner</th>
+                <th scope="col">Status</th>
+                <th scope="col">Type</th>
+                <th scope="col">Updated</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredRows.length === 0 ? (
+                <tr>
+                  <td colSpan={5}>
+                    <div className="layout-helper">
+                      <p className="lead">No requests yet. Start with a new intake to populate this table.</p>
+                      <Button startIcon={FiPlus}>Add request</Button>
+                    </div>
+                  </td>
+                </tr>
+              ) : (
+                filteredRows.map((row) => (
+                  <tr key={row.name}>
+                    <td>{row.name}</td>
+                    <td>{row.owner}</td>
+                    <td>
+                      <span className={badgeClass[statusTone[row.status]]}>{row.status}</span>
+                    </td>
+                    <td>{row.type}</td>
+                    <td>{row.updated}</td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      </section>
 
-      <Footer
-        onNavigateHome={handleNavigateHome}
-        onNavigate={handleNavigate}
-        onNavigateContact={handleNavigateContact}
-        onOpenServicesModal={handleOpenServicesModal}
-      />
-    </div>
-  )
+      <section className="section" id="statuses">
+        <div className="section__header">
+          <p className="eyebrow">Layout system</p>
+          <h2 className="title-md">Surfaces, spacing, and responsive grid.</h2>
+          <p className="lead">Use .section for feature blocks, .surface for supporting content, and .grid utilities for 1–3 column flows.</p>
+        </div>
+        <div className="layout-helper">
+          <div className="layout-helper__row">
+            <div className="background-swatch">
+              <p className="eyebrow">Surface</p>
+              <p className="lead" style={{ fontSize: 'var(--font-size-sm)' }}>
+                Apply to cards, forms, and tables. Radius 16px, border 1px, shadow xs.
+              </p>
+            </div>
+            <div className="background-swatch">
+              <p className="eyebrow">Muted</p>
+              <p className="lead" style={{ fontSize: 'var(--font-size-sm)' }}>
+                Use for section backgrounds and data empties. Respect the 8px spacing scale.
+              </p>
+            </div>
+            <div className="background-swatch">
+              <p className="eyebrow">Accent</p>
+              <p className="lead" style={{ fontSize: 'var(--font-size-sm)' }}>
+                Accent ghost backgrounds for icon chips, tags, and hero highlights.
+              </p>
+            </div>
+          </div>
+          <div className="layout-helper__row">
+            <div className="surface">
+              <p className="eyebrow">Micro-interactions</p>
+              <p className="lead" style={{ fontSize: 'var(--font-size-sm)' }}>
+                Hover: translateY(-3px) and medium shadow. Focus-visible outlines rely on accent color. Reduced-motion disables transforms.
+              </p>
+            </div>
+            <div className="surface">
+              <p className="eyebrow">Keyboard travel</p>
+              <p className="lead" style={{ fontSize: 'var(--font-size-sm)' }}>
+                All interactive elements use button/anchor semantics, maintain 44px minimum height, and honor logical tab order.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {showModal ? (
+        <Modal
+          title="Component anatomy"
+          description="Use this modal pattern for confirmations and teaching moments. Keep it short, add helper text, and always provide a secondary way to close."
+          onClose={() => setShowModal(false)}
+          actions={<Button startIcon={FiCheckCircle}>Acknowledge</Button>}
+        >
+          <ul className="list">
+            <li>Header with title + supporting text</li>
+            <li>Content area for short forms or teaching content</li>
+            <li>Footer actions with primary on the right</li>
+          </ul>
+        </Modal>
+      ) : null}
+
+      {toasts.length > 0 ? (
+        <div className="toast-stack" role="status" aria-live="polite">
+          {toasts.map((toast) => (
+            <Toast key={toast.id} tone={toast.tone} title={toast.title} message={toast.message} onDismiss={() => handleToastDismiss(toast.id)} />
+          ))}
+        </div>
+      ) : null}
+    </Layout>
+  );
 }
 
-export default App
+export default App;
