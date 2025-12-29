@@ -176,8 +176,8 @@ const BrandNav = ({ onNavigate }) => {
         <div className="brand__visuals">
           <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
           <img
-            src="https://images.pexels.com/photos/8653984/pexels-photo-8653984.jpeg"
-            alt="A child smiling with supportive caregivers"
+            src="https://images.pexels.com/photos/8550834/pexels-photo-8550834.jpeg"
+            alt="Caregiver supporting a smiling child outdoors"
             className="brand__companion-image"
           />
         </div>
