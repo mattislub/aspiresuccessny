@@ -129,8 +129,8 @@ body {
 }
 
 .brand__companion-image {
-  width: clamp(160px, 28vw, 220px);
-  height: clamp(160px, 28vw, 220px);
+  width: clamp(150px, 30vw, 210px);
+  aspect-ratio: 4 / 5;
   object-fit: cover;
   border-radius: 14px;
   border: 1px solid rgba(25, 133, 149, 0.14);
@@ -138,8 +138,8 @@ body {
 }
 
 .nav .brand__logo {
-  width: 360px;
-  height: 210px;
+  width: clamp(240px, 40vw, 300px);
+  height: auto;
 }
 
 .nav .brand {
@@ -150,6 +150,10 @@ body {
 
 .nav .brand__visuals {
   gap: 16px;
+}
+
+.nav .brand__companion-image {
+  width: clamp(210px, 42vw, 280px);
 }
 
 .nav .brand > div {
