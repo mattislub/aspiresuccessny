@@ -31,7 +31,7 @@ import logo from './assets/logo.png'
 import sectionDividerImage from './assets/Aspire-2.jpg'
 
 const supportSectionImage =
-  'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=80'
+  'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80'
 
 const values = ['Compassion', 'Integrity', 'Results-Driven', 'Advocacy']
 
@@ -1238,11 +1238,13 @@ function App() {
               <div className="pill support-pill">Aligned with your vision of success</div>
             </div>
             <div className="support-section__image-wrapper">
-              <img
-                src={supportSectionImage}
-                alt="Care manager offering guidance and support"
-                className="support-section__image"
-              />
+              <div className="support-section__image-frame">
+                <img
+                  src={supportSectionImage}
+                  alt="Children receiving supportive guidance together"
+                  className="support-section__image"
+                />
+              </div>
             </div>
           </div>
         </section>
