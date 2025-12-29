@@ -139,15 +139,78 @@ body {
   box-shadow: 0 10px 26px rgba(13, 27, 30, 0.14);
 }
 
+.brand--hero {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.brand__identity {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  padding: 14px;
+  background: linear-gradient(135deg, rgba(25, 133, 149, 0.08), rgba(194, 198, 104, 0.12));
+  border: 1px solid rgba(25, 133, 149, 0.14);
+  border-radius: 18px;
+  box-shadow: 0 10px 26px rgba(13, 27, 30, 0.08);
+}
+
+.brand__mark {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 10px 12px;
+  border: 1px solid rgba(25, 133, 149, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand__wordmark {
+  width: clamp(260px, 42vw, 380px);
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.brand__accent {
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, var(--accent) 0%, rgba(194, 198, 104, 0.2) 60%, rgba(25, 133, 149, 0.16) 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(194, 198, 104, 0.2);
+  box-shadow: inset 0 0 0 1px rgba(25, 133, 149, 0.08);
+}
+
+.brand__copy {
+  display: grid;
+  gap: 4px;
+  align-items: flex-start;
+  color: #2d4c54;
+}
+
+.brand__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  font-size: 12px;
+  color: #2d4c54;
+  margin: 0;
+}
+
 .nav .brand__logo {
   width: clamp(240px, 40vw, 300px);
   height: auto;
 }
 
 .nav .brand {
-  flex-direction: column;
-  align-items: stretch;
-  gap: 12px;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
 }
 
 .nav .brand__visuals {
@@ -159,7 +222,7 @@ body {
 }
 
 .nav .brand > div {
-  text-align: center;
+  text-align: left;
 }
 
 .brand__name {
@@ -1246,19 +1309,18 @@ body {
     padding: 14px 14px 16px;
   }
 
-  .nav .brand__logo {
-    width: 192px;
-    height: 192px;
+  .brand--hero {
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
 
-  .brand__visuals {
-    flex-wrap: wrap;
-    justify-content: center;
+  .brand__identity {
+    width: 100%;
   }
 
-  .brand__companion-image {
-    margin-left: 0;
-    width: clamp(180px, 64vw, 240px);
+  .brand__accent {
+    width: 56px;
+    height: 56px;
   }
 
   .hero {
