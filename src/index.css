@@ -118,7 +118,7 @@ body {
   display: flex;
   align-items: center;
   gap: 16px;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: nowrap;
   width: 100%;
 }
@@ -130,7 +130,8 @@ body {
 }
 
 .brand__companion-image {
-  width: clamp(150px, 30vw, 210px);
+  margin-left: auto;
+  width: clamp(200px, 36vw, 320px);
   aspect-ratio: 4 / 5;
   object-fit: cover;
   border-radius: 14px;
@@ -154,7 +155,7 @@ body {
 }
 
 .nav .brand__companion-image {
-  width: clamp(210px, 42vw, 280px);
+  width: clamp(240px, 48vw, 360px);
 }
 
 .nav .brand > div {
@@ -1219,7 +1220,8 @@ body {
   }
 
   .brand__companion-image {
-    width: clamp(150px, 60vw, 200px);
+    margin-left: 0;
+    width: clamp(180px, 64vw, 240px);
   }
 
   .hero {
