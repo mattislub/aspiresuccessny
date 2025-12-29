@@ -29,6 +29,23 @@ import {
 } from 'react-icons/fa'
 import logo from './assets/logo.png'
 import sectionDividerImage from './assets/Aspire-2.jpg'
+import sectionDividerBrightImage from './assets/Aspire.png'
+import sectionDividerWarmImage from './assets/Aspire.jpg'
+
+const sectionDividerVariants = {
+  cool: {
+    images: [sectionDividerImage, sectionDividerBrightImage, sectionDividerWarmImage],
+    className: 'section-divider--cool',
+  },
+  bright: {
+    images: [sectionDividerBrightImage, sectionDividerImage, sectionDividerWarmImage],
+    className: 'section-divider--bright',
+  },
+  warm: {
+    images: [sectionDividerWarmImage, sectionDividerBrightImage, sectionDividerImage],
+    className: 'section-divider--warm',
+  },
+}
 
 const values = ['Compassion', 'Integrity', 'Results-Driven', 'Advocacy']
 
@@ -94,13 +111,17 @@ const applicationRoutes = {
   support: '/support-assistance-registration',
 }
 
-const SectionDivider = () => (
-  <div className="section-divider" aria-hidden="true">
-    {[...Array(3)].map((_, index) => (
-      <img key={index} src={sectionDividerImage} alt="" className="section-divider__image" />
-    ))}
-  </div>
-)
+const SectionDivider = ({ variant = 'cool' }) => {
+  const dividerVariant = sectionDividerVariants[variant] || sectionDividerVariants.cool
+
+  return (
+    <div className={`section-divider ${dividerVariant.className}`} aria-hidden="true">
+      {dividerVariant.images.map((image, index) => (
+        <img key={`${variant}-${index}`} src={image} alt="" className="section-divider__image" />
+      ))}
+    </div>
+  )
+}
 
 const footerContact = {
   phone: {
@@ -1259,7 +1280,7 @@ function App() {
           </div>
         </section>
 
-        <SectionDivider />
+        <SectionDivider variant="cool" />
 
         <section className="section section--muted" id="about">
           <div className="section__header">
@@ -1292,7 +1313,7 @@ function App() {
           </div>
         </section>
 
-        <SectionDivider />
+        <SectionDivider variant="bright" />
 
         <section className="section" id="services">
           <div className="section__header">
@@ -1329,7 +1350,7 @@ function App() {
           </div>
         </section>
 
-        <SectionDivider />
+        <SectionDivider variant="warm" />
 
         <section className="section section--muted" id="testimonials">
           <div className="section__header">
