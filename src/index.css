@@ -249,6 +249,13 @@ body {
   border: none;
 }
 
+.pill--soft {
+  background: rgba(25, 133, 149, 0.12);
+  color: var(--primary-dark);
+  border: 1px solid rgba(25, 133, 149, 0.24);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
 .pill__icon {
   color: var(--accent);
   font-size: calc(13px * var(--icon-scale));
@@ -517,6 +524,111 @@ body {
 .card p {
   color: #35565e;
   margin: 0;
+}
+
+.visual-section {
+  margin-top: 42px;
+}
+
+.image-showcase {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.image-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  background: white;
+  border: 1px solid rgba(25, 133, 149, 0.16);
+  box-shadow: 0 16px 38px rgba(13, 27, 30, 0.08);
+  aspect-ratio: 4 / 3;
+  margin: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.image-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 52px rgba(13, 27, 30, 0.12);
+}
+
+.image-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.image-card__caption {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 12px;
+  background: rgba(13, 27, 30, 0.74);
+  color: #f6fbfb;
+  padding: 10px 12px;
+  border-radius: 12px;
+  display: grid;
+  gap: 6px;
+  box-shadow: 0 8px 28px rgba(13, 27, 30, 0.2);
+}
+
+.image-card__caption p {
+  margin: 0;
+  color: #e6f2f3;
+}
+
+.image-card--portrait {
+  aspect-ratio: 3 / 4;
+}
+
+.image-card--wide {
+  aspect-ratio: 16 / 9;
+}
+
+.image-card--tilt {
+  aspect-ratio: 5 / 4;
+  transform: rotate(-2.5deg);
+}
+
+.image-card--tilt:hover {
+  transform: rotate(-1deg) translateY(-6px);
+}
+
+.image-card--circle {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, rgba(25, 133, 149, 0.12), rgba(194, 198, 104, 0.14));
+  padding: 18px;
+}
+
+.image-card--circle .image-card__img {
+  width: 78%;
+  height: 78%;
+  border-radius: 999px;
+  border: 4px solid #f6fbfb;
+  box-shadow: 0 12px 26px rgba(13, 27, 30, 0.16);
+}
+
+.image-card--circle .image-card__caption {
+  position: static;
+  background: none;
+  box-shadow: none;
+  color: #2c4a50;
+  text-align: center;
+  margin-top: 12px;
+}
+
+.image-card--circle .image-card__caption p {
+  color: #2c4a50;
+}
+
+.image-card--circle .pill--soft {
+  justify-content: center;
+  background: #f6fbfb;
 }
 
 .card__link {
