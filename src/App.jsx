@@ -30,6 +30,9 @@ import {
 import logo from './assets/logo.png'
 import sectionDividerImage from './assets/Aspire-2.jpg'
 
+const supportSectionImage =
+  'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=80'
+
 const values = ['Compassion', 'Integrity', 'Results-Driven', 'Advocacy']
 
 const teamMembers = [
@@ -1218,28 +1221,57 @@ function App() {
               </button>
             </div>
           </div>
-          <div className="hero__card">
-            <h3>Support at every step</h3>
-            <ul className="hero-list">
-              <li className="hero-list__item">
-                <FaCheckCircle className="hero-list__icon" aria-hidden="true" />
-                <span>Dedicated care managers who listen and guide.</span>
-              </li>
-              <li className="hero-list__item">
-                <FaCheckCircle className="hero-list__icon" aria-hidden="true" />
-                <span>Clear pathways to resources and funding.</span>
-              </li>
-              <li className="hero-list__item">
-                <FaCheckCircle className="hero-list__icon" aria-hidden="true" />
-                <span>Trusted specialists tailored to your goals.</span>
-              </li>
-            </ul>
-            <div className="pill">Aligned with your vision of success</div>
-          </div>
         </div>
       </header>
 
       <main>
+        <section className="section support-section" id="support">
+          <div className="support-section__inner">
+            <div className="support-section__text">
+              <p className="eyebrow eyebrow--with-icon">
+                <FaSeedling className="eyebrow__icon" aria-hidden="true" />
+                Support at every step
+              </p>
+              <h2>We stay by your side with guidance, resources, and advocacy.</h2>
+              <p className="section__lead section__lead--muted">
+                From the first conversation to every milestone, our team simplifies complex systems, connects you
+                with care, and celebrates progress alongside you.
+              </p>
+              <ul className="support-list">
+                <li className="support-list__item">
+                  <FaCheckCircle className="support-list__icon" aria-hidden="true" />
+                  <div>
+                    <p className="support-list__title">Personal care navigation</p>
+                    <p className="support-list__copy">Dedicated managers who listen, coordinate, and remove roadblocks.</p>
+                  </div>
+                </li>
+                <li className="support-list__item">
+                  <FaCheckCircle className="support-list__icon" aria-hidden="true" />
+                  <div>
+                    <p className="support-list__title">Clarity on next steps</p>
+                    <p className="support-list__copy">Straightforward pathways to services, funding, and community resources.</p>
+                  </div>
+                </li>
+                <li className="support-list__item">
+                  <FaCheckCircle className="support-list__icon" aria-hidden="true" />
+                  <div>
+                    <p className="support-list__title">Specialists who fit you</p>
+                    <p className="support-list__copy">Trusted providers matched to your goals, preferences, and pace.</p>
+                  </div>
+                </li>
+              </ul>
+              <div className="pill support-pill">Aligned with your vision of success</div>
+            </div>
+            <div className="support-section__image-wrapper">
+              <img
+                src={supportSectionImage}
+                alt="Care manager offering guidance and support"
+                className="support-section__image"
+              />
+            </div>
+          </div>
+        </section>
+
         <section className="section" id="consultation">
           <div className="section__header">
             <p className="eyebrow eyebrow--with-icon">
