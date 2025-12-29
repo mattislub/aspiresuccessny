@@ -26,9 +26,17 @@ import {
   FaShieldAlt,
   FaUserCog,
   FaUserCheck,
+  FaFeatherAlt,
+  FaColumns,
+  FaCompass as FaMinimalCompass,
+  FaCommentAlt,
+  FaChartLine,
 } from 'react-icons/fa'
 import logo from './assets/logo.png'
 import sectionDividerImage from './assets/Aspire-2.jpg'
+import serenePortrait from './assets/Aspire.jpg'
+import collaborationPose from './assets/Aspire.png'
+import calmSteps from './assets/Aspire-2.jpg'
 
 const values = ['Compassion', 'Integrity', 'Results-Driven', 'Advocacy']
 
@@ -101,6 +109,40 @@ const SectionDivider = () => (
     ))}
   </div>
 )
+
+const VisualBreak = ({ visual }) => (
+  <div className="visual-break" aria-hidden="true">
+    <div className="visual-break__icon">
+      <visual.icon aria-hidden="true" />
+    </div>
+    <img src={visual.image} alt={visual.alt} className={`visual-break__image visual-break__image--${visual.align}`} />
+    <div className="visual-break__label">{visual.label}</div>
+  </div>
+)
+
+const visualMoments = [
+  {
+    label: 'Quiet confidence',
+    image: serenePortrait,
+    alt: 'Calm portrait representing peaceful support',
+    icon: FaFeatherAlt,
+    align: 'left',
+  },
+  {
+    label: 'Collaboration in motion',
+    image: collaborationPose,
+    alt: 'Two people collaborating in a modern workspace',
+    icon: FaColumns,
+    align: 'right',
+  },
+  {
+    label: 'Guided steps',
+    image: calmSteps,
+    alt: 'Walkway showing a calm, steady path forward',
+    icon: FaMinimalCompass,
+    align: 'center',
+  },
+]
 
 const footerContact = {
   phone: {
@@ -1188,8 +1230,8 @@ function App() {
   }
 
   return (
-    <div className="page">
-      <header className="hero">
+    <div className="page page--home">
+      <header className="hero hero--minimal">
         <NavigationLinksBar
           onNavigateHome={handleNavigateHome}
           onNavigate={handleNavigate}
@@ -1198,124 +1240,148 @@ function App() {
         />
         <BrandNav onNavigate={handleNavigate} />
 
-        <div className="hero__content">
+        <div className="hero__content hero__content--split">
           <div className="hero__text">
             <p className="eyebrow eyebrow--with-icon">
-              <FaCompass className="eyebrow__icon" aria-hidden="true" />
-              Welcome &amp; Overview
+              <FaMinimalCompass className="eyebrow__icon" aria-hidden="true" />
+              Aspire Success NY
             </p>
-            <h1>Your Partner in Navigating Emotional, Cognitive, &amp; Behavioral Growth.</h1>
+            <h1>דף הבית חדש: שקט, מסודר ומזמין</h1>
             <p className="subhead">
-              We simplify the path to success for children, teens, and adults by connecting you with the right
-              care and resources.
+              מסלול ליווי בהיר למשפחות, בני נוער ומבוגרים. שירותים, מקורות ואנשי מקצוע – כולם מסודרים במרחק נגיעה.
             </p>
-            <div className="hero__actions">
-              <a className="cta" href="#consultation">
-                Start Your Free Consultation
+            <div className="hero__actions hero__actions--stacked">
+              <a className="cta" href="#services">
+                גלו את השירותים
               </a>
               <button className="link link--button" type="button" onClick={() => setIsServicesModalOpen(true)}>
-                Explore our services
+                תצוגה מהירה של כל השירותים
               </button>
             </div>
           </div>
-          <div className="hero__card">
-            <h3>Support at every step</h3>
-            <ul className="hero-list">
+          <div className="hero__card hero__card--minimal">
+            <h3>מערכת יחסים נקייה וברורה</h3>
+            <ul className="hero-list hero-list--minimal">
               <li className="hero-list__item">
                 <FaCheckCircle className="hero-list__icon" aria-hidden="true" />
-                <span>Dedicated care managers who listen and guide.</span>
+                <span>קבלת החלטות פשוטה, עם מסלול אחד ברור.</span>
               </li>
               <li className="hero-list__item">
                 <FaCheckCircle className="hero-list__icon" aria-hidden="true" />
-                <span>Clear pathways to resources and funding.</span>
+                <span>שפה רגועה, עיצוב מרווח, ריכוז במהות.</span>
               </li>
               <li className="hero-list__item">
                 <FaCheckCircle className="hero-list__icon" aria-hidden="true" />
-                <span>Trusted specialists tailored to your goals.</span>
+                <span>שירותים ומומחים מסודרים לפי הצורך שלכם.</span>
               </li>
             </ul>
-            <div className="pill">Aligned with your vision of success</div>
           </div>
         </div>
       </header>
 
       <main>
-        <section className="section" id="consultation">
+        <section className="section section--grid" id="consultation">
           <div className="section__header">
             <p className="eyebrow eyebrow--with-icon">
               <FaGlobeAmericas className="eyebrow__icon" aria-hidden="true" />
-              Who We Help
+              מי אנחנו משרתים
             </p>
-            <h2>Care designed for children, teens, and adults.</h2>
+            <h2>כל שלב בחיים מקבל שקט וסדר.</h2>
             <p className="section__lead">
-              Whether you are navigating emotional, cognitive, or behavioral challenges, we deliver guidance and
-              advocacy that meets you where you are.
+              התאמה מרווחת ומוקפדת לילדים, בני נוער ומבוגרים – כל אחד במסלול משלו עם מקום לנשימה.
             </p>
           </div>
-          <div className="pill-grid">
-            <div className="pill-card">Children</div>
-            <div className="pill-card">Teens</div>
-            <div className="pill-card">Adults</div>
+          <div className="pill-grid pill-grid--clean">
+            <div className="pill-card pill-card--clean">
+              <FaFeatherAlt aria-hidden="true" className="pill-card__icon" />
+              <div>
+                <h3>ילדים</h3>
+                <p>מסגרות תומכות, קצב רך וביטחון להורים.</p>
+              </div>
+            </div>
+            <div className="pill-card pill-card--clean">
+              <FaLightbulb aria-hidden="true" className="pill-card__icon" />
+              <div>
+                <h3>בני נוער</h3>
+                <p>הכוונה מעשית, צמיחה עם גב מקצועי ומרחב אישי.</p>
+              </div>
+            </div>
+            <div className="pill-card pill-card--clean">
+              <FaHandshake aria-hidden="true" className="pill-card__icon" />
+              <div>
+                <h3>מבוגרים</h3>
+                <p>ניהול תהליכים, זכויות ומשאבים ללא עומס.</p>
+              </div>
+            </div>
           </div>
         </section>
 
-        <SectionDivider />
+        <VisualBreak visual={visualMoments[0]} />
 
-        <section className="section section--muted" id="about">
+        <section className="section section--columns" id="about">
           <div className="section__header">
             <p className="eyebrow eyebrow--with-icon">
               <FaSeedling className="eyebrow__icon" aria-hidden="true" />
-              About Us
+              מי אנחנו
             </p>
-            <h2>Grounded in mission, guided by advocacy.</h2>
+            <h2>עיצוב נקי שמבליט את הסיפור שלכם.</h2>
             <p className="section__lead">
-              Learn why Aspire Success NY was founded, the values that drive our work, and the team committed to your
-              success.
+              אספנו את כל מה שנחוץ – חזון, ערכים וצוות – בעימוד מרווח ונקי שמוביל לתוכן החשוב באמת.
             </p>
           </div>
-          <div className="about-preview">
-            <div>
-              <div className="pill">Our Mission</div>
+          <div className="about-preview about-preview--minimal">
+            <div className="about-preview__card">
+              <div className="pill pill--outline">המשימה</div>
+              <h3>לייצר סדר בהזדמנויות</h3>
               <p>
-                To empower individuals facing emotional, cognitive, and behavioral challenges by providing clear
-                direction, expert care coordination, and access to essential resources.
+                כיוונון ברור של משאבים, מומחים ותוכניות ממשלתיות, כדי שכל משפחה תדע מה קורה ומתי.
               </p>
             </div>
-            <div className="about-preview__actions">
-              <a className="cta" href="/about" onClick={(event) => handleNavigate(event, '/about')}>
-                Explore our story
-              </a>
-              <a className="cta cta--ghost" href="#contact">
-                Talk with us
-              </a>
+            <div className="about-preview__card">
+              <div className="pill pill--outline">ערכים</div>
+              <h3>חמלה, שקיפות ותוצאות</h3>
+              <p>הקשבה אמיתית, דיווח פתוח ושימת לב לפעולות שמייצרות התקדמות.</p>
             </div>
+            <div className="about-preview__card">
+              <div className="pill pill--outline">הצוות</div>
+              <h3>שותפים לדרך</h3>
+              <p>מתאמים, מומחי קהילה ומגייסי אנשי מקצוע – כולם מסודרים תחת קורת גג אחת.</p>
+            </div>
+          </div>
+          <div className="about-preview__actions about-preview__actions--minimal">
+            <a className="cta" href="/about" onClick={(event) => handleNavigate(event, '/about')}>
+              להכיר אותנו
+            </a>
+            <a className="cta cta--ghost" href="#contact">
+              לתאם שיחה רגועה
+            </a>
           </div>
         </section>
 
-        <SectionDivider />
+        <VisualBreak visual={visualMoments[1]} />
 
-        <section className="section" id="services">
+        <section className="section section--muted section--grid-tight" id="services">
           <div className="section__header">
             <p className="eyebrow eyebrow--with-icon">
               <FaUserCheck className="eyebrow__icon" aria-hidden="true" />
-              Our Core Services
+              השירותים שלנו
             </p>
-            <h2>Quick snapshot of how we serve you.</h2>
-            <p className="section__lead">Discover the guidance, access, and expert support that simplify your next steps.</p>
+            <h2>סידור ברור של שירותים – כל אחד בקטע משלו.</h2>
+            <p className="section__lead">הכל מופרד, מרווח ומסומן באייקון כדי שתמצאו מהר את מה שמתאים.</p>
           </div>
-          <div className="card-grid">
+          <div className="card-grid card-grid--airy">
             {services.map((service) => (
               <a
                 key={service.title}
-                className="card"
+                className="card card--clean"
                 href={service.link}
                 onClick={(event) => {
                   event.preventDefault()
                   navigate(service.link)
                 }}
               >
-                <div className="card__title">
-                  <div className="card__icon" aria-hidden="true">
+                <div className="card__title card__title--clean">
+                  <div className="card__icon card__icon--clean" aria-hidden="true">
                     <service.icon />
                   </div>
                   <div>
@@ -1323,24 +1389,41 @@ function App() {
                     <p>{service.description}</p>
                   </div>
                 </div>
-                <span className="card__link">Learn more →</span>
+                <span className="card__link">למידע נוסף →</span>
               </a>
             ))}
           </div>
+          <div className="services-summary">
+            <div className="services-summary__item">
+              <FaClipboardList aria-hidden="true" />
+              <p>מיפוי תהליך חד וברור.</p>
+            </div>
+            <div className="services-summary__item">
+              <FaHandsHelping aria-hidden="true" />
+              <p>ליווי יד ביד לכל שלב.</p>
+            </div>
+            <div className="services-summary__item">
+              <FaChartLine aria-hidden="true" />
+              <p>מעקב תוצאות ללא רעש.</p>
+            </div>
+          </div>
         </section>
 
-        <SectionDivider />
+        <VisualBreak visual={visualMoments[2]} />
 
-        <section className="section section--muted" id="testimonials">
+        <section className="section section--columns" id="testimonials">
           <div className="section__header">
-            <p className="eyebrow">Testimonials</p>
-            <h2>Stories of confidence and progress.</h2>
-            <p className="section__lead">Real voices from families and individuals we have supported.</p>
+            <p className="eyebrow eyebrow--with-icon">
+              <FaCommentAlt className="eyebrow__icon" aria-hidden="true" />
+              סיפורים מהדרך
+            </p>
+            <h2>משובים מסודרים, כל אחד בנשימה.</h2>
+            <p className="section__lead">הצגנו כל ציטוט כיחידה מרווחת, כדי לתת מקום לקול הלקוח.</p>
           </div>
-          <div className="testimonial">
+          <div className="testimonial testimonial--clean">
             <p className="testimonial__quote">“{testimonials[activeTestimonial].quote}”</p>
             <p className="testimonial__name">{testimonials[activeTestimonial].name}</p>
-            <div className="dots">
+            <div className="dots dots--clean">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
