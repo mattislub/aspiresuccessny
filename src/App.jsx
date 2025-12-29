@@ -33,6 +33,8 @@ import sectionDividerImage from './assets/Aspire-2.jpg'
 const supportSectionImage =
   'https://images.pexels.com/photos/8525001/pexels-photo-8525001.jpeg'
 
+const bridgeSectionImage = 'https://images.pexels.com/photos/12263251/pexels-photo-12263251.jpeg'
+
 const values = ['Compassion', 'Integrity', 'Results-Driven', 'Advocacy']
 
 const teamMembers = [
@@ -1274,6 +1276,22 @@ function App() {
             <div className="pill-card">Adults</div>
           </div>
         </section>
+
+        <div className="midpage-image-card" aria-labelledby="midpage-image-heading">
+          <div>
+            <p className="eyebrow">Guidance with heart</p>
+            <h3 id="midpage-image-heading">Real partnership in every season of growth</h3>
+            <p className="section__lead">Support that meets you where you are, with care that feels human.</p>
+          </div>
+          <div className="midpage-image-card__frame">
+            <img
+              src={bridgeSectionImage}
+              alt="Caregiver walking hand-in-hand with a young person outdoors"
+              className="midpage-image-card__image"
+              loading="lazy"
+            />
+          </div>
+        </div>
 
         <SectionDivider />
 
