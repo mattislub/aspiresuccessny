@@ -31,7 +31,7 @@ import logo from './assets/logo.png'
 import sectionDividerImage from './assets/Aspire-2.jpg'
 
 const supportSectionImage =
-  'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80'
+  'https://images.pexels.com/photos/8525001/pexels-photo-8525001.jpeg'
 
 const values = ['Compassion', 'Integrity', 'Results-Driven', 'Advocacy']
 
