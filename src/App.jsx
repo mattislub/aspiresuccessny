@@ -172,17 +172,17 @@ const NavigationLinksBar = ({ onNavigateHome, onNavigate, onNavigateContact, onO
 const BrandNav = ({ onNavigate }) => {
   return (
     <nav className="nav">
-      <div className="brand">
-        <div className="brand__visuals">
-          <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-          <img
-            src="https://images.pexels.com/photos/8550834/pexels-photo-8550834.jpeg"
-            alt="Caregiver supporting a smiling child outdoors"
-            className="brand__companion-image"
-          />
+      <div className="brand brand--hero">
+        <div className="brand__identity">
+          <div className="brand__mark">
+            <img src={logo} alt="Aspire Success NY logo" className="brand__wordmark" />
+          </div>
+          <div className="brand__accent" aria-hidden="true" />
         </div>
-        <div>
+        <div className="brand__copy">
+          <p className="brand__eyebrow">Care management & advocacy</p>
           <p className="brand__name">Aspire Success NY</p>
+          <p className="brand__tagline">Guidance for every stage</p>
         </div>
       </div>
     </nav>
