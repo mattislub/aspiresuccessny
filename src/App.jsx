@@ -31,7 +31,6 @@ import logo from './assets/logo.png'
 import sectionDividerImage from './assets/Aspire-2.jpg'
 
 const values = ['Compassion', 'Integrity', 'Results-Driven', 'Advocacy']
-const brandAccentImage = 'https://images.pexels.com/photos/793766/pexels-photo-793766.jpeg?auto=compress&cs=tinysrgb&w=400'
 
 const teamMembers = [
   {
@@ -171,10 +170,7 @@ const BrandNav = ({ onNavigate }) => {
   return (
     <nav className="nav">
       <div className="brand">
-        <div className="brand__mark">
-          <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
-          <img src={brandAccentImage} alt="Water drop accent from Pexels" className="brand__accent-drop" />
-        </div>
+        <img src={logo} alt="Aspire Success NY logo" className="brand__logo" />
         <div>
           <p className="brand__name">Aspire Success NY</p>
         </div>
@@ -218,10 +214,7 @@ const Footer = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServicesM
       <div className="footer__inner">
         <div className="footer__brand-block">
           <div className="brand brand--footer">
-            <div className="brand__mark">
-              <img src={logo} alt="Aspire Success NY logo" className="brand__logo brand__logo--footer" />
-              <img src={brandAccentImage} alt="Water drop accent from Pexels" className="brand__accent-drop brand__accent-drop--footer" />
-            </div>
+            <img src={logo} alt="Aspire Success NY logo" className="brand__logo brand__logo--footer" />
             <div>
               <p className="brand__name">Aspire Success NY</p>
               <p className="brand__tagline">Your guide to meaningful growth</p>
