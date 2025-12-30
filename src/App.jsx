@@ -35,6 +35,8 @@ const supportSectionImage =
 
 const bridgeSectionImage = 'https://images.pexels.com/photos/12263251/pexels-photo-12263251.jpeg'
 
+const welcomeSectionImage = 'https://images.pexels.com/photos/7265147/pexels-photo-7265147.jpeg'
+
 const aboutSectionImage = 'https://images.pexels.com/photos/6716014/pexels-photo-6716014.jpeg'
 
 const servicesSectionImage = 'https://images.pexels.com/photos/8654039/pexels-photo-8654039.jpeg'
@@ -1211,6 +1213,16 @@ function App() {
               <button className="link link--button" type="button" onClick={() => setIsServicesModalOpen(true)}>
                 Explore our services
               </button>
+            </div>
+          </div>
+          <div className="hero__visual" aria-hidden="true">
+            <div className="hero__image-frame">
+              <img
+                src={welcomeSectionImage}
+                alt="Caregiver supporting a child"
+                className="hero__image"
+                loading="lazy"
+              />
             </div>
           </div>
         </div>
