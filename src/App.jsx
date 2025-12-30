@@ -1262,22 +1262,27 @@ function App() {
           </div>
         </section>
 
-        <section className="section" id="consultation">
-          <div className="section__header">
-            <p className="eyebrow eyebrow--with-icon">
-              <FaGlobeAmericas className="eyebrow__icon" aria-hidden="true" />
-              Who We Help
-            </p>
-            <h2>Care designed for children, teens, and adults.</h2>
-            <p className="section__lead">
-              Whether you are navigating emotional, cognitive, or behavioral challenges, we deliver guidance and
-              advocacy that meets you where you are.
-            </p>
-          </div>
-          <div className="pill-grid">
-            <div className="pill-card">Children</div>
-            <div className="pill-card">Teens</div>
-            <div className="pill-card">Adults</div>
+        <section className="section section--split" id="consultation">
+          <div className="section__split">
+            <div className="section__split-content">
+              <div className="section__header">
+                <p className="eyebrow eyebrow--with-icon">
+                  <FaGlobeAmericas className="eyebrow__icon" aria-hidden="true" />
+                  Who We Help
+                </p>
+                <h2>Care designed for children, teens, and adults.</h2>
+                <p className="section__lead">
+                  Whether you are navigating emotional, cognitive, or behavioral challenges, we deliver guidance and
+                  advocacy that meets you where you are.
+                </p>
+              </div>
+              <div className="pill-grid">
+                <div className="pill-card">Children</div>
+                <div className="pill-card">Teens</div>
+                <div className="pill-card">Adults</div>
+              </div>
+            </div>
+            <div className="section__split-blank" aria-hidden="true" />
           </div>
         </section>
 
