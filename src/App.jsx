@@ -1192,15 +1192,17 @@ function App() {
         <BrandNav onNavigate={handleNavigate} />
 
         <div className="hero__content">
-          <div className="hero__text">
-            <p className="eyebrow eyebrow--with-icon">
-              <FaCompass className="eyebrow__icon" aria-hidden="true" />
-              Welcome &amp; Overview
-            </p>
-            <h1>Your Partner in Navigating Emotional, Cognitive, &amp; Behavioral Growth.</h1>
-            <p className="subhead">
-              We simplify the path to success for children, teens, and adults by connecting you with the right
-              care and resources.
+          <div className="hero__panel">
+            <div className="hero__eyebrow-wrap">
+              <p className="eyebrow eyebrow--with-icon hero__eyebrow">
+                <FaCompass className="eyebrow__icon" aria-hidden="true" />
+                Welcome &amp; Overview
+              </p>
+            </div>
+            <h1 className="hero__headline">Your Partner in Navigating Emotional, Cognitive, &amp; Behavioral Growth.</h1>
+            <p className="subhead hero__lead">
+              We simplify the path to success for children, teens, and adults by connecting you with the right care and
+              resources.
             </p>
             <div className="hero__actions">
               <a className="cta" href="#consultation">
