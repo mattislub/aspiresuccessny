@@ -1331,6 +1331,16 @@ function App() {
             </p>
           </div>
           <div className="about-preview">
+            <div className="about-preview__media">
+              <div className="about-preview__image-frame">
+                <img
+                  src={aboutSectionImage}
+                  alt="Care manager supporting a child in a colorful learning space"
+                  className="about-preview__image"
+                  loading="lazy"
+                />
+              </div>
+            </div>
             <div className="about-preview__copy">
               <div className="pill">Our Mission</div>
               <p>
@@ -1344,16 +1354,6 @@ function App() {
                 <a className="cta cta--ghost" href="#contact">
                   Talk with us
                 </a>
-              </div>
-            </div>
-            <div className="about-preview__media">
-              <div className="about-preview__image-frame">
-                <img
-                  src={aboutSectionImage}
-                  alt="Care manager supporting a child in a colorful learning space"
-                  className="about-preview__image"
-                  loading="lazy"
-                />
               </div>
             </div>
           </div>
