@@ -45,8 +45,7 @@ body {
 
 .hero {
   padding: 24px 24px 64px;
-  background: #fff;
-  border-bottom: 2px solid rgba(25, 133, 149, 0.12);
+  background: transparent;
 }
 
 .nav-links-bar {
@@ -271,11 +270,11 @@ body {
 }
 
 .hero__panel {
-  background: #fff;
-  border: 1px solid rgba(25, 133, 149, 0.12);
+  background: transparent;
+  border: none;
   border-radius: 24px;
   padding: clamp(28px, 6vw, 48px);
-  box-shadow: 0 24px 70px rgba(13, 27, 30, 0.12);
+  box-shadow: none;
   text-align: center;
   display: grid;
   gap: 18px;
