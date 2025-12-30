@@ -1215,6 +1215,15 @@ function App() {
       <main>
         <section className="section support-section" id="support">
           <div className="support-section__inner">
+            <div className="support-section__image-wrapper">
+              <div className="support-section__image-frame">
+                <img
+                  src={supportSectionImage}
+                  alt="Children receiving supportive guidance together"
+                  className="support-section__image"
+                />
+              </div>
+            </div>
             <div className="support-section__text">
               <p className="eyebrow eyebrow--with-icon">
                 <FaSeedling className="eyebrow__icon" aria-hidden="true" />
@@ -1249,15 +1258,6 @@ function App() {
                 </li>
               </ul>
               <div className="pill support-pill">Aligned with your vision of success</div>
-            </div>
-            <div className="support-section__image-wrapper">
-              <div className="support-section__image-frame">
-                <img
-                  src={supportSectionImage}
-                  alt="Children receiving supportive guidance together"
-                  className="support-section__image"
-                />
-              </div>
             </div>
           </div>
         </section>
