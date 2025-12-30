@@ -98,10 +98,10 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   padding: 16px 20px;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(25, 133, 149, 0.14);
-  border-radius: 16px;
+  background: transparent;
+  backdrop-filter: none;
+  border: none;
+  border-radius: 0;
   max-width: 1080px;
   margin: 0 auto 36px;
   gap: 16px;
@@ -152,10 +152,10 @@ body {
   align-items: stretch;
   gap: 10px;
   padding: 14px;
-  background: linear-gradient(135deg, rgba(25, 133, 149, 0.08), rgba(194, 198, 104, 0.12));
-  border: 1px solid rgba(25, 133, 149, 0.14);
-  border-radius: 18px;
-  box-shadow: 0 10px 26px rgba(13, 27, 30, 0.08);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .brand__mark {
