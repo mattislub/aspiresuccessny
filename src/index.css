@@ -597,6 +597,62 @@ body {
   gap: 18px;
 }
 
+.services-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 320px) 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.services-visual {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.services-visual__backdrop {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, rgba(25, 133, 149, 0.18), rgba(194, 198, 104, 0.22));
+  border-radius: 22px;
+  transform: rotate(-2deg);
+  filter: drop-shadow(0 12px 30px rgba(13, 27, 30, 0.12));
+}
+
+.services-visual__frame {
+  position: relative;
+  padding: 12px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(25, 133, 149, 0.18);
+  transform: rotate(4deg);
+  box-shadow: 0 12px 38px rgba(13, 27, 30, 0.1);
+}
+
+.services-visual__image {
+  width: 100%;
+  display: block;
+  border-radius: 14px;
+  border: 3px solid rgba(13, 27, 30, 0.35);
+  object-fit: cover;
+  aspect-ratio: 5 / 6;
+}
+
+@media (max-width: 720px) {
+  .services-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .services-visual {
+    order: -1;
+  }
+
+  .services-visual__frame {
+    transform: rotate(3deg);
+  }
+}
+
 .card {
   background: white;
   border: 1px solid rgba(25, 133, 149, 0.16);

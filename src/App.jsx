@@ -37,6 +37,8 @@ const bridgeSectionImage = 'https://images.pexels.com/photos/12263251/pexels-pho
 
 const aboutSectionImage = 'https://images.pexels.com/photos/6716014/pexels-photo-6716014.jpeg'
 
+const servicesSectionImage = 'https://images.pexels.com/photos/8654039/pexels-photo-8654039.jpeg'
+
 const values = ['Compassion', 'Integrity', 'Results-Driven', 'Advocacy']
 
 const teamMembers = [
@@ -1349,29 +1351,42 @@ function App() {
             <h2>Quick snapshot of how we serve you.</h2>
             <p className="section__lead">Discover the guidance, access, and expert support that simplify your next steps.</p>
           </div>
-          <div className="card-grid">
-            {services.map((service) => (
-              <a
-                key={service.title}
-                className="card"
-                href={service.link}
-                onClick={(event) => {
-                  event.preventDefault()
-                  navigate(service.link)
-                }}
-              >
-                <div className="card__title">
-                  <div className="card__icon" aria-hidden="true">
-                    <service.icon />
+          <div className="services-layout">
+            <div className="services-visual" aria-hidden="true">
+              <div className="services-visual__backdrop" />
+              <div className="services-visual__frame">
+                <img
+                  src={servicesSectionImage}
+                  alt="Smiling family meeting with a care manager"
+                  className="services-visual__image"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <div className="card-grid">
+              {services.map((service) => (
+                <a
+                  key={service.title}
+                  className="card"
+                  href={service.link}
+                  onClick={(event) => {
+                    event.preventDefault()
+                    navigate(service.link)
+                  }}
+                >
+                  <div className="card__title">
+                    <div className="card__icon" aria-hidden="true">
+                      <service.icon />
+                    </div>
+                    <div>
+                      <h3>{service.title}</h3>
+                      <p>{service.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3>{service.title}</h3>
-                    <p>{service.description}</p>
-                  </div>
-                </div>
-                <span className="card__link">Learn more →</span>
-              </a>
-            ))}
+                  <span className="card__link">Learn more →</span>
+                </a>
+              ))}
+            </div>
           </div>
         </section>
 
