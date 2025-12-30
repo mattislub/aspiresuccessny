@@ -1315,7 +1315,7 @@ function App() {
           </div>
         </section>
 
-        <section className="section section--split" id="consultation">
+        <section className="section section--split section--who-we-help" id="consultation">
           <div className="section__split">
             <div className="section__split-content">
               <div className="section__header">
