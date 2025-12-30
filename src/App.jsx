@@ -37,6 +37,8 @@ const bridgeSectionImage = 'https://images.pexels.com/photos/12263251/pexels-pho
 
 const welcomeSectionImage = 'https://images.pexels.com/photos/7265147/pexels-photo-7265147.jpeg'
 
+const aboutConversationImage = 'https://images.pexels.com/photos/8674832/pexels-photo-8674832.jpeg'
+
 const aboutSectionImage = 'https://images.pexels.com/photos/6716014/pexels-photo-6716014.jpeg'
 
 const servicesSectionImage = 'https://images.pexels.com/photos/8654039/pexels-photo-8654039.jpeg'
@@ -522,6 +524,28 @@ const AboutPage = ({ onNavigateHome, onNavigate, onNavigateContact, onOpenServic
       </header>
 
       <main className="service-content about">
+        <section className="section about-intro">
+          <div className="about-intro__copy">
+            <p className="eyebrow eyebrow--with-icon">
+              <FaHandshake className="eyebrow__icon" aria-hidden="true" />
+              Here to listen first
+            </p>
+            <h2>Every partnership starts with understanding your story</h2>
+            <p className="section__lead">
+              We create a space where you can share your needs without judgment, then tailor a plan that honors your
+              pace, your goals, and your voice.
+            </p>
+          </div>
+          <div className="about-intro__image-frame">
+            <img
+              src={aboutConversationImage}
+              alt="Care manager listening to a client on a park bench"
+              className="about-intro__image"
+              loading="lazy"
+            />
+          </div>
+        </section>
+
         <section className="section">
           <div className="section__header">
             <p className="eyebrow eyebrow--with-icon">
