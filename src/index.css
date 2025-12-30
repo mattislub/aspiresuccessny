@@ -1491,12 +1491,16 @@ body {
   padding: 28px;
   border-radius: 20px;
   background: linear-gradient(145deg, rgba(25, 133, 149, 0.08), rgba(194, 198, 104, 0.12));
-  border: 1px solid rgba(25, 133, 149, 0.18);
+  border: none;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 20px;
   align-items: center;
   box-shadow: 0 16px 42px rgba(13, 27, 30, 0.14);
+  max-width: 960px;
+  width: min(960px, 92vw);
+  text-align: center;
+  justify-items: center;
 }
 
 .midpage-image-card h3 {
