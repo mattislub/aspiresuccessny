@@ -35,6 +35,8 @@ const supportSectionImage =
 
 const bridgeSectionImage = 'https://images.pexels.com/photos/12263251/pexels-photo-12263251.jpeg'
 
+const aboutSectionImage = 'https://images.pexels.com/photos/6716014/pexels-photo-6716014.jpeg'
+
 const values = ['Compassion', 'Integrity', 'Results-Driven', 'Advocacy']
 
 const teamMembers = [
@@ -1308,20 +1310,30 @@ function App() {
             </p>
           </div>
           <div className="about-preview">
-            <div>
+            <div className="about-preview__copy">
               <div className="pill">Our Mission</div>
               <p>
                 To empower individuals facing emotional, cognitive, and behavioral challenges by providing clear
                 direction, expert care coordination, and access to essential resources.
               </p>
+              <div className="about-preview__actions">
+                <a className="cta" href="/about" onClick={(event) => handleNavigate(event, '/about')}>
+                  Explore our story
+                </a>
+                <a className="cta cta--ghost" href="#contact">
+                  Talk with us
+                </a>
+              </div>
             </div>
-            <div className="about-preview__actions">
-              <a className="cta" href="/about" onClick={(event) => handleNavigate(event, '/about')}>
-                Explore our story
-              </a>
-              <a className="cta cta--ghost" href="#contact">
-                Talk with us
-              </a>
+            <div className="about-preview__media">
+              <div className="about-preview__image-frame">
+                <img
+                  src={aboutSectionImage}
+                  alt="Care manager supporting a child in a colorful learning space"
+                  className="about-preview__image"
+                  loading="lazy"
+                />
+              </div>
             </div>
           </div>
         </section>
