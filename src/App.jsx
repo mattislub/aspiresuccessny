@@ -718,6 +718,19 @@ const SpecialistPlacementPage = ({ onNavigateHome, onNavigate, onNavigateContact
           </div>
         </section>
 
+        <section className="section">
+          <div className="feature-image-card">
+            <div className="feature-image-card__frame">
+              <img
+                src="https://images.pexels.com/photos/7714857/pexels-photo-7714857.jpeg"
+                alt="Specialist smiling while working at a desk"
+                className="feature-image-card__image"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </section>
+
         <section className="section section--muted">
           <div className="section__header">
             <p className="eyebrow">Roles we place</p>
