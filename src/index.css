@@ -361,6 +361,33 @@ body {
   padding: 0 16px;
 }
 
+.section--split .section__split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+  align-items: start;
+}
+
+.section--split .section__split-content {
+  display: grid;
+  gap: 20px;
+  max-width: 560px;
+}
+
+.section__split-blank {
+  min-height: 100%;
+}
+
+@media (max-width: 900px) {
+  .section--split .section__split {
+    grid-template-columns: 1fr;
+  }
+
+  .section__split-blank {
+    display: none;
+  }
+}
+
 .section-divider {
   display: flex;
   justify-content: center;
