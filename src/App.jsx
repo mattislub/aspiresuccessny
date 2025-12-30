@@ -39,6 +39,8 @@ const aboutSectionImage = 'https://images.pexels.com/photos/6716014/pexels-photo
 
 const servicesSectionImage = 'https://images.pexels.com/photos/8654039/pexels-photo-8654039.jpeg'
 
+const whoWeHelpImage = 'https://images.pexels.com/photos/13334625/pexels-photo-13334625.jpeg'
+
 const values = ['Compassion', 'Integrity', 'Results-Driven', 'Advocacy']
 
 const teamMembers = [
@@ -1282,7 +1284,17 @@ function App() {
                 <div className="pill-card">Adults</div>
               </div>
             </div>
-            <div className="section__split-blank" aria-hidden="true" />
+            <div className="section__split-blank who-we-help-visual" aria-hidden="true">
+              <div className="who-we-help-visual__accent" />
+              <div className="who-we-help-visual__frame">
+                <img
+                  src={whoWeHelpImage}
+                  alt="Care manager smiling with a family"
+                  className="who-we-help-visual__image"
+                  loading="lazy"
+                />
+              </div>
+            </div>
           </div>
         </section>
 
